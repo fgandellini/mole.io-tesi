@@ -1,0 +1,28 @@
+\usepackage{fancyhdr}
+% Line spacing -----------------------------------------------------------
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]%
+           {\setlength{\baselineskip}{#1 \defbaselineskip}}
+\newcommand{\doublespacing}{\setlength{\baselineskip}%
+                           {2.0 \defbaselineskip}}
+\newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
+
+%-----------------------------FANCYHDR--------------------------------------%
+\pagestyle{fancy}                       % Sets fancy header and footer
+\fancyfoot{}                            % Delete current footer settings
+\renewcommand{\chaptermark}[1]{         % Lower Case Chapter marker style
+  \markboth{\chaptername\ \thechapter.\ #1}{}} %
+\renewcommand{\sectionmark}[1]{         % Lower case Section marker style
+  \markright{\thesection.\ #1}}         %
+\fancyhead[LE,RO]{\bfseries\thepage}    % Page number (boldface) in left on even
+                                        % pages and right on odd pages
+\fancyhead[RE]{\bfseries\leftmark}      % Chapter in the right on even pages
+\fancyhead[LO]{\bfseries\rightmark}     % Section in the left on odd pages
+\renewcommand{\headrulewidth}{0.05pt}    % Width of head rule
+%\pagestyle{fancy}\addtolenght{\headwidth}{20pt}
+%\rnewcommand{\chaptermark}[1]{\markboth{\thechapter.\#1}{}}
+%\rnewcommand{\sectionmark}[1]{\markright{\thesection\#1}{}}
+%\cfoot{}
+%\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+%\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}

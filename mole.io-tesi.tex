@@ -1,39 +1,49 @@
 % Autore: Federico Gandellini
 % Titolo: mole.io
 
-% Documento
-\documentclass[a4paper,11pt,italian]{report}
-%\documentclass[a4paper,11pt,italian,draft]{report} % Per non caricare le immagini
+%% Documento
+%\documentclass[a4paper,11pt,italian]{report}
+%%\documentclass[a4paper,11pt,italian,draft]{report} % Per non caricare le immagini
+%
+%% Packages
+%\usepackage[italian]{babel}
+%\usepackage[latin1]{inputenc}
+%\usepackage{graphicx}
+%\usepackage{color}
+%\usepackage{colortbl}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{rotating}
 
-% Packages
+% Formato proposto dall'università
+\documentclass[12pt,fleqn,twoside,a4paper]{book}
+\usepackage[latin1]{inputenc} %% lettere accentate
 \usepackage[italian]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[top=2.5cm,margin=3cm,bottom=2.5cm]{geometry}
 \usepackage{graphicx}
-\usepackage{color}
-\usepackage{colortbl}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{rotating}
-% Variabili
+\usepackage{palatino}
+\frontmatter
+\makeindex
+\mainmatter
 
-% Intestazione
-%\input{Header}
+% Numeri di pagina e intestazione
+\input{Header}
 
 % Formattazione
-\linespread{1.6} % Interlinea 2
+%\linespread{1.6} % Interlinea 2
 
 \begin{document}
 
-%\input{Intestazione}
+\input{Frontespizio}
 \clearpage
-%\input{Ringraziamenti}
+\input{Ringraziamenti}
 \clearpage
 \tableofcontents
 \clearpage
 
 \chapter*{Introduzione\markboth{}{Introduzione}}
 \addcontentsline{toc}{chapter}{Introduzione}
-%\input{Introduzione}
+\input{Introduzione}
 \clearpage
 
 \chapter{Log: contesti e problematiche}\label{Log_contesti_e_problematiche}
@@ -70,7 +80,6 @@
 	% motivo della scelta
 		\subsection{Fronteggiare le richieste}\label{Fronteggiare_le_richieste}
 		\clearpage
-	\clearpage	
 	\section{AngularJS e altre tecnologie di frontend}\label{AngularJS e altre tecnologie di frontend}
 	% motivo della scelta
 		\subsection{Gestione delle dipendenze}\label{Gestione_delle_dipendenze}
@@ -100,7 +109,7 @@
 
 \chapter*{Conclusioni e sviluppi futuri\markboth{}{Conclusioni e sviluppi futuri}}\label{Conclusioni_e_sviluppi_futuri}
 \addcontentsline{toc}{chapter}{Conclusioni e sviluppi futuri}
-%\input{Conclusioni_e_sviluppi_futuri}
+\input{Conclusioni_e_sviluppi_futuri}
 \clearpage
 
 \bibliography{Bibliografia}
