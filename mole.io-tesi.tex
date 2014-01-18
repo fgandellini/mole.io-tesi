@@ -1,0 +1,197 @@
+% Autore: Federico Gandellini
+% Titolo: mole.io
+
+% Documento
+\documentclass[a4paper,11pt,italian]{report}
+%\documentclass[a4paper,11pt,italian,draft]{report} % Per non caricare le immagini
+
+% Packages
+\usepackage[italian]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{rotating}
+% Variabili
+
+% Intestazione
+%\input{Header}
+
+% Formattazione
+\linespread{1.6} % Interlinea 2
+
+\begin{document}
+
+%\input{Intestazione}
+\clearpage
+%\input{Ringraziamenti}
+\clearpage
+\tableofcontents
+\clearpage
+
+\chapter*{Introduzione\markboth{}{Introduzione}}
+\addcontentsline{toc}{chapter}{Introduzione}
+%\input{Introduzione}
+\clearpage
+
+\chapter{Log: contesti e problematiche}\label{Log_contesti_e_problematiche}
+	\section{La centralizzazione}\label{Centralizzare_i_log}
+	\clearpage
+	\section{Trattare gli errori applicativi}\label{Trattare_gli_errori_applicativi}
+	\clearpage
+	\section{Business intelligence}\label{Businness_Intelligence}
+    \clearpage
+
+\chapter{Log: software e applicazioni}\label{Log_software_e_applicazioni}
+	\section{Prodotti e soluzioni sul mercato}\label{Prodotti_e_soluzioni_sul_mercato}
+	\clearpage
+	\section{Una nuova applicazione: Mole.io}\label{Una_nuova_applicazione_Mole.io}
+	\clearpage
+
+\chapter{Metodologie di sviluppo}\label{Metodologie_di_sviluppo}
+	\section{User stories}\label{User_stories}
+	\clearpage
+	\section{Test e behavior driven development}\label{Test_e_behavior_driven_development}
+	\clearpage
+
+\chapter{Tecnologie utilizzate}\label{Tecnologie_utilizzate}
+	\section{Node.js}\label{Node.js}
+		% motivo della scelta
+		\subsection{La storia}\label{La_storia}
+		\clearpage
+		\subsection{NPM e moduli}\label{NPM_e_moduli}
+		\clearpage
+	\section{RabbitMQ}\label{RabbitMQ}
+	% motivo della scelta
+	\clearpage
+	\section{MongoDB}\label{MongoDB}
+	% motivo della scelta
+		\subsection{Fronteggiare le richieste}\label{Fronteggiare_le_richieste}
+		\clearpage
+	\clearpage	
+	\section{AngularJS e altre tecnologie di frontend}\label{AngularJS e altre tecnologie di frontend}
+	% motivo della scelta
+		\subsection{Gestione delle dipendenze}\label{Gestione_delle_dipendenze}
+		\clearpage
+	\section{Strumenti per il deploy}\label{Strumenti_per_il_deploy}
+	\clearpage
+
+\chapter{Mole.io}\label{Mole.io}
+	\section{Architettura del sistema}\label{Architettura_del_sistema}
+		\subsection{CQRS ed estensibilità}\label{CQRS_ed_estensibilita}
+		\clearpage
+		\subsection{mole}\label{mole}
+			\subsubsection{I denormalizzatori}\label{I_denormalizzatori}
+			\clearpage
+		\subsection{mole-suit}\label{mole-suit}
+			\subsubsection{I plugin e gli widget}\label{I_plugin_e_gli_widget}
+			\clearpage
+	\section{Autenticazione degli utenti}\label{Autenticazione_degli_utenti}
+	\clearpage
+	\section{Scalabilità e affidabilità}\label{Scalabilita_e_affidabilita}
+	\clearpage
+	\section{Problematiche di sviluppo}\label{Problematiche_di_sviluppo}
+	\clearpage
+
+\chapter{Configurazioni e benchmark}\label{Configurazioni_e_benchmark}
+\clearpage
+
+\chapter*{Conclusioni e sviluppi futuri\markboth{}{Conclusioni e sviluppi futuri}}\label{Conclusioni_e_sviluppi_futuri}
+\addcontentsline{toc}{chapter}{Conclusioni e sviluppi futuri}
+%\input{Conclusioni_e_sviluppi_futuri}
+\clearpage
+
+\bibliography{Bibliografia}
+\bibliographystyle{unsrt}
+\addcontentsline{toc}{chapter}{Bibliografia}
+
+\end{document}
+
+
+
+%
+%il problema
+%- problema del logging:
+%  - tante applicazioni
+%  - diversi clienti
+%  - report errori
+%
+%stato dell'arte: i software di logging centralizzato
+%- aircoso
+%- fluentd + elastic search + kibana
+%perch\'{e} lo stato dell'arte non ci piace
+%- non permettono di avere "modelli/template di messaggi" flessibili
+%- contesti differenti
+%
+%il nostro logger 
+%- perch\'{e} abbiamo scelto nodejs
+%- cos'è nodejs (storia, peculiarità, async, pesca da presentazione lucio)
+%- come funziona il logger (struttura e schema delle comunicazioni di rete)
+%- problematiche incontrate durante l'implementazione
+%- si auto-adatta al tipo di messaggio in arrivo
+%- denormalizzatori
+%- plugin/widget
+%- il clAud
+%- architettura del sistema
+%- estensibilità
+%- come scrivere plugin e widget
+%
+%problematiche "accademiche"
+%- sicurezza (oauth)
+%- scalabilità (+ server con load balancer? cloud? rabbit, disaccoppiamento dei servizi)
+%- relayability (+ server ridondati) 
+%
+%
+%
+%Scaletta:
+%
+%Metodologie:
+% - CQRS
+% - TDD
+% - user stories
+%
+%Tecnologie utilizzate:
+%- NodeJS
+%  - npm (gestione dipendenze)
+%  - passport (oauth)
+%  - mongoskin
+%  - mongoose
+%  - underscore
+%  - express
+%  - faker (fixtures)
+%  - grunt (automation)
+%  - mocha (testing)
+%  - should (testing)
+%  - supertest (testing)
+%  - require-all (plugin)
+%  - cors (e problemi correlati)
+%
+%- rabbitmq
+%
+%- angularjs
+%  - leflet (mappe)
+%  - directive
+%  - controller
+%  - views
+%  - services
+%  - filters
+%  - karma (testing)
+%  - d3 (grafici)
+%  - jquery
+%  - bootstrap (ui)
+%  - bower (gestione dipendenze)
+%
+%- mongodb
+%  - sharding
+%  - replicaset
+%
+%- dokku
+%  
+%- git(?)
+
+
+
+
+
