@@ -1,36 +1,36 @@
 % Autore: Federico Gandellini
 % Titolo: mole.io
 
-%% Documento
-%\documentclass[a4paper,11pt,italian]{report}
-%%\documentclass[a4paper,11pt,italian,draft]{report} % Per non caricare le immagini
-%
-%% Packages
-%\usepackage[italian]{babel}
-%\usepackage[latin1]{inputenc}
-%\usepackage{graphicx}
-%\usepackage{color}
-%\usepackage{colortbl}
-%\usepackage{amsmath}
-%\usepackage{amsfonts}
-%\usepackage{rotating}
+% Documento
+\documentclass[a4paper,11pt,italian]{report}
+%\documentclass[a4paper,11pt,italian,draft]{report} % Per non caricare le immagini
 
-% Formato proposto dall'università
-\documentclass[12pt,fleqn,twoside,a4paper]{book}
-\usepackage[latin1]{inputenc} %% lettere accentate
+% Packages
 \usepackage[italian]{babel}
-\usepackage[top=2.5cm,margin=3cm,bottom=2.5cm]{geometry}
+\usepackage[latin1]{inputenc}
 \usepackage{graphicx}
-\usepackage{palatino}
-\frontmatter
-\makeindex
-\mainmatter
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{rotating}
+
+%% Formato proposto dall'università
+%\documentclass[12pt,fleqn,twoside,a4paper]{book}
+%\usepackage[latin1]{inputenc} %% lettere accentate
+%\usepackage[italian]{babel}
+%\usepackage[top=2.5cm,margin=3cm,bottom=2.5cm]{geometry}
+%\usepackage{graphicx}
+%\usepackage{palatino}
+%\frontmatter
+%\makeindex
+%\mainmatter
 
 % Numeri di pagina e intestazione
 \input{Header}
 
 % Formattazione
-%\linespread{1.6} % Interlinea 2
+\linespread{1.6} % Interlinea 2
 
 \begin{document}
 
@@ -47,17 +47,24 @@
 \clearpage
 
 \chapter{Log: contesti e problematiche}\label{Log_contesti_e_problematiche}
-	\section{La centralizzazione}\label{Centralizzare_i_log}
+\input{Log_contesti_e_problematiche}
+	\section{La centralizzazione}\label{La_centralizzazione}
+	\input{La_centralizzazione}
 	\clearpage
 	\section{Trattare gli errori applicativi}\label{Trattare_gli_errori_applicativi}
+	\input{Trattare_gli_errori_applicativi}
 	\clearpage
 	\section{Business intelligence}\label{Businness_Intelligence}
+	\input{Businness_Intelligence}
     \clearpage
 
 \chapter{Log: software e applicazioni}\label{Log_software_e_applicazioni}
+\input{Log_software_e_applicazioni}
 	\section{Prodotti e soluzioni sul mercato}\label{Prodotti_e_soluzioni_sul_mercato}
+	\input{Prodotti_e_soluzioni_sul_mercato}
 	\clearpage
-	\section{Una nuova applicazione: Mole.io}\label{Una_nuova_applicazione_Mole.io}
+	\section{Una nuova applicazione: Mole.io}\label{Una_nuova_applicazione_Moleio}
+	\input{Una_nuova_applicazione_Moleio}
 	\clearpage
 
 \chapter{Metodologie di sviluppo}\label{Metodologie_di_sviluppo}
@@ -67,27 +74,32 @@
 	\clearpage
 
 \chapter{Tecnologie utilizzate}\label{Tecnologie_utilizzate}
-	\section{Node.js}\label{Node.js}
+	\section{Node.js}\label{Nodejs}
 		% motivo della scelta
+		% peculiarità
 		\subsection{La storia}\label{La_storia}
 		\clearpage
 		\subsection{NPM e moduli}\label{NPM_e_moduli}
+		% cos'è npm, cos'è un modulo
+		% gestione delle dipendenze
+		% alcuni dei moduli che abbiamo usato (i più significativi)
 		\clearpage
 	\section{RabbitMQ}\label{RabbitMQ}
-	% motivo della scelta
+	% motivo della scelta (disaccoppiamento, vantaggi)
+	% configurazione utilizzata per scalare (broadcast+loadbalancing)
 	\clearpage
 	\section{MongoDB}\label{MongoDB}
 	% motivo della scelta
 		\subsection{Fronteggiare le richieste}\label{Fronteggiare_le_richieste}
 		\clearpage
-	\section{AngularJS e altre tecnologie di frontend}\label{AngularJS e altre tecnologie di frontend}
+	\section{AngularJS e altre tecnologie di frontend}\label{AngularJS_e_altre_tecnologie_di_frontend}
 	% motivo della scelta
 		\subsection{Gestione delle dipendenze}\label{Gestione_delle_dipendenze}
 		\clearpage
 	\section{Strumenti per il deploy}\label{Strumenti_per_il_deploy}
 	\clearpage
 
-\chapter{Mole.io}\label{Mole.io}
+\chapter{Mole.io}\label{Moleio}
 	\section{Architettura del sistema}\label{Architettura_del_sistema}
 		\subsection{CQRS ed estensibilità}\label{CQRS_ed_estensibilita}
 		\clearpage
@@ -105,6 +117,7 @@
 	\clearpage
 
 \chapter{Configurazioni e benchmark}\label{Configurazioni_e_benchmark}
+\input{Configurazioni_e_benchmark}
 \clearpage
 
 \chapter*{Conclusioni e sviluppi futuri\markboth{}{Conclusioni e sviluppi futuri}}\label{Conclusioni_e_sviluppi_futuri}
