@@ -20,27 +20,101 @@ Il sistema ad eventi viene utilizzato da Node.js congiuntamente ad una gestione 
 
 Questa modalità di gestione delle operazioni non strettamente legate alla logica applicativa, permette a Node.js di essere molto efficiente se utilizzato per la realizzazione di applicazioni che elaborano grandi quantità di dati ma devono rimanere \textit{reattive} nei confronti di nuove richieste di elaborazione.
 
-\subsection{L'I/O asincrono}
+\subsection{Le operazioni asincrone}
 
 Abbiamo introdotto il concetto di I/O asincrono, di seguito illustreremo come Node.js riesca a gestirlo utilizzando una quantità limitata di risorse di sistema.    
 
-La gestione delle operazioni di scrittura su filesystem è 
+I componenti \textit{hardware} di un sistema elaborano dati con velocità differenti. La rapidità di ogni componente è fortemente legata al modo nel quale questo è stato realizzato. La tabella seguente riporta un elenco di componenti e le relative velocità indicative riferite ad un singolo ciclo di \textit{CPU}. 
 
+\begin{center}
+\begin{tabular}{l|r}
+\textbf{Componente} & \textbf{Numero di cicli} \\ 
+\hline 
+CPU & 1 \\ 
+Cache di livello 1 & 3 \\ 
+Cache di livello 2 & 14 \\ 
+RAM & 250 \\ 
+Hard Disk & 41.000.000 \\ 
+Dispositivo di rete & 240.000.000 \\ 
+\end{tabular} 
+\end{center}
 
+Guardando la tabella si nota immediatamente come i dispositivi di \textit{I/O} siano ordini di grandezza più lenti rispetto ai dispositivi di elaborazione delle informazioni. Se il flusso del programma dovesse aspettare in modo sincrono ogni singola operazione di lettura o scrittura su disco, ad esempio, esso perderebbe la possibilità di eseguire circa quaranta milioni di operazioni di calcolo, con un conseguente degrado delle performances del software.
 
+Una tecnica comune per affrontare il problema dell'\textit{I/O} è l'utilizzo di \textit{threads}. Un thread è spesso definito con il termine "sotto-processo leggero", in effetti esso condivide codice e risorse di sistema con altri threads appartenenti allo stesso processo padre.
 
+Un thread permette al processo di parallelizzare l'esecuzione di una parte del suo flusso di lavoro, ma al tempo stesso sono necessarie risorse di sistema per creare il thread stesso e per distruggerlo. Node.js ovvia a questo problema utilizzando un \textit{thread pool}, cioè un insieme di threads che fungono da \textit{worker} per il processo. Quando è necessario eseguire un particolare task, esso viene sottoposto al thread pool, di conseguenza viene assegnato ad un worker, esso lo esegue e al termine del lavoro comunica l'esito dell'elaborazione al chiamante tramite una funzione detta \textit{callback}.
 
+L'utilizzo di un thread pool comporta un incremento di prestazioni da parte delle applicazioni che lo sfruttano: i thread pool ottimizzano l'utilizzo della memoria e del processore, diminuendo l'overhead di gestione dei thread.
 
+\subsection{Le callback}
 
+Una delle principali difficoltà quando si utilizza Node.js per la prima volta è la gestione delle callback. Di seguito è riportato un frammento di codice Node.js che esegue il salvataggio di un dato su Database.
 
+\begin{verbatim}
+function save(user) {
+  console.log('saving user into db');
+  db.insert(user, function(err, user) {
+    console.log('user successfully saved!');
+  });
+  console.log('all we need is just a little patience...');
+}
+\end{verbatim}
 
-% io asincrono (velocità del ferro)
-Questa gestione non bloccante delle operazioni di \textit{I/O} è chiamata \textit{I/O} asincrono, perché il flusso di esecuzione del programma non è lineare, ma è soggetto a continue biforcazioni e ricongiunzioni dovute alla gestione delle operazioni costose in termini di tempo.
+la funzione \verb|db.insert()| è asincrona, ed accetta due parametri: il dato da salvare e la callback da eseguire una volta salvato il dato. L'esecuzione di questo codice produce un output in console simile a quello mostrato qui sotto.
 
-% threads contro thred pool
-% difficoltà di gestione dell'asincrono (problema delle callback)
-Il vantaggio di una gestione di questo tipo è che la logica del programma non viene influenzata dalle operazioni esterne. 
+\begin{verbatim}
+saving user into db
+all we need is just a little patience...
+user successfully saved!
+\end{verbatim}
+
+Se la funzione \verb|db.insert()| non fosse asincrona otterremmo un output come quello che segue.
+
+\begin{verbatim}
+saving user into db
+user successfully saved!
+all we need is just a little patience...
+\end{verbatim}
+
+Questo piccolo esempio, lascia intuire un potenziale problema nella gestione delle callback, se ad esempio dovessimo assegnare alcuni privilegi di \textit{default} a tutti i nuovi utenti inseriti nel sistema, potremmo scrivere il seguente codice.
+
+\begin{verbatim}
+function save(user) {
+  console.log('saving user into db');
+  db.insert(user, function(err, user) {
+  	db.insert(grants, user, function(err, grants) {
+      console.log('user successfully saved!');
+    });
+  });
+  console.log('all we need is just a little patience...');
+}
+\end{verbatim}
+
+Ora il problema è evidente: se i dati ottenuti in modo asincrono sono necessari per eseguire altre procedure, essi vanno gestiti internamente alla callback stessa. Se utilizzate in modo improprio, le callback, portano al cosiddetto \textit{callback-hell}, ovvero un codice nel quale il lettore non riesce più a seguire il flusso logico dell'applicazione.
+
+Fortunatamente JavaScript ci fornisce una soluzione semplice al problema, ma che richiede allo sviluppatore disciplina nello scrivere il codice sorgente. L'esempio precedente, infatti potrebbe essere riscritto come segue.
+
+\begin{verbatim}
+function onGrantsSaved(err, grants) {
+  console.log('user successfully saved!');
+}
+
+function onUserSaved(err, user) {
+  db.insert(grants, user, onGrantsSaved);
+}
+
+function save(user) {
+  console.log('saving user into db');
+  db.insert(user, onUserSaved);
+  console.log('all we need is just a little patience...');
+}
+\end{verbatim}
+
+Il codice è ora molto più leggibile, semplicemente evitando la dichiarazione di funzioni anonime in linea. 
+
 
 % js nel server
-Questo è un aspetto molto controverso e discusso, infatti se è abituati a pensare tale linguaggio come un "giocattolo", troppo instabile e imprevedibile per  
-
+%Questo è un aspetto molto controverso e discusso, infatti se è abituati 
+%a pensare tale linguaggio come un "giocattolo", troppo instabile 
+%e imprevedibile per 
