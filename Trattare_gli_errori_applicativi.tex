@@ -1,1 +1,14 @@
-perchÃ¨ riportare gli errori delle app (facilitare e velocizzare bugfix) 
+Il salvataggio dei log, come abbiamo anticipato, è una operazione molto comune nei software, ma diventa fondamentale quando si vuole monitorare lo stato interno di una applicazione in esecuzione e si vuole essere informati riguardo alle situazioni di errore nelle quali quest'ultima incorre.
+
+Salvare le informazioni relative alle situazioni di errore è importante per gli sviluppatori, questo permette, infatti di velocizzare l'individuazione di errori (\textit{bug}) nel flusso di lavoro del programma e, di conseguenza la loro risoluzione (\textit{bugfix}).
+
+Il salvataggio dei log avviene tipicamente su uno o più \textit{files} presenti nella stessa macchina nella quale sta funzionando l'applicazione. A seconda del tempo di esecuzione di una applicazione e della frequenza con la quale essa produce messaggi di log, i files sui quali vengono salvate le informazioni possono diventare molto grandi. Un file di questo tipo è molto complesso da gestire da parte degli addetti ai lavori, infatti diventa lungo e complesso trovare informazioni significative all'interno di esso e soprattutto diventa complesso correlare le situazioni di errore e capire con quale frequenza o in quali condizioni si presenta un particolare malfunzionamento.
+\\
+
+problema località: se ho molte applicazioni e molti clienti devo tener monitorata (da remoto) la situazione dei log per ogni cliente/app/macchina, verificare che non esplodano i files e quando diventano troppo grandi, archiviare parte di questi. 
+
+
+
+problema spazio, 
+località
+difficili da leggere e difficile tirarci fuori delle info significative 
