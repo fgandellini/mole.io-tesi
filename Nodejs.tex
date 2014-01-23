@@ -1,0 +1,46 @@
+La \textit{homepage} del sito ufficiale \cite{Node.js} di Node.js fornisce una sintetica ma precisa descrizione di questa tecnologia, partiremo proprio da essa per illustrarne le peculiarità.\\
+
+La descrizione ufficiale recita:
+
+\begin{center}
+\textit{Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.}
+\end{center}
+
+Scopriamo immediatamente che Node.js è una \textit{piattaforma}. L'utilizzo di questo termine mette l'accento su un aspetto fondamentale di questa tecnologia: fornire un ambiente nel quale le applicazioni sviluppate possano funzionare con il supporto di librerie di sistema fornite da Node.js stesso.
+
+La piattaforma Node.js utilizza JavaScript come linguaggio di sviluppo. Per farlo si avvale del potente interprete \textit{V8} presente all'interno del browser \textit{Chrome} di \textit{Google}. L'utilizzo di un linguaggio altamente popolare e di una base solida come quella fornita dal popolare \textit{browser} permettono di costruire applicazioni in modo semplice e veloce.
+
+L'ultimo importante concetto, che leggiamo dalla prima frase della descrizione, è che Node.js è principalmente orientato allo sviluppo di applicazioni che lavorano con la rete. Per sua natura, la piattaforma ci aiuta a fare in modo che esse siano scalabili.\\
+
+La seconda parte della descrizione spiega sinteticamente alcune caratteristiche peculiari di Node.js e ne definisce meglio il contesto applicativo. 
+
+L'intera piattaforma è centrata sul concetto di \textit{evento}. Si dice  evento un messaggio che viene scatenato in un determinato istante dell'elaborazione e che successivamente è catturato e gestito dalle componenti del sistema che sono preposte alla gestione di quell'evento specifico.
+
+Il sistema ad eventi viene utilizzato da Node.js congiuntamente ad una gestione non bloccante delle operazioni di \textit{Input/Output}. Questo significa che una operazione potenzialmente lunga, come ad esempio la comunicazione con il \textit{filesystem} o con i dispositivi di \textit{rete} non bloccano il flusso di esecuzione del programma principale. Dopo aver richiesto ad altri attori del sistema il dato di cui necessita, il programma continua il suo normale flusso di esecuzione e verrà informato, utilizzando un evento, quando il dato richiesto sarà disponibile. Questa gestione non bloccante delle operazioni di \textit{I/O} è chiamata \textit{I/O} asincrono.
+
+Questa modalità di gestione delle operazioni non strettamente legate alla logica applicativa, permette a Node.js di essere molto efficiente se utilizzato per la realizzazione di applicazioni che elaborano grandi quantità di dati ma devono rimanere \textit{reattive} nei confronti di nuove richieste di elaborazione.
+
+\subsection{L'I/O asincrono}
+
+Abbiamo introdotto il concetto di I/O asincrono, di seguito illustreremo come Node.js riesca a gestirlo utilizzando una quantità limitata di risorse di sistema.    
+
+La gestione delle operazioni di scrittura su filesystem è 
+
+
+
+
+
+
+
+
+
+% io asincrono (velocità del ferro)
+Questa gestione non bloccante delle operazioni di \textit{I/O} è chiamata \textit{I/O} asincrono, perché il flusso di esecuzione del programma non è lineare, ma è soggetto a continue biforcazioni e ricongiunzioni dovute alla gestione delle operazioni costose in termini di tempo.
+
+% threads contro thred pool
+% difficoltà di gestione dell'asincrono (problema delle callback)
+Il vantaggio di una gestione di questo tipo è che la logica del programma non viene influenzata dalle operazioni esterne. 
+
+% js nel server
+Questo è un aspetto molto controverso e discusso, infatti se è abituati a pensare tale linguaggio come un "giocattolo", troppo instabile e imprevedibile per  
+
