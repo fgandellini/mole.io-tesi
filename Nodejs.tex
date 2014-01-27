@@ -1,5 +1,7 @@
 La \textit{homepage} del sito ufficiale \cite{Node.js} di Node.js fornisce una sintetica ma precisa descrizione di questa tecnologia, partiremo proprio da essa per illustrarne le peculiarità.\\
 
+%TODO logo Node.js (?)
+
 La descrizione ufficiale recita:
 
 \begin{center}
@@ -49,7 +51,7 @@ L'utilizzo di un thread pool comporta un incremento di prestazioni da parte dell
 
 \subsection{Le callback}
 
-Una delle principali difficoltà quando si utilizza Node.js per la prima volta è la gestione delle callback. Di seguito è riportato un frammento di codice Node.js che esegue il salvataggio di un dato su Database.
+Una delle principali difficoltà quando si utilizza Node.js per la prima volta è la gestione delle callback. Di seguito è riportato un frammento di codice Node.js che esegue il salvataggio di un utente su Database.
 
 \begin{verbatim}
 function save(user) {
@@ -61,7 +63,7 @@ function save(user) {
 }
 \end{verbatim}
 
-la funzione \verb|db.insert()| è asincrona, ed accetta due parametri: il dato da salvare e la callback da eseguire una volta salvato il dato. L'esecuzione di questo codice produce un output in console simile a quello mostrato qui sotto.
+la funzione \verb|db.insert()| è asincrona, ed accetta due parametri: il dato da salvare e la callback da eseguire una volta eseguito l'inserimento nel Database. L'esecuzione di questo codice produce un output in console simile a quello mostrato qui sotto.
 
 \begin{verbatim}
 saving user into db
@@ -77,7 +79,7 @@ user successfully saved!
 all we need is just a little patience...
 \end{verbatim}
 
-Questo piccolo esempio, lascia intuire un potenziale problema nella gestione delle callback, se ad esempio dovessimo assegnare alcuni privilegi di \textit{default} a tutti i nuovi utenti inseriti nel sistema, potremmo scrivere il seguente codice.
+Questo piccolo esempio, lascia intuire un potenziale problema nella gestione delle callback: se, ad esempio, dovessimo assegnare alcuni privilegi di \textit{default} a tutti i nuovi utenti inseriti nel sistema, potremmo scrivere il seguente codice.
 
 \begin{verbatim}
 function save(user) {
@@ -112,7 +114,6 @@ function save(user) {
 \end{verbatim}
 
 Il codice è ora molto più leggibile, semplicemente evitando la dichiarazione di funzioni anonime in linea. 
-
 
 % js nel server
 %Questo è un aspetto molto controverso e discusso, infatti se è abituati 

@@ -1,0 +1,14 @@
+Quando si progetta una applicazione web che offre un servizio, bisogna sempre porre molta attenzione a non introdurre nel sistema i cosiddetti \textit{colli di bottiglia}, cioè componenti dell'architettura che non riescono a sopportare il carico delle richieste in arrivo dagli utenti.
+
+Una tecnica piuttosto efficace per evitare i colli di bottiglia, consiste nel realizzare un \textit{disaccoppiamento} delle varie componenti presenti nel sistema. Una applicazione ben disaccoppiata è una applicazione nella quale ogni singolo componente svolge una funzione specifica e comunica con le altre parti del sistema secondo protocolli predefiniti. Disaccoppiare quindi non è sempre facile, perché è necessario costruire infrastrutture che permettano alle varie parti, ormai slegate, di comunicare tra loro.
+
+RabbitMQ è un software che permette di realizzare, configurare e monitorare complessi sistemi di code di messaggi. Il suo utilizzo permette di realizzare una infrastruttura nella quale le diverse parti di un sistema possano comunicare tra loro scambiandosi messaggi attraverso le code utilizzando un protocollo determinato dallo sviluppatore.
+
+L'utilizzo di RabbitMQ fornisce un vantaggio evidente in termini di flessibilità: è possibile agganciare o rimuovere parti da un sistema attivo senza comprometterne l'intero funzionamento.
+
+La flessibilità non è l'unico vantaggio, infatti RabbitMQ permette di ottenere strutture perfettamente gestibili su sistemi di tipo \textit{Platform as a Service} (PaaS), sui quali si può decidere di aumentare o diminuire dinamicamente le risorse fornite ad un sistema in produzione in accordo con il numero di richieste utente da soddisfare. 
+
+Nella sezione \ref{Architettura_del_sistema} vedremo nel dettaglio la configurazione di RabbitMQ utilizzata per realizzare Mole.io e quali tecniche abbiamo messo in atto per permettere al sistema di essere installato su una piattaforma di tipo PaaS.
+
+% motivo della scelta (disaccoppiamento, vantaggi)
+% configurazione utilizzata per scalare (broadcast+loadbalancing)
