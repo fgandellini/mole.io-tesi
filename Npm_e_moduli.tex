@@ -2,11 +2,17 @@ L'organizzazione del codice è un aspetto fondamentale dello sviluppo. Il \textit
 
 Node.js incarna questo principio nelle fondamenta della sua struttura, infatti permette di organizzare il codice in unità indipendenti tra loro chiamate \textit{moduli}. Ogni modulo nella piattaforma può decidere quali dati gestire al suo interno e quali esporre all'esterno. Si creano in questo modo delle \textit{black box} che funzionano tanto meglio quanto il loro compito è specifico. 
 
-Poco dopo la nascita di Node.js la comunità di sviluppatori che lo utilizzava ha deciso di arricchire questa piattaforma con un \textit{tool} ormai insostituibile: \textit{Node Package Manager} (NPM).
+Poco dopo la nascita di Node.js la comunità di sviluppatori che lo utilizzava ha deciso di arricchire questa piattaforma con un \textit{tool} ormai insostituibile: \textit{Node Package Manager} (NPM).\\
 
-%TODO: logo NPM (?)
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./img/npm}
+\caption[Il logo di NPM]{Il logo di NPM}
+\label{fig:npm}
+\end{figure}
 
-NPM è un tool, utilizzabile da linea di comando, che si occupa della gestione dei moduli e delle loro dipendenze, per farlo utilizza un \textit{repository} in rete nel quale sono registrati tutti i moduli pubblici sviluppati dai vari \textit{contributor} della \textit{community} Node.js.
+
+NPM \cite{website:NPM} è un tool, utilizzabile da linea di comando, che si occupa della gestione dei moduli e delle loro dipendenze, per farlo utilizza un \textit{repository} in rete nel quale sono registrati tutti i moduli pubblici sviluppati dai vari \textit{contributor} della \textit{community} Node.js.
 
 Abbiamo introdotto il concetto di \textit{dipendenza} tra moduli. Un modulo si dice dipendente da un altro quando necessita di quest'ultimo per eseguire il suo compito. NPM impone che ogni modulo sia descritto dal file \verb|Package.json| che ne riporta le informazioni principali ed elenca gli altri moduli dai quali dipende. Di seguito riportiamo un esempio di \verb|Package.json| per un modulo chiamato \verb|mole| che fa parte del sistema realizzato per questa tesi.
 

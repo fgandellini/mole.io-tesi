@@ -1,10 +1,16 @@
-Iniziamo riportando alcune definizioni che utilizzeremo spesso nel seguito della tesi. Diciamo \textit{processo} un programma in esecuzione e \textit{log} l'insieme dei messaggi prodotti, a fini informativi, da tale processo.
+Prima di entrare nello specifico delle tematiche trattate, è necessario riprendere e chiarire alcuni concetti chiave che utilizzeremo ripetutamente nel seguito della tesi.
 
-La decisione di quali e quante informazioni salvare, spetta tipicamente allo sviluppatore o al personale addetto alla gestione dell'applicazione.
+Si definisce \textit{processo} un programma in esecuzione e \textit{log} l'insieme dei messaggi prodotti, a fini informativi, da tale processo.
 
-I messaggi di log posso essere di vario tipo, è usanza comune caratterizzare ogni messaggio con un livello di gravità (\textit{severity}) permettendo così una identificazione più rapida degli errori più gravi, rendendo repentino l'intervento di riparazione dell'applicazione.
+I messaggi di log posso essere di vario tipo. \`{E} usanza comune caratterizzare ogni messaggio con un livello di gravità (\textit{severity}) permettendo così una rapida identificazione degli errori critici allo scopo di rendere repentino l'intervento di riparazione dell'applicazione.
 
-Informazioni spesso salvate all'interno dei log sono dati specifici del sistema nel quale l'applicazione è in esecuzione, dati relativi all'utente che la sta utilizzando, oppure relativi allo stato del sistema in un preciso istante temporale. Ogni log è infine corredato da un messaggio significativo che lo rende immediatamente identificabile tra altri.
+Benché esista un protocollo riconosciuto a livello internazionale e adottato negli ambienti \textit{Unix-like} chiamato \textit{SysLog}, nell'ambito dello sviluppo di applicativi, non esistono norme vincolanti per la strutturazione dei log stessi. Questo accade sia perché SysLog non rappresenta uno standard rigidamente definito, sia perché l'organizzazione delle informazioni contenute nei log, è spesso delegata agli sviluppatori, i quali implementano questa funzionalità nel modo più conveniente rispetto alle specifiche esigenze dell'applicazione in costruzione.  
 
-
-
+All'interno dei log, di conseguenza, troveremo informazioni diversificate in base al caso d'uso, ma tra le più frequenti ci sono:
+\begin{itemize}
+\item dati specifici del sistema nel quale l'applicazione è in esecuzione;
+\item dati relativi all'utente che sta utilizzando l'applicazione;
+\item dati relativi allo stato del sistema in un preciso istante temporale;
+\item un marcatore temporale (\textit{timestamp})
+\item un messaggio in linguaggio naturale, significativo, che lo rende immediatamente identificabile tra altri;
+\end{itemize}
