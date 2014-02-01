@@ -3,3 +3,52 @@ i competitor
 airbreak - logga solo
 rollbar - aggrega
 papertrail - live log
+
+sul mercato esistono svariati sistemi per la gestione centralizzata dei log
+
+
+Airbrake
++
+aggrega log e ne facilita l'analisi
+integrato con sistemi di tracking 
+-
+formati dei messaggi fisso e solo errori
+
+
+log.io
++
+realtime
+-
+no aggregazione
+
+rollbar
++
+non logga solo errori, ma la gestione delle "non eccezioni" è un o' tirata per i capelli
+fa aggregazione
+
+https://rollbar.com/vs/airbrake/ questo è mooooolto meglio di mole :(
+
+-
+soluzione completa ma blindata e non estensibile (gniiiiiii)
+
+
+
+papertrail
++
+realtime
+aggregazione
+-
+logga solo tipi di errori noti, no formato flessibile
+
+
+
+
+
+
+
+CACCHIO! fluentd + elasticsearch + kibana = mole
+%(mole è più facile....gniiiiii)
+
+
+
+%mole è pensato più come una piattaforma espandibile, accento sulla possibilità di aggiungere features a caldo
