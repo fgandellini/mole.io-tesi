@@ -1,6 +1,22 @@
-tante applicazioni (anche tipi diversi) che loggano
-tanti clienti da gestire dislocati sul territorio
+L'azienda che ha ospitato lo \textit{stage} di Tesi, Codice Plastico, è una realtà che opera nel mercato IT sviluppando applicazioni su misura di tipo mobile, web e desktop.
+Il contesto dal quale è nato lo sviluppo di questo progetto è stata la necessità di trovare la soluzione per centralizzare i \textit{log} in un unico sistema, facilmente accessibile e con un'interfaccia utente \textit{user-friendly}. 
+
+Ogni applicazione realizzata e posata dall'azienda, infatti, presenta criticità differenti rispetto alla gestione degli errori:
+\begin{itemize}
+\item Nelle applicazioni web, di norma, i log risiedono su server di proprietà dei  clienti, spesso dislocati in aree geografiche differenti.
+\item Nel caso delle applicazioni mobile, i log risiedono sui device stessi, così come nel caso delle applicazioni desktop.
+\end{itemize}
+
+Tra i numerosi vantaggi della centralizzazione il principale è la riduzione del carico di lavoro dell'analista, il quale può avere accesso ai \textit{log} senza l'onere di doverli attivamente cercare sui sistemi dei clienti.
+
+Inoltre l'aggregazione dei dati permette all'analista di aver accesso ad informazioni già pre-elaborate, come ad esempio il \textit{clustering} di errori simili avvenuti in istanti temporali differenti con l'evidente semplificazione del processo di riconoscimento delle correlazioni causa-effetto.
+
+Il processo di centralizzazione richiede l'inversione del paradigma di segnalazione degli errori. Si passa da una modalità nella quale è l'analista a dover cercare attivamente i file sui sistemi, ad una in cui sono i sistemi stessi ad inviare i propri \textit{log}. A questa logica è facilmente integrabile un sistema di notifiche in tempo reale, con lo scopo di rendere repentina la segnalazione dell'errore e il conseguente intervento di ripristino.
+
+In commercio esistono svariati sistemi e tools che consentono la gestione delle problematiche legate ai log, come ad esempio l'archiviazione, l'analisi, il parsing, il monitoraggio e le segnalazioni. Anche in questo caso la centralizzazione degli strumenti di controllo, evita  l'installazione e conseguente manutenzione di numerosi \textit{tools} su ciascun sistema in produzione. 
+
+L'effetto evidente della centralizzazione, della semplificazione dell'accesso ai dati e della loro analisi è la riduzione di costi di manutenzione del software, oltre all'incremento della qualità del prodotto offerto.
 
 
 
-vedremo che mole usa un db documentale perché si presta meglio a salvare dati non fortemente strutturati (schema-less)
+
