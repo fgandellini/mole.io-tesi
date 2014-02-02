@@ -1,3 +1,94 @@
+I prodotti per la gestione centralizzata dei \textit{log} offerti dal mercato sono svariati, ognuno presenta peculiarità che lo rendono
+
+ce ne sono tanti, alcuni hanno un taglio troppo specifico, ad es. per un linguaggio solo o per un ambiente solo (es. solo mobile)
+
+di seguito ne riportiamo cinque che sono software generici e si adattano ad esigenze diverse e ci hanno ispirato nella realizzazione di mole.io.
+
+\subsubsection{Airbrake}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/airbrake}
+\caption[Il sito web di Airbrake]{Il sito web di Airbrake}
+\label{fig:airbrake}
+\end{figure}
+
+Questa è una delle più conosciute applicazioni per il monitoraggio dei log prodotti da applicazioni mobile, in realtà Airbrake offre moduli di integrazione per i principali linguaggi di programmazione e può essere utilizzata anche in ambito web o desktop.
+
+A partire dalla versione 2.0 propone un pannello di gestione, ricerca e aggregazione dei messaggi di errore completamente rinnovato. L'interfaccia grafica è gradevole e ben organizzata.
+
+Oltre all'aggregazione automatica dei messaggi d'errore, Airbrake possiede moduli di integrazione con i maggiori sistemi di \textit{bug-tracking}, permettendo di attivare \textit{task} per gli sviluppatori alla ricezione di una segnalazione di errore.
+
+Il formato dei messaggi di errore inviabili a questo \textit{tool} è fisso e non permette l'aggiunta di dati addizionali, questo lo rende abbastanza scomodo quando si vogliano tracciare eventi diversi dagli errori.
+
+\subsubsection{Log.io}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/logio}
+\caption[Il sito web di Log.io]{Il sito web di Log.io}
+\label{fig:logio}
+\end{figure}
+
+La peculiarità di questo servizio è l'aspetto \textit{realtime}, infatti esso permette di ottenere in tempo reale i log in arrivo dalle applicazioni monitorate.
+
+L'invio dei messaggi al server, da parte delle applicazioni monitorate, avviene tramite messaggi TCP con una formattazione fissa. (Non è proprio user friendly fes...)
+
+I log vengono gestiti come flussi di dati, è possibile applicare alcuni filtri per limitare la quantità di informazioni riportate ai soli dati utili all'utente. Purtroppo questo sistema non esegue alcun tipo di aggregazione dei dati in arrivo e non permette quindi di avere una visione d'insieme della situazione dell'applicazione monitorata.
+
+\subsubsection{Rollbar}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/rollbar}
+\caption[Il sito web di Rollbar]{Il sito web di Rollbar}
+\label{fig:rollbar}
+\end{figure}
+
+Tra le applicazioni a pagamento censite, questa sembra essere la più completa. Permette infatti di registrare sia messaggi di errore sia messaggi generici, esegue una aggregazione relativa ai dati di base di ogni messaggio
+
+da dire: un messaggio ha dati di base (tipo la severity) e dati addizionali tipo messaggi o altri dati strutturati allegabili (stessa idea di mole)
+ma la gestione non è proprio pulita, 
+
+\subsubsection{Papertrail}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/papertrail}
+\caption[Il sito web di Papertrail]{Il sito web di Papertrail}
+\label{fig:papertrail}
+\end{figure}
+
+\subsubsection{Fluentd, ElasticSearch e Kibana}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/fluentd}
+\caption[Il sito web di Fluentd]{Il sito web di Fluentd}
+\label{fig:fluentd}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/kibana}
+\caption[Il sito web di Kibana]{Il sito web di Kibana}
+\label{fig:kibana}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 overview di alcuni sistemi di logging con le relative funzioni specifiche
 i competitor
 airbreak - logga solo
@@ -23,7 +114,7 @@ no aggregazione
 
 rollbar
 +
-non logga solo errori, ma la gestione delle "non eccezioni" è un o' tirata per i capelli
+non logga solo errori, ma la gestione delle "non eccezioni" è un po' tirata per i capelli
 fa aggregazione
 
 https://rollbar.com/vs/airbrake/ questo è mooooolto meglio di mole :(
