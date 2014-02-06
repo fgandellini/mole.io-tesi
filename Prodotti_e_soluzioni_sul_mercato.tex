@@ -32,7 +32,7 @@ Il formato dei messaggi di errore inviabili a questo \textit{tool} è fisso e non
 
 La peculiarità di questo servizio è l'aspetto \textit{realtime}, infatti esso permette di ottenere in tempo reale i log in arrivo dalle applicazioni monitorate.
 
-L'invio dei messaggi al server, da parte delle applicazioni monitorate, avviene tramite messaggi TCP con una formattazione fissa. (Non è proprio user friendly fes...)
+L'invio dei messaggi al server, da parte delle applicazioni monitorate, avviene tramite messaggi TCP con una formattazione fissa, rendendo questo strumento abbastanza scomodo quando si intende notificare informazioni più strutturate di una semplice stringa di testo.
 
 I log vengono gestiti come flussi di dati, è possibile applicare alcuni filtri per limitare la quantità di informazioni riportate ai soli dati utili all'utente. Purtroppo questo sistema non esegue alcun tipo di aggregazione dei dati in arrivo e non permette quindi di avere una visione d'insieme della situazione dell'applicazione monitorata.
 
@@ -45,10 +45,15 @@ I log vengono gestiti come flussi di dati, è possibile applicare alcuni filtri p
 \label{fig:rollbar}
 \end{figure}
 
-Tra le applicazioni a pagamento censite, questa sembra essere la più completa. Permette infatti di registrare sia messaggi di errore sia messaggi generici, esegue una aggregazione relativa ai dati di base di ogni messaggio
+Tra le applicazioni a pagamento censite, questa sembra essere la più completa, permette infatti di registrare sia messaggi di errore sia messaggi generici.
 
-da dire: un messaggio ha dati di base (tipo la severity) e dati addizionali tipo messaggi o altri dati strutturati allegabili (stessa idea di mole)
-ma la gestione non è proprio pulita, 
+E' possibile arricchire i messagi inviati a Rollbar con alcuni dati semplici o strutturati definibili dall'utente. L'aggregazione che questo sistema opera su tali messaggi, però, si limita solo ad alcuni campi obbligatori. 
+
+In questa applicazione è inoltre possibile configurare la notifica via email per alcuni tipi di messaggi e possiede una modalità di visualizzazione dei dati "realtime".
+
+Permette inoltre di notificare gli eventi aggiungendo automaticamente alcuni \textit{task} nei principali sistemi di \textit{time tracking} e \textit{project management} esistenti sul mercato. 
+
+%da dire: un messaggio ha dati di base (tipo la severity) e dati addizionali tipo messaggi o altri dati strutturati allegabili (stessa idea di mole) ma la gestione non è proprio pulita, 
 
 \subsubsection{Papertrail}
 
@@ -59,6 +64,14 @@ ma la gestione non è proprio pulita,
 \label{fig:papertrail}
 \end{figure}
 
+E' un tool molto orientato agli amministratori di rete, permette infatti (lo dice il nome stesso) di eseguire una sorta di \verb|tail| dei messaggi che riceve, permettendo così di ottenere la coda degli ultimi messaggi arrivati in tempo reale.
+
+Esegue una aggregazione automatica dei log estrapolando la chiave di aggregazione dal formato stesso del messaggio, ad esempio il server che hai inviato il messaggio, il tipo di traccia (riavvio del sistema, login utente, errore di Apache). 
+
+Gli errori sono ricercabili anche utilizzando delle ricerche temporali.
+
+permette di inviare solo log con formati precisi, non è possibile aggiungere dati utente strutturati.
+ 
 \subsubsection{Fluentd, ElasticSearch e Kibana}
 
 \begin{figure}[h]
@@ -74,6 +87,24 @@ ma la gestione non è proprio pulita,
 \caption[Il sito web di Kibana]{Il sito web di Kibana}
 \label{fig:kibana}
 \end{figure}
+
+[soluzione relativamente nuova (?), l'abbiamo trovata durante lo sviluppo.]
+
+Questi sono tre applicativi separati e sono i migliori tra gli open source che abbiamo esaminato.
+
+Per ottenere un logger tipo gli altri vanno utilizzati insieme
+
+Permettono di aggregare dati da sorgenti differenti, anche non messaggi di errore.
+
+la struttura è fluentd > elastic search > kibana
+
+Fluentd è un sistema di raccolta messaggi in formato JSON che supporta infiniti formati, grazie all'utilizzo di plugin.
+
+uno di questi plugin permette di esportare i messaggi ricevuti verso Elastic search: un software che permette di aggregare dati non strutturati. il servre Elastic Search viene infine interrogato dall'interfaccia grafica Kibana che permette di utilizzare widget per mostrare i dati aggregati.
+
+è una soluzione che ti devi "fare in casa" i sw vanno installati e configurati
+Esiste un servizio che include già tutti gli strumenti, ma è a pagamento.
+
 
 
 
