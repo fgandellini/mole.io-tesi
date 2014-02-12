@@ -9,14 +9,99 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="1052.3622"
+   height="744.09448"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="rabbit-pub-sub.pdf">
+   sodipodi:docname="red-green-refactor.pdf">
   <defs
-     id="defs4" />
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Send"
+       style="overflow:visible">
+      <path
+         id="path3937"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend"
+       style="overflow:visible">
+      <path
+         id="path3931"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         id="path3913"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Send"
+       style="overflow:visible">
+      <path
+         id="path3919"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         id="path3925"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path3907"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -25,8 +110,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="524.39662"
-     inkscape:cy="720.0851"
+     inkscape:cx="344.18215"
+     inkscape:cy="402.95148"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -34,7 +119,11 @@
      inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -50,7 +139,8 @@
   <g
      inkscape:label="Livello 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-422.24375,891.7935)">
     <g
        id="g3155"
        transform="translate(34.285714,-165)">
@@ -607,6 +697,141 @@
                y="657.39252" /></flowRegion><flowPara
              id="flowPara3579"
              style="font-size:24px">E</flowPara></flowRoot>      </g>
+    </g>
+    <g
+       id="g6374">
+      <g
+         transform="translate(-526.59658,-179.80715)"
+         id="g6327">
+        <path
+           sodipodi:type="arc"
+           style="fill:#aa0000;stroke:none"
+           id="path3094"
+           sodipodi:cx="892.97485"
+           sodipodi:cy="178.58023"
+           sodipodi:rx="61.619305"
+           sodipodi:ry="61.619305"
+           d="m 954.59416,178.58023 c 0,34.0314 -27.5879,61.61931 -61.61931,61.61931 -34.0314,0 -61.6193,-27.58791 -61.6193,-61.61931 0,-34.0314 27.5879,-61.6193 61.6193,-61.6193 34.03141,0 61.61931,27.5879 61.61931,61.6193 z"
+           transform="matrix(1.1360076,0,0,1.1360076,-290.85754,-656.94324)" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot3108"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+           transform="translate(-174.2321,-656.70571)"><flowRegion
+             id="flowRegion3110"><rect
+               id="rect3112"
+               width="207.08127"
+               height="141.42136"
+               x="871.76166"
+               y="187.6716"
+               style="fill:#ffffff" /></flowRegion><flowPara
+             id="flowPara3114"
+             style="font-size:24px;font-weight:bold;fill:#ffffff;-inkscape-font-specification:Sans Bold">Red</flowPara></flowRoot>      </g>
+      <g
+         transform="translate(-437.39604,-242.43661)"
+         id="g6320">
+        <path
+           transform="matrix(1.1360076,0,0,1.1360076,-248.03525,-396.32386)"
+           d="m 954.59416,178.58023 c 0,34.0314 -27.5879,61.61931 -61.61931,61.61931 -34.0314,0 -61.6193,-27.58791 -61.6193,-61.61931 0,-34.0314 27.5879,-61.6193 61.6193,-61.6193 34.03141,0 61.61931,27.5879 61.61931,61.6193 z"
+           sodipodi:ry="61.619305"
+           sodipodi:rx="61.619305"
+           sodipodi:cy="178.58023"
+           sodipodi:cx="892.97485"
+           id="path3098"
+           style="fill:#447821;stroke:none"
+           sodipodi:type="arc" />
+        <flowRoot
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+           id="flowRoot3116"
+           xml:space="preserve"
+           transform="translate(-145.6012,-396.29726)"><flowRegion
+             id="flowRegion3118"><rect
+               y="187.6716"
+               x="871.76166"
+               height="141.42136"
+               width="207.08127"
+               id="rect3120"
+               style="fill:#ffffff" /></flowRegion><flowPara
+             id="flowPara3122"
+             style="font-size:24px;font-weight:bold;fill:#ffffff;-inkscape-font-specification:Sans Bold">Green</flowPara></flowRoot>      </g>
+      <g
+         transform="translate(-420.22346,-123.23859)"
+         id="g6313">
+        <path
+           transform="matrix(1.1360076,0,0,1.1360076,-529.25354,-515.52188)"
+           d="m 954.59416,178.58023 c 0,34.0314 -27.5879,61.61931 -61.61931,61.61931 -34.0314,0 -61.6193,-27.58791 -61.6193,-61.61931 0,-34.0314 27.5879,-61.6193 61.6193,-61.6193 34.03141,0 61.61931,27.5879 61.61931,61.6193 z"
+           sodipodi:ry="61.619305"
+           sodipodi:rx="61.619305"
+           sodipodi:cy="178.58023"
+           sodipodi:cx="892.97485"
+           id="path3100"
+           style="fill:#0044aa;fill-opacity:1;stroke:none"
+           sodipodi:type="arc" />
+        <flowRoot
+           transform="translate(-445.38201,-515.28434)"
+           xml:space="preserve"
+           id="flowRoot3124"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+             id="flowRegion3126"><rect
+               id="rect3128"
+               width="207.08127"
+               height="141.42136"
+               x="871.76166"
+               y="187.6716"
+               style="fill:#ffffff" /></flowRegion><flowPara
+             id="flowPara3130"
+             style="font-size:24px;font-weight:bold;fill:#ffffff;-inkscape-font-specification:Sans Bold">Refactor</flowPara></flowRoot>      </g>
+      <g
+         transform="matrix(-0.84047353,0.54185262,-0.54185262,-0.84047353,341.9127,-927.37606)"
+         id="g6339">
+        <rect
+           style="fill:#808080;stroke:none"
+           id="rect6334"
+           width="49.497471"
+           height="38.477627"
+           x="244.45686"
+           y="-294.17117" />
+        <path
+           style="fill:#808080;fill-opacity:1;stroke:none"
+           d="m 269.20559,-327.50621 44.95179,46.46702 -89.90357,0 z"
+           id="rect6336"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccc" />
+      </g>
+      <g
+         id="g6343"
+         transform="matrix(0,-1,1,0,488.57197,-166.68638)">
+        <rect
+           y="-294.17117"
+           x="244.45686"
+           height="38.477627"
+           width="49.497471"
+           id="rect6345"
+           style="fill:#808080;stroke:none" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           id="path6347"
+           d="m 269.20559,-327.50621 44.95179,46.46702 -89.90357,0 z"
+           style="fill:#808080;fill-opacity:1;stroke:none" />
+      </g>
+      <g
+         transform="matrix(0.83676908,0.54755594,-0.54755594,0.83676908,-259.47288,-442.15604)"
+         id="g6349">
+        <rect
+           style="fill:#808080;stroke:none"
+           id="rect6351"
+           width="49.497471"
+           height="38.477627"
+           x="244.45686"
+           y="-294.17117" />
+        <path
+           style="fill:#808080;fill-opacity:1;stroke:none"
+           d="m 269.20559,-327.50621 44.95179,46.46702 -89.90357,0 z"
+           id="path6353"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccc" />
+      </g>
     </g>
   </g>
 </svg>
