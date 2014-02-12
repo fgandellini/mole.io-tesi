@@ -1,19 +1,19 @@
 Il salvataggio dei log, come abbiamo anticipato, è una operazione molto comune nei software, ma diventa fondamentale quando si vuole monitorare lo stato interno di una applicazione in esecuzione, con l'obiettivo di essere informati riguardo alle situazioni di errore nelle quali quest'ultima incorre.
 
-Salvare le informazioni relative alle situazioni di errore è importante per gli sviluppatori. Questa operazione permette, infatti di velocizzare l'individuazione di errori (\textit{bug}) nel flusso di lavoro del programma e, di conseguenza la loro risoluzione (\textit{bugfix}).
+Salvare le informazioni relative alle situazioni di errore è importante per gli sviluppatori. Questa operazione permette, infatti, di velocizzare l'individuazione di errori (\textit{bug}) nel flusso di lavoro del programma e, di conseguenza la loro risoluzione (\textit{bugfix}).
 
-Il salvataggio dei \textit{log} avviene tipicamente su uno o più \textit{file} di testo presenti nella stessa macchina nella quale sta funzionando l'applicazione. A seconda del tempo di esecuzione di una applicazione e della frequenza con la quale essa produce messaggi di \textit{log}, questi \textit{file} possono diventare molto grandi.
+Il salvataggio dei log avviene tipicamente su uno o più file di testo presenti nella stessa macchina nella quale sta funzionando l'applicazione. A seconda del tempo di esecuzione di una applicazione e della frequenza con la quale essa produce messaggi di log, questi file possono diventare molto grandi.
 
-\textit{File} di considerevoli dimensioni sono altamente complessi da gestire da parte degli addetti ai lavori. La problematica più evidente diviene infatti trovare informazioni significative all'interno di questa grande mole di dati. Questo processo richiede infatti tempo e attenzione in situazioni di emergenza, nelle quali il ripristino del sistema deve avvenire nel modo più rapido possibile.
+File di considerevoli dimensioni sono altamente complessi da gestire da parte degli addetti ai lavori. La problematica più evidente diviene infatti trovare informazioni significative all'interno di questa grande mole di dati. Questo processo richiede infatti tempo e attenzione in situazioni di emergenza, nelle quali il ripristino del sistema deve avvenire nel modo più rapido possibile.
 
-Il problema dei file di grandi dimensioni non riguarda esclusivamente la scansione sequenziale delle informazioni, bensì l'individuazione del messaggio prodotto a fronte di una criticità e la correlazione di quest'ultima allo stato del sistema nell'istante in cui è stata generata.
+Il problema dei file di grandi dimensioni non riguarda esclusivamente la scansione sequenziale delle informazioni, risulta infatti difficoltosa anche l'individuazione del messaggio prodotto a fronte di una criticità e la correlazione di quest'ultima allo stato del sistema nell'istante in cui è stata generata.
 
 L'individuazione degli errori non riguarda esclusivamente l'analisi dei log nell'istante in cui il malfunzionamento si è manifestato, bensì richiede di comprendere la catena di eventi pregressi, non sempre palese, che ha portato il sistema nella condizione di errore. La capacità dell'analista sta nel riconoscere pattern ricorrenti che generano l'intera situazione.
 
-Un'ulteriore complicazione dovuta alla dimensione eccessiva dei file di log non riguarda solo il riconoscimento delle cause di un problema ma anche l'individuazione di criticità simili occorse in istanti temporali differenti. Questo processo, noto come \textit{clustering}, diviene ovviamente oneroso in termini di tempo, al crescere delle dimensione del \textit{log}.
+Un'ulteriore complicazione dovuta alla dimensione eccessiva dei file di log non riguarda solo il riconoscimento delle cause di un problema ma anche l'individuazione di criticità simili occorse in istanti temporali differenti. Questo processo, noto come \textit{clustering}, diviene ovviamente oneroso in termini di tempo, al crescere delle dimensione del log.
 
-L'analista ha anche un'altra incombenza: verificare che le dimensioni dei file di \textit{log} non eccedano al punto di compromettere il funzionamento dell'applicazione stessa a causa dell'assenza di spazio su disco fisso.
+L'analista ha anche un'altra incombenza: verificare che le dimensioni dei file di log non eccedano al punto di compromettere il funzionamento dell'applicazione stessa a causa dell'assenza di spazio su disco fisso.
 
-A livello aziendale il tempo che intercorre tra la scoperta di un \textit{bug} e il relativo \textit{bugfix} dovrebbe essere il più possibile contenuto. Spesso purtroppo le eccessive dimensioni dei file di \textit{log} rendono questa procedura molto costosa.
+A livello aziendale il tempo che intercorre tra la scoperta di un bug e il relativo bugfix dovrebbe essere il più possibile contenuto. Spesso purtroppo le eccessive dimensioni dei file di log rendono questa procedura molto costosa.
 
  

@@ -1,18 +1,20 @@
-In questa tesi descriveremo Mole.io: un sistema centralizzato per la raccolta e l'aggregazione di messaggi provenienti da applicazioni remote.
+In questa tesi si descriverà Mole.io: un sistema centralizzato per la raccolta e l'aggregazione di messaggi provenienti da applicazioni remote.
 
 Durante il loro ciclo di lavoro o \textit{processing}, le applicazioni software eseguono operazioni significative o entrano in situazioni di errore. In questi casi è importante che le persone che hanno in carico la gestione di questi sistemi, siano informate dell'accaduto in modo da operare scelte opportune o applicare le dovute correzioni (\textit{bugfix}).
 
-Gli sviluppatori sono soliti utilizzare messaggi di tracciamento (\textit{log}) per stampare a video o salvare in \textit{file} stati significativi delle applicazioni. I messaggi più frequenti riportati nei \textit{log} sono quelli relativi a situazioni di errore (\textit{Exception} e \textit{Stack Trace}).
+Gli sviluppatori sono soliti utilizzare messaggi di tracciamento (\textit{log}) per stampare a video o salvare in \textit{file} stati significativi delle applicazioni. I messaggi più frequenti riportati nei log sono quelli relativi a situazioni di errore (\textit{Exception} e \textit{Stack Trace}).
 
-L'approccio comune alla creazione e gestione dei \textit{log} presenta la criticità specifica della \textit{località}, poiché tipicamente questi \textit{file} vengono salvati nella stessa macchina sulla quale sta operando l'applicazione.
+L'approccio comune alla creazione e gestione dei log presenta la criticità specifica della \textit{località}, poiché tipicamente questi file vengono salvati nella stessa macchina sulla quale sta operando l'applicazione.
 
 All'aumentare del numero di applicazioni da gestire e del numero di macchine in produzione, capita spesso che i server siano in luoghi geograficamente distanti tra loro. Questa situazione rende evidente la difficoltà di ottenere un \textit{feedback} veloce dello stato di ogni software e delle eventuali situazioni di errore in cui le applicazioni si trovano.
 
 Mole.io cerca di risolvere il problema facendo in modo che i software che lo utilizzano, siano in grado di inviare le informazioni che ritengono significative ad un server centrale, che le raccoglie, le cataloga e le aggrega per essere facilmente supervisionate da parte degli sviluppatori.
 
-Nel primo capitolo tratteremo approfonditamente la tematica dei \textit{log}, i contesti nei quali essi vengono utilizzati e le problematiche legate alla gestione di questo tipo di soluzione di tracciamento. Vedremo anche come utilizzare i \textit{log} per ottenere informazioni di supporto alla \textit{business intelligence}. 
+%TODO estendere con contesto dove sarà installata in prod e azienda
 
-Il secondo capitolo riporterà un elenco dei principali \textit{software} per la gestione centralizzata dei \textit{log} presenti sul mercato e delle soluzioni \textit{Open Source} che sono state prese a modello per la realizzazione di Mole.io. Descriveremo ogni applicazione e mostreremo come Mole.io possa essere una soluzione innovativa sotto svariati punti di vista.
+Nel primo capitolo tratteremo approfonditamente la tematica dei log, i contesti nei quali essi vengono utilizzati e le problematiche legate alla gestione di questo tipo di soluzione di tracciamento. Vedremo anche come utilizzare i log per ottenere informazioni di supporto alla \textit{business intelligence}. 
+
+Il secondo capitolo riporterà un elenco dei principali \textit{software} per la gestione centralizzata dei log presenti sul mercato e delle soluzioni \textit{Open Source} che sono state prese a modello per la realizzazione di Mole.io. Descriveremo ogni applicazione e mostreremo come Mole.io possa essere una soluzione innovativa sotto svariati punti di vista.
 
 I due capitoli seguenti permetteranno di approfondire i dettagli tecnici delle metodologie di sviluppo applicate durante il \textit{design} del software e alcune tra le principali tecnologie utilizzate per la realizzazione del sistema.
 
