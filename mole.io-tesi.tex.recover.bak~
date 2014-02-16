@@ -15,7 +15,7 @@
 \usepackage{amsfonts}
 \usepackage{rotating}
 
-%% Formato proposto dall'universit‡
+%% Formato proposto dall'universit√†
 %\documentclass[12pt,fleqn,twoside,a4paper]{book}
 %\usepackage[latin1]{inputenc} %% lettere accentate
 %\usepackage[italian]{babel}
@@ -57,10 +57,8 @@
 	\clearpage
 	\section{Business Intelligence}\label{Business_Intelligence}
 	\input{Business_Intelligence}
-	\clearpage
-	%\section{Big Data}\label{Big_data}
-	%\input{Big_data}
-  %\clearpage
+
+    \clearpage
 
 \chapter{Log: Software e Applicazioni}\label{Log_software_e_applicazioni}
 \input{Log_software_e_applicazioni}
@@ -116,7 +114,7 @@
 	\section{Architettura del Sistema}\label{Architettura_del_sistema}
 	\input{Architettura_del_sistema}
 	\clearpage
-		\subsection{CQRS ed Estensibilit‡}\label{CQRS_ed_estensibilita}
+		\subsection{CQRS ed Estensibilit√†}\label{CQRS_ed_estensibilita}
 		\input{CQRS_ed_estensibilita}
 		\clearpage
 		\subsection{Mole}\label{mole}
@@ -129,7 +127,7 @@
 			\clearpage
 	\section{Autenticazione degli Utenti}\label{Autenticazione_degli_utenti}
 	\clearpage
-	\section{Scalabilit‡ e Affidabilit‡}\label{Scalabilita_e_affidabilita}
+	\section{Scalabilit√† e Affidabilit√†}\label{Scalabilita_e_affidabilita}
 	\clearpage
 	\section{Problematiche di Sviluppo}\label{Problematiche_di_sviluppo}
 	\clearpage
@@ -165,7 +163,7 @@
 %
 %il nostro logger 
 %- perch\'{e} abbiamo scelto nodejs
-%- cos'Ë nodejs (storia, peculiarit‡, async, pesca da presentazione lucio)
+%- cos'√® nodejs (storia, peculiarit√†, async, pesca da presentazione lucio)
 %- come funziona il logger (struttura e schema delle comunicazioni di rete)
 %- problematiche incontrate durante l'implementazione
 %- si auto-adatta al tipo di messaggio in arrivo
@@ -173,12 +171,12 @@
 %- plugin/widget
 %- il clAud
 %- architettura del sistema
-%- estensibilit‡
+%- estensibilit√†
 %- come scrivere plugin e widget
 %
 %problematiche "accademiche"
 %- sicurezza (oauth)
-%- scalabilit‡ (+ server con load balancer? cloud? rabbit, disaccoppiamento dei servizi)
+%- scalabilit√† (+ server con load balancer? cloud? rabbit, disaccoppiamento dei servizi)
 %- relayability (+ server ridondati) 
 %
 %

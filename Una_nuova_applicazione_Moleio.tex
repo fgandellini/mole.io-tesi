@@ -1,22 +1,11 @@
-%TODO
-% perché le soluzioni sul mercato non ci piacciono
+L'analisi dello stato dell'arte delle tecnologie presenti sul mercato, ha portato CodicePlastico a perseguire la scelta dello sviluppo di una nuova applicazione realizzata internamente all'azienda stessa.
 
-% non permettono di avere "modelli/template di messaggi" flessibili built in, ma con accrocchi e non sono estensibili
-
-% le peculiarità di mole.io
-
-% funzionalità aggiunte a caldo e deploy graduale delle nuove funzionalità agli utenti
-ci sono tante soluzioni sul mercato, 
-prima di partire le abbiamo analizzate (stato dell'arte)
-
-perchè lo abbiamo scritto comunque?
- - avere una soluzione interna e personalizzabile su misure per problematiche dell'azienda
- - sperimentazione di alcune tecnologie
- - estensibilità + plugin strutturazione a plugin
- - tenersi i dati
- 
- 
-mole prende spunto da tutte quelle app, specialmente prende il concetto di plugin da fluentd, da noi si chiamano denormalizzatori e sempre da fluentd la possibilità di salvare dati non strutturati e stando attenti ad imporre il meno possibile un formato
-
-
-
+Le motivazioni che hanno determinato questa scelta, sono molteplici:
+\begin{description}
+\item[Business] la maggior parte delle soluzioni analizzate è fornita come \textit{Software as a Service} (SaaS). In questo caso sarebbe d'obbligo far adottare tale soluzione ad ogni cliente, perdendo di fatto, il vantaggio di avere un sistema centralizzato di raccolta dei dati.
+\item[Riservatezza] le soluzioni analizzate che sono fornite come SaaS, prevedono che i messaggi vengano salvati su basi di dati remote e non di proprietà dell'azienda. Questo espone potenzialmente a problematiche di gestione della riservatezza dei dati sensibili che sarebbero più facilmente controllabili utilizzando un sistema \textit{self-hosted}.
+\item[Personalizzazione] a parte l'ultima soluzione analizzata (Fluentd, Elastic Search e Kibana) la maggior parte dei software presenta difficoltà nella personalizzazione del contenuto dei messaggi, fondamentale per l'azienda, sia per tracciare con precisione problematiche specifiche delle applicazioni in produzione, sia nell'ottica della raccolta dei dati per la Business Intelligence.
+\item[Manutenzione] limitare gli interventi di manutenzione ad un'unica applicazione proprietaria, di cui, conseguentemente, si ha pieno controllo dello sviluppo.
+\item[Estensibilità] l'intero sviluppo delle varie componenti dell'applicazione è stato guidato dal concetto di estensibilità. Il sistema risultante dovrà essere facilmente estendibile con nuove funzionalità e \textit{feature} per adattarsi nel modo più aderente possibile alle esigenze di ogni cliente. Un ulteriore aspetto che ha motivato alla costruzione di una nuova applicazione, è la possibilità di rilasciare gradualmente agli utenti le nuove funzionalità introdotte, man mano, nel sistema (\textit{deploy} graduale).
+\item[Sperimentazione] tra i valori aziendali fondamentali di CodicePlastico vengono annoverati l'aggiornamento costante del personale e il miglioramento delle \textit{skill} di ogni sviluppatore, anche attraverso pratiche agili come \textit{pair programming}, \textit{randori} e progetti personali. Lo sviluppo di una applicazione con l'ausilio di tecnologie relativamente recenti e innovative nel panorama IT, è in completo accordo con la \textit{vision} aziendale.
+\end{description}

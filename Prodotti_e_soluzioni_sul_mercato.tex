@@ -1,8 +1,7 @@
-I prodotti per la gestione centralizzata dei \textit{log} offerti dal mercato sono svariati, ognuno presenta peculiarità che lo rendono
+I prodotti per la gestione centralizzata dei \textit{log} offerti dal mercato sono svariati. Tuttavia, molte di queste soluzioni nascono con l'obiettivo di essere verticalizzate su uno specifico ambito di utilizzo applicativo. 
+Ad esempio alcune soluzioni vengono costruite appositamente per affrontare le problematiche dell'ambito mobile, come altre sono realizzate specificamente per un determinato framework o ambiente di sviluppo.
 
-ce ne sono tanti, alcuni hanno un taglio troppo specifico, ad es. per un linguaggio solo o per un ambiente solo (es. solo mobile)
-
-di seguito ne riportiamo cinque che sono software generici e si adattano ad esigenze diverse e ci hanno ispirato nella realizzazione di mole.io.
+Per questo motivo sono state escluse dall'analisi soluzioni altamente legate a precisi casi d'uso. Si sono andate, invece, ad individuare le cinque software che affrontano la problematica dei log centralizzati in maniera generica, integrabili con diversi ambienti di sviluppo, e utilizzabili, contemporaneamente, da differenti tipologie di applicazioni.
 
 \subsubsection{Airbrake}
 
@@ -13,13 +12,17 @@ di seguito ne riportiamo cinque che sono software generici e si adattano ad esig
 \label{fig:airbrake}
 \end{figure}
 
-Questa è una delle più conosciute applicazioni per il monitoraggio dei log prodotti da applicazioni mobile, in realtà Airbrake offre moduli di integrazione per i principali linguaggi di programmazione e può essere utilizzata anche in ambito web o desktop.
+Airbrake \cite{website:Airbrake} è una delle più conosciute applicazioni per il monitoraggio dei log prodotti da applicazioni mobile. Benché sia diffusa tra le applicazioni per smartphone e dispositivi mobili, offre moduli di integrazione per i principali linguaggi di programmazione e può essere utilizzata anche in ambito web o desktop.
 
 A partire dalla versione 2.0 propone un pannello di gestione, ricerca e aggregazione dei messaggi di errore completamente rinnovato. L'interfaccia grafica è gradevole e ben organizzata.
 
-Oltre all'aggregazione automatica dei messaggi d'errore, Airbrake possiede moduli di integrazione con i maggiori sistemi di \textit{bug-tracking}, permettendo di attivare \textit{task} per gli sviluppatori alla ricezione di una segnalazione di errore.
+La \textit{dashboard} principale dell'applicazione riporta tutti i principali errori ottenuti dai software monitorati, questo aiuta il \textit{team} di sviluppo a concentrarsi sulle problematiche più urgenti, massimizzando il valore applicativo percepito dagli utenti e contribuendo ad aumentare la produttività del team stesso. 
 
-Il formato dei messaggi di errore inviabili a questo \textit{tool} è fisso e non permette l'aggiunta di dati addizionali, questo lo rende abbastanza scomodo quando si vogliano tracciare eventi diversi dagli errori.
+Oltre all'aggregazione automatica dei messaggi d'errore, Airbrake possiede moduli di integrazione con i maggiori sistemi di \textit{bug-tracking}. Al momento della ricezione di un messaggio di errore, viene creato \textit{task} a carico di uno sviluppatore che si occuperà poi della gestione della problematica e bugfix.
+
+Airbrake si avvale dell'utilizzo di connessioni sicure SSL al fine di garantire la riservatezza dei dati raccolti.
+
+Il formato dei messaggi di errore interpretato da questo \textit{tool} ha una struttura fissa e non consente l'aggiunta di dati addizionali custom. Questo aspetto rende Airbrake uno strumento poco adatto al tracciamento di messaggi con formati diversi dagli eventi di errore.
 
 \subsubsection{Log.io}
 
@@ -30,11 +33,14 @@ Il formato dei messaggi di errore inviabili a questo \textit{tool} è fisso e non
 \label{fig:logio}
 \end{figure}
 
-La peculiarità di questo servizio è l'aspetto \textit{realtime}, infatti esso permette di ottenere in tempo reale i log in arrivo dalle applicazioni monitorate.
+La peculiarità di questo servizio \cite{website:Log.io} è l'aspetto \textit{realtime}, infatti esso permette di ottenere in tempo reale i log in arrivo dalle applicazioni monitorate.
 
-L'invio dei messaggi al server, da parte delle applicazioni monitorate, avviene tramite messaggi TCP con una formattazione fissa, rendendo questo strumento abbastanza scomodo quando si intende notificare informazioni più strutturate di una semplice stringa di testo.
+Log.io non possiede un sistema di persistenza dei dati, i quali vengono salvati dai diversi sistemi monitorati in modo indipendente. Esso si occupa esclusivamente di fornire un punto di raccolta dei messaggi in arrivo dalle diverse sorgenti e di applicare chiavi di filtraggio in tempo reale.
 
-I log vengono gestiti come flussi di dati, è possibile applicare alcuni filtri per limitare la quantità di informazioni riportate ai soli dati utili all'utente. Purtroppo questo sistema non esegue alcun tipo di aggregazione dei dati in arrivo e non permette quindi di avere una visione d'insieme della situazione dell'applicazione monitorata.
+I log vengono gestiti come flussi di dati. L'analista ha la possibilità di utilizzare dei filtri sui dati con lo scopo di limitare la quantità di informazioni riportate, mostrando i soli dati utili all'analisi. 
+Purtroppo questo sistema non esegue alcun tipo di aggregazione dei dati in arrivo e non permette quindi di avere una visione d'insieme della situazione dell'applicazione monitorata.
+
+L'invio dei messaggi al server, da parte delle applicazioni, avviene tramite messaggi TCP con una formattazione fissa. Questo aspetto contribuisce a rendere Log.io uno strumento strumento difficilmente utilizzabile quando si vogliono notificare informazioni più strutturate di una semplice stringa di testo.
 
 \subsubsection{Rollbar}
 
@@ -45,15 +51,17 @@ I log vengono gestiti come flussi di dati, è possibile applicare alcuni filtri p
 \label{fig:rollbar}
 \end{figure}
 
-Tra le applicazioni a pagamento censite, questa sembra essere la più completa, permette infatti di registrare sia messaggi di errore sia messaggi generici.
+Tra le applicazioni a pagamento censite, questa sembra essere la più completa \cite{website:Rollbar}, permette infatti di registrare sia messaggi di errore sia messaggi generici.
 
-E' possibile arricchire i messagi inviati a Rollbar con alcuni dati semplici o strutturati definibili dall'utente. L'aggregazione che questo sistema opera su tali messaggi, però, si limita solo ad alcuni campi obbligatori. 
+E' possibile arricchire i messaggi inviati a Rollbar con alcuni dati semplici o strutturati, definibili dall'utente. Le funzionalità di aggregazione dei dati sui tali messaggi, sono disponibili solo ad alcuni campi obbligatori che il sistema è in grado di gestire. Ad esempio è possibile aggregare i dati per livello di gravità, o per similitudine tra i messaggi, ma non è in grado di fare assunzioni automatiche sui campi custom aggiunti. 
 
-In questa applicazione è inoltre possibile configurare la notifica via email per alcuni tipi di messaggi e possiede una modalità di visualizzazione dei dati "realtime".
+Ogni qual volta un sistema viene pubblicato in produzione, è possibile inviare una notifica a Rollbar. Questo permette agli analisti di correlare gli errori in arrivo con la specifica versione dell'applicazione dalla quale essi sono stati generati. 
 
-Permette inoltre di notificare gli eventi aggiungendo automaticamente alcuni \textit{task} nei principali sistemi di \textit{time tracking} e \textit{project management} esistenti sul mercato. 
+Rollbar offre, inoltre, la possibilità di aggiungere collaboratori ad un progetto, dando la possibilità ad un intero team di sviluppo di condividere le informazioni relative allo stato delle applicazioni monitorate.
 
-%da dire: un messaggio ha dati di base (tipo la severity) e dati addizionali tipo messaggi o altri dati strutturati allegabili (stessa idea di mole) ma la gestione non è proprio pulita, 
+In questa applicazione è possibile configurare la notifica via email per alcuni tipi di messaggi e, infine, possiede una modalità di visualizzazione dei dati \textit{realtime}.
+
+Permette infine di notificare gli eventi aggiungendo automaticamente alcuni \textit{task} nei principali sistemi di \textit{time tracking} e \textit{project management} esistenti sul mercato. 
 
 \subsubsection{Papertrail}
 
@@ -64,14 +72,18 @@ Permette inoltre di notificare gli eventi aggiungendo automaticamente alcuni \te
 \label{fig:papertrail}
 \end{figure}
 
-E' un tool molto orientato agli amministratori di rete, permette infatti (lo dice il nome stesso) di eseguire una sorta di \verb|tail| dei messaggi che riceve, permettendo così di ottenere la coda degli ultimi messaggi arrivati in tempo reale.
+E' un tool molto orientato agli amministratori di rete \cite{website:Papertrail}. Nei sitemi \textit{unix-like}, il comando \verb|tail|, permette di stampare in \textit{console} in tempo reale le ultime righe aggiunte ad un file utilizzato da un processo. Analogamente, lo stesso comando in Papertrail, permette di ottenere la coda degli ultimi messaggi ricevuti in tempo reale con una operazione chiamata \textit{Tail and Search}. Papertrail salva periodicamente i log ricevuti e permette di scaricarli, rendendoli così disponibili per eventuali elaborazioni successive.
 
-Esegue una aggregazione automatica dei log estrapolando la chiave di aggregazione dal formato stesso del messaggio, ad esempio il server che hai inviato il messaggio, il tipo di traccia (riavvio del sistema, login utente, errore di Apache). 
+A livello di analisi automatizzata, questo tool, esegue una classificazione dei messaggi ricevuti estrapolando autonomamente la chiave di aggregazione dal formato stesso del messaggio.
 
-Gli errori sono ricercabili anche utilizzando delle ricerche temporali.
+Aggrega, inoltre, messaggi di tipo uniforme, come ad esempio messaggi di riavvio del sistema, eventi di \textit{login} degli utenti, o errori di Apache.
 
-permette di inviare solo log con formati precisi, non è possibile aggiungere dati utente strutturati.
- 
+E' possibile utilizzare diversi criteri per il filtraggio dei messaggi di errore. Tra questi è di particolare interesse il filtro temporale, è infatti possibile selezionare un intervallo di tempo e ottenere l'elenco dei messaggi ricevuti in quel momento.
+
+L'interfaccia di Papertrail facilita il lavoro dell'analista formattando con colori differenti l'elenco dei messaggi ricevuti. I colori sono correlati al testo in maniera semantica (date, indirizzi ip, ecc...).
+
+Dal punto di vista della personalizzazione dei dati, questa applicazione, non consente di aggiungere informazioni strutturate ai messaggi inviati. Questo perché il sistema di aggregazione si basa sull'analisi del formato delle stringhe ricevute. Conseguentemente, non solo Papertrail accetta come messaggi esclusivamente i formati stringa e non dati strutturati come accade nelle altre applicazioni prese in esame, ma non è possibile aggiungere ulteriori informazioni ai messaggi stessi.
+
 \subsubsection{Fluentd, ElasticSearch e Kibana}
 
 \begin{figure}[h]
@@ -83,94 +95,61 @@ permette di inviare solo log con formati precisi, non è possibile aggiungere dat
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=1.0\linewidth]{./img/kibana}
-\caption[Il sito web di Kibana]{Il sito web di Kibana}
+\includegraphics[width=1.0\linewidth]{./img/kibana2}
+\caption[Un esempio di interfaccia generata con Kibana]{Un esempio di interfaccia generata con Kibana}
 \label{fig:kibana}
 \end{figure}
 
-[soluzione relativamente nuova (?), l'abbiamo trovata durante lo sviluppo.]
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/elasticsearch}
+\caption[Il sito web di Elastic Search]{Il sito web di Elastic Search}
+\label{fig:elasticsearch}
+\end{figure}
 
-Questi sono tre applicativi separati e sono i migliori tra gli open source che abbiamo esaminato.
+Nella analisi comparativa in corso è necessario inserire anche questa architettura composta da tre applicazioni che collaborano sinergicamente al fine di creare uno strumento flessibile e completo per la raccolta, l'archiviazione, la ricerca e l'analisi dei log.
 
-Per ottenere un logger tipo gli altri vanno utilizzati insieme
+Nonostante questa soluzione software sia la più completa architettura \textit{open source} centralizzata per la raccolta di log, non è stata rilevata da una prima fase di ricerca. Questo si suppone sia dovuto al fatto che ciascun applicativo che compone l'architettura è nato con lo scopo di trattare un sotto-problema specifico, rispetto al tema della gestione centralizzata dei log.\\
 
-Permettono di aggregare dati da sorgenti differenti, anche non messaggi di errore.
+\begin{description}
+\item[Fluentd] E' un collettore di messaggi in formato JSON \cite{website:Fluentd}. Sistemi differenti possono inviare dati all'applicazione che si occupa di redirigerli su \textit{output} differenti, come ad esempio server per l'invio di \textit{email}, file di testo, basi di dati o altri servizi. Grazie ad una vasta gamma di plugin, sviluppati dalla \textit{community}, Fluentd può ricevere i più svariati tipi di messaggi che vengono tradotti in JSON dai plugin stessi e in seguito gestiti dall'applicazione. L'intero software è stato ideato per l'installazione su una architettura distribuita, fornendo la possibilità di eseguire un \textit{load balancing} automatico del carico di lavoro dovuto alla ricezione dei messaggi.
+\item[Elastic Search] E' un sistema distribuito per effettuare ricerche e analisi su grandi quantità di dati \cite{website:Elasticsearch}. Tra le caratteristiche fondamentali di questo software possiamo annoverare l'alta affidabilità, garantita da un sistema di nodi ridondati, e la possibilità di lavorare in \textit{realtime}. Espone in maniera automatica una interfaccia software che rende molto agevoli le operazioni di filtraggio e aggregazione dei risultati ottenuti. Ad esempio ipotizzando di voler gestire informazioni di log con la seguente struttura:
+\begin{verbatim}
+{
+  timestamp: '2014-01-16T20:19:28.871Z', 
+  user: 'mario rossi', 
+  message: 'login error'
+}  
+\end{verbatim}
+Elastic Search genererà in automatico alcune chiavi di ricerca che permetteranno di filtrare i messaggi ricevuti per \verb|timestamp|, \verb|user| e \verb|message|. Le interfacce per la ricerca e aggregazione dei dati sono rese facilmente fruibili con l'aiuto di \textit{API REST} anch'esse generate automaticamente a partire dall'analisi della struttura dei dati raccolti. La flessibilità fornita da Elastic Search è ottenibile anche grazie all'aiuto di un database documentale \textit{schema less}, che il sistema utilizza per il salvataggio dei dati applicativi ricevuti.
+\item[Kibana] Si occupa di mostrare a video i dati ottenuti dall'interrogazione dei Elastic Search. Con questo tool \cite{website:Elasticsearch} è possibile realizzare, in pochi passaggi, svariate tipologie di grafici e tabelle filtrabili e ordinabili.
+\end{description}
 
-la struttura è fluentd > elastic search > kibana
+L'utilizzo di questi tre tool in maniera sinergica permette di costruire un sistema di gestione e analisi dei log efficiente basato sulla architettura mostrata in figura \ref{fig:fluentd-elasticsearch-kibana}. I messaggi, provenienti da sorgenti differenti, vengono raccolti dai plugin di Fluentd e tradotti in formato JSON. A questo punto un ulteriore plugin si occuperà di inviare i dati ad Elastic Search il quale li salverà all'interno del proprio database documentale. Sempre Elasti Search avrà il compito di interrogare la base di dati ed esporre tali informazioni aggregate a Kibana attraverso una \textit{REST API}. Questo quindi permetterà all'analista di creare \textit{report} personalizzabili secondo le esigenze specifiche.\\
 
-Fluentd è un sistema di raccolta messaggi in formato JSON che supporta infiniti formati, grazie all'utilizzo di plugin.
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/fluentd-elasticsearch-kibana}
+\caption[L'architettura realizzata con Fluentd, Elastic Search e Kibana]{L'architettura realizzata con Fluentd, Elastic Search e Kibana}
+\label{fig:fluentd-elasticsearch-kibana}
+\end{figure}
 
-uno di questi plugin permette di esportare i messaggi ricevuti verso Elastic search: un software che permette di aggregare dati non strutturati. il servre Elastic Search viene infine interrogato dall'interfaccia grafica Kibana che permette di utilizzare widget per mostrare i dati aggregati.
+Benché questa architettura presenti caratteristiche e funzionalità aderenti alle esigenze di Codice Plastico, essa richiede una ampia e approfondita conoscenza delle singole applicazioni che la compongono. La frammentazione delle funzionalità su tre diverse applicazioni, inoltre, rende necessaria un'opera di manutenzione attenta e puntuale su tutte le componenti del sistema (aggiornamenti, compatibilità dei software, ecc...). Questo genera un \textit{overhead} di gestione rispetto alla manutenzione di una singola applicazione. 
 
-è una soluzione che ti devi "fare in casa" i sw vanno installati e configurati
-Esiste un servizio che include già tutti gli strumenti, ma è a pagamento.
+\subsubsection{Riepilogo Comparativo}
+Nella tabella \ref{tabella-comparativa delle-funzionalita} sono riportate schematicamente le principali caratteristiche analizzate nelle soluzioni, per la centralizzazione dei log, prese in esame.
 
+\begin{sidewaystable}
+\begin{tabular}{l|c|c|c|c|c}
+& \textbf{Airbrake} & \textbf{Log.io} & \textbf{Rollbar}& \textbf{Papertrail} & \textbf{Fluentd, ElasticSearch, Kibana}\\ 
+\hline 
+\textbf{Open source} & & \checkmark & & & \checkmark \\
+\textbf{Persistenza dati} & \checkmark & & \checkmark & \checkmark & \checkmark 
+ \\
+\textbf{Dati utente strutturati} & & & \checkmark & & \checkmark \\
+\textbf{Aggregazione automatica} & \checkmark & & \checkmark & \checkmark & \checkmark \\
+\textbf{SaaS} & \checkmark & \checkmark & \checkmark & \checkmark & \\
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-overview di alcuni sistemi di logging con le relative funzioni specifiche
-i competitor
-airbreak - logga solo
-rollbar - aggrega
-papertrail - live log
-
-sul mercato esistono svariati sistemi per la gestione centralizzata dei log
-
-
-Airbrake
-+
-aggrega log e ne facilita l'analisi
-integrato con sistemi di tracking 
--
-formati dei messaggi fisso e solo errori
-
-
-log.io
-+
-realtime
--
-no aggregazione
-
-rollbar
-+
-non logga solo errori, ma la gestione delle "non eccezioni" è un po' tirata per i capelli
-fa aggregazione
-
-https://rollbar.com/vs/airbrake/ questo è mooooolto meglio di mole :(
-
--
-soluzione completa ma blindata e non estensibile (gniiiiiii)
-
-
-
-papertrail
-+
-realtime
-aggregazione
--
-logga solo tipi di errori noti, no formato flessibile
-
-
-
-
-
-
-
-CACCHIO! fluentd + elasticsearch + kibana = mole
-%(mole è più facile....gniiiiii)
-
-
-
-%mole è pensato più come una piattaforma espandibile, accento sulla possibilità di aggiungere features a caldo
+\end{tabular} 
+\caption{Tabella comparativa delle funzionalità}\label{tabella-comparativa delle-funzionalita}
+\end{sidewaystable}
