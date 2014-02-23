@@ -1,5 +1,40 @@
-In questo capitolo approfondiremo i dettagli delle tecnologie utilizzate per realizzare Mole.io. Illustreremo, per ognuna di esse, le motivazioni che ci hanno spinto alla scelta di particolari soluzioni software e le problematiche incontrate durante il loro utilizzo.
+In questo capitolo verranno approfonditi i dettagli delle tecnologie utilizzate per realizzare Mole.io. Saranno illustrate, per ognuna di esse, le motivazioni che ci hanno spinto alla scelta di particolari soluzioni software e le problematiche incontrate durante il loro utilizzo.
 
-Mole.io è stato interamente sviluppato utilizzando il linguaggio JavaScript. L'utilizzo di questa tecnologia è abbastanza comune all'interno delle pagine web e si presta bene all'utilizzo \textit{client side}, meno comune è invece la sua applicazione nella parte \textit{server}. La piattaforma Node.js permette di utilizzare JavaScript per sviluppare la parte \textit{backend} delle applicazioni. Rendere uniforme il linguaggio utilizzato permette facilitare lo sviluppo e le fruibilità del progetto da parte degli sviluppatori. Per poter lavorare al progetto è infatti richesta solo la conoscenza di JavaScript e non di altri linguaggi, questo è un ottimo requisito quando si pensa ad un team di sviluppo in espansione.
+Il primo aspetto interessante dello sviluppo di Mole.io è il linguaggio di programmazione utilizzato per realizzarlo. L'intera applicazione infatti è stata sviluppata utilizzando il linguaggio \textit{JavaScript} (JS).
 
-Quella del paragrafo precedente è solo una delle motivazioni che ci hanno spinto a scegliere Node.js come tecnologia di sviluppo, iniziamo quindi a vedere in dettaglio questa tecnologia.
+JavaScript è un linguaggio di \textit{scripting} dinamico, comunemente utilizzato, all'interno del browser, come supporto alla realizzazione di pagine web. Le sue applicazioni sono svariate: dall'animazione di porzioni di interfaccia grafica, alla comunicazione asincrona con il server, alla realizzazione di interi giochi all'interno del browser.
+
+JS è un linguaggio \textit{prototype-based}, utilizza tipizzazione dinamica delle variabili, e presenta funzioni \textit{first-class}, è possibile infatti passarle come parametri, assegnarle ad una variabile e restituire valori da una funzione.
+
+E' un linguaggio molto contaminato, la sua sintassi infatti si ispira a quella del C e di Java, ma utilizza alcuni principi di design provenienti dai linguaggi Lisp e Scheme \ref{osmani2012learning}. Questo fa si che JavaScript possa supportare differenti stili di programmazione, è infatti adatto ad essere utilizzato sia come linguaggio imperativo, sia Object Oriented, sia funzionale \ref{fogus2013functional}. 
+
+Negli ultimi anni il mondo IT ha assistito ad una serie di utilizzi alternativi di JavaScript, ci sono state infatti applicazioni di questo linguaggio negli ambiti \textit{desktop}, \textit{mobile} ed \textit{embedded}.
+
+L'aspetto più interessante, ai fini della realizzazione del progetto di tesi, è l'utilizzo di JS per la realizzazione di applicazioni \textit{server-side}. Questo approccio permette di ottenere un intero \textit{stack} applicativo uniforme che facilita la manutenzione dell'applicazione stessa. 
+
+Uniformare il linguaggio utilizzato permette di facilitare lo sviluppo e la fruibilità del progetto da parte degli sviluppatori. Per poter lavorare al software è infatti richiesta solo la conoscenza di JavaScript e non di altri linguaggi. Questo è un ottimo requisito quando se si immagina di avere a che fare con un team di sviluppo in espansione.
+
+%JavaScript (JS) is a dynamic computer programming language.[5] It is most commonly used as part of web browsers, whose implementations allow client-side scripts to interact with the user, control the browser, communicate asynchronously, and alter the document content that is displayed.[5] It has also become common in server-side programming, game development and the creation of desktop applications.
+%JavaScript is a prototype-based scripting language with dynamic typing and has first-class functions. Its syntax was influenced by C. JavaScript copies many names and naming conventions from Java, but the two languages are otherwise unrelated and have very different semantics. The key design principles within JavaScript are taken from the Self and Scheme programming languages.[6] It is a multi-paradigm language, supporting object-oriented,[7] imperative, and functional[1][8] programming styles.
+%The application of JavaScript to use outside of web pages?for example, in PDF documents, site-specific browsers, and desktop widgets?is also significant. Newer and faster JavaScript VMs and platforms built upon them (notably Node.js) have also increased the popularity of JavaScript for server-side web applications. On the client side, JavaScript was traditionally implemented as an interpreted language but just-in-time compilation is now performed by recent (post-2012) browsers.
+%JavaScript was formalized in the ECMAScript language standard and is primarily used as part of a web browser (client-side JavaScript). This enables programmatic access to computational objects within a host environment.
+
+% JSON -> Douglas Crockford \ref{crockford2008javascript}
+
+La piattaforma Node.js permette di utilizzare JavaScript per sviluppare la parte \textit{backend} delle applicazioni. 
+
+Per il salvataggio dei dati, la scelta è ricaduta su MongoDB, un database documentale \textit{schema-less}, che permette di salvare dati direttamente in formato \textit{JavaScript Object Notation} (JSON). La possibilità salvare nel database strutture dati gestite nativamente da JavaScript facilita notevolmente il lavoro di gestione delle informazioni. 
+
+Il deploy in produzione di Mole.io verrà eseguito in un ambiente di tipo PaaS. Sistemi di questo tipo sono caratterizzati dalla possibilità di fornire all'utente \textit{container} virtuali o macchine virtuali nelle quali eseguire le applicazioni. 
+
+Quando si realizza il design di applicazioni per sistemi PaaS, quindi, è importante riuscire ad identificare i sotto-componenti software e gli specifici ruoli e compiti di ciascuno di essi. I sotto-sistemi devono quindi essere realizzati in modo da cooperare tra loro. Il \textit{disaccoppiamento} dei diversi servizi permette di scalare il sistema in modo da adattarne la configurazione alle specifiche esigenze in ogni istante.   
+
+Una volta determinate le diverse componenti del sistema è necessario metterle in comunicazione tra di loro in modo da permettere la cooperazione e lo scambio di informazioni. A questo scopo si è deciso di introdurre nell'architettura applicativa RabbitMQ, una piattaforma per la gestione di code di messaggi, che permette lo scambio di dati tra le diverse componenti del sistema.
+
+Il panorama attuale delle tecnologie per la realizzazione di applicazioni web \textit{client-side} è vastissimo. Per la costruzione di Mole.io la scelta è ricaduta su AngularJS, un popolare \textit{framework} sviluppato da Google appositamente per la creazione di \textit{single-page application}. Questo strumento è stato scelto principalmente a causa della sua naturale attitudine a lavorare con interfacce di \textit{backend} di tipo REST.     
+
+Per lo sviluppo dell'interfaccia grafica si è scelto di utilizzare Bootstrap, un framework css che facilita la realizzazione e la stilizzazione di pagine web fornendo un \textit{set} di classi css preconfigurate. Questo ha permesso di realizzare velocemente un prototipo dell'applicazione con una interfaccia grafica decorosa. Le varie librerie JavaScript necessarie per il funzionamento dell'interfaccia sono state organizzate utilizzando \textit{Bower}, un tool per la gestione delle dipendenze.
+
+Come strumento per il deploy dell'applicazione, si è scelto di utilizzare \textit{dokku}. Dokku è un software che permette di eseguire la posa in produzione dell'intera applicazione con un singolo comando lanciato direttamente dalla directory del repository di lavoro.
+
+Nelle sezioni seguenti saranno mostrate nel dettaglio alcune delle tecnologie utilizzate per realizzare e mettere in produzione Mole.io.

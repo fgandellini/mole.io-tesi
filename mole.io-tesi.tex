@@ -14,6 +14,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{rotating}
+\usepackage{comment} 
 
 %% Formato proposto dall'università
 %\documentclass[12pt,fleqn,twoside,a4paper]{book}
@@ -106,9 +107,13 @@
 	\input{AngularJS_e_altre_tecnologie_di_frontend}
 	\clearpage
 		\subsection{Gestione delle Dipendenze}\label{Gestione_delle_dipendenze}
+		\input{Gestione_delle_dipendenze}
 		\clearpage
 	\section{Strumenti per il Deploy}\label{Strumenti_per_il_deploy}
+	\input{Strumenti_per_il_deploy}
 	\clearpage
+
+\begin{comment}
 
 \chapter{Mole.io}\label{Moleio}
 \input{Moleio}
@@ -142,6 +147,8 @@
 \addcontentsline{toc}{chapter}{Conclusioni e sviluppi futuri}
 \input{Conclusioni_e_sviluppi_futuri}
 \clearpage
+
+\end{comment}
 
 \bibliography{Bibliografia}
 \bibliographystyle{unsrt}

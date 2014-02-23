@@ -1,4 +1,4 @@
-La \textit{homepage} del sito ufficiale di Node.js \cite{website:Node.js} fornisce una sintetica ma precisa descrizione di questa tecnologia, partiremo proprio da essa per illustrarne le peculiarità.\\
+La \textit{homepage} del sito ufficiale di Node.js \cite{website:Node.js} fornisce una sintetica ma precisa descrizione di questa tecnologia, un buon punto di partenza per illustrarne le peculiarità.\\
 
 \begin{figure}[h]
 \centering
@@ -13,23 +13,26 @@ La descrizione di Node.js riportata sul sito recita:
 \textit{Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.}
 \end{quote}
 
-Scopriamo immediatamente che Node.js è una \textit{piattaforma}. L'utilizzo di questo termine mette l'accento su un aspetto fondamentale di questa tecnologia: fornire un ambiente nel quale le applicazioni sviluppate possano funzionare con il supporto di librerie di sistema fornite da Node.js stesso.
+E' immediato comprendere che Node.js è una \textit{piattaforma}. L'utilizzo di questo termine mette l'accento su un aspetto fondamentale di questa tecnologia: fornire un ambiente nel quale le applicazioni sviluppate possano funzionare con il supporto di librerie di sistema fornite da Node.js stesso.
 
-La piattaforma Node.js utilizza JavaScript come linguaggio di sviluppo. Per farlo si avvale del potente interprete \textit{V8} presente all'interno del browser \textit{Chrome} di \textit{Google}. L'utilizzo di un linguaggio altamente popolare e di una base solida come quella fornita dal popolare \textit{browser} permettono di costruire applicazioni in modo semplice e veloce.
+La piattaforma Node.js utilizza JavaScript come linguaggio di sviluppo. Per farlo si avvale di una versione appositamente riadattata del potente interprete \textit{V8} presente all'interno del browser \textit{Chrome} di \textit{Google}. L'utilizzo di un linguaggio altamente diffuso e di una base solida come quella fornita dal popolare \textit{browser} permettono di costruire applicazioni affidabili in modo semplice e veloce.
 
-L'ultimo importante concetto, che leggiamo dalla prima frase della descrizione, è che Node.js è principalmente orientato allo sviluppo di applicazioni che lavorano con la rete. Per sua natura, la piattaforma ci aiuta a fare in modo che esse siano scalabili.\\
+L'ultimo importante concetto, che si apprende dalla prima frase della descrizione, è che Node.js è principalmente orientato allo sviluppo di applicazioni che lavorano con la rete. Per sua natura, la piattaforma ci aiuta a fare in modo che esse siano facilmente scalabili.
 
 La seconda parte della descrizione spiega sinteticamente alcune caratteristiche peculiari di Node.js e ne definisce meglio il contesto applicativo. 
 
 L'intera piattaforma è centrata sul concetto di \textit{evento}. Si dice  evento un messaggio che viene scatenato in un determinato istante dell'elaborazione e che successivamente è catturato e gestito dalle componenti del sistema che sono preposte alla gestione di quell'evento specifico.
 
-Il sistema ad eventi viene utilizzato da Node.js congiuntamente ad una gestione non bloccante delle operazioni di \textit{Input/Output}. Questo significa che una operazione potenzialmente lunga, come ad esempio la comunicazione con il \textit{filesystem} o con i dispositivi di \textit{rete} non bloccano il flusso di esecuzione del programma principale. Dopo aver richiesto ad altri attori del sistema il dato di cui necessita, il programma continua il suo normale flusso di esecuzione e verrà informato, utilizzando un evento, quando il dato richiesto sarà disponibile. Questa gestione non bloccante delle operazioni di \textit{I/O} è chiamata \textit{I/O} asincrono.
+Il sistema ad eventi viene utilizzato da Node.js congiuntamente ad una gestione non bloccante delle operazioni di \textit{Input/Output}. Questo significa che una operazione potenzialmente lunga, come ad esempio la comunicazione con il \textit{filesystem} o con i dispositivi di \textit{rete} non blocca il flusso di esecuzione del programma principale. 
 
-Questa modalità di gestione delle operazioni non strettamente legate alla logica applicativa, permette a Node.js di essere molto efficiente se utilizzato per la realizzazione di applicazioni che elaborano grandi quantità di dati ma devono rimanere \textit{reattive} nei confronti di nuove richieste di elaborazione.
+Dopo aver richiesto ad altri attori del sistema il dato di cui necessita, il programma continua il suo normale flusso di esecuzione e verrà informato, utilizzando un evento, quando il dato richiesto sarà disponibile. Questa gestione non bloccante delle operazioni di \textit{I/O} è chiamata \textit{I/O asincrono}.
+
+La gestione delle operazioni in modo non strettamente legato alla logica applicativa, permette a Node.js di essere molto efficiente se utilizzato per la realizzazione di applicazioni che elaborano grandi quantità di dati ma devono rimanere \textit{reattive} nei confronti di nuove richieste di elaborazione.
+
 
 \subsection{Le operazioni asincrone}
 
-Abbiamo introdotto il concetto di I/O asincrono, di seguito illustreremo come Node.js riesca a gestirlo utilizzando una quantità limitata di risorse di sistema.    
+Interessante, a fronte dell'introduzione del concetto di I/O asincrono, è vedere come Node.js riesca a gestirlo utilizzando una quantità limitata di risorse di sistema.
 
 I componenti \textit{hardware} di un sistema elaborano dati con velocità differenti. La rapidità di ogni componente è fortemente legata al modo nel quale questo è stato realizzato. La tabella seguente riporta un elenco di componenti e le relative velocità indicative riferite ad un singolo ciclo di \textit{CPU}. 
 
@@ -49,10 +52,47 @@ Dispositivo di rete & 240.000.000 \\
 Guardando la tabella si nota immediatamente come i dispositivi di \textit{I/O} siano ordini di grandezza più lenti rispetto ai dispositivi di elaborazione delle informazioni. Se il flusso del programma dovesse aspettare in modo sincrono ogni singola operazione di lettura o scrittura su disco, ad esempio, esso perderebbe la possibilità di eseguire circa quaranta milioni di operazioni di calcolo, con un conseguente degrado delle performances del software.
 
 Una tecnica comune per affrontare il problema dell'\textit{I/O} è l'utilizzo di \textit{threads}. Un thread è spesso definito con il termine "sotto-processo leggero", in effetti esso condivide codice e risorse di sistema con altri threads appartenenti allo stesso processo padre.
-
+\\
+------
+\\
 Un thread permette al processo di parallelizzare l'esecuzione di una parte del suo flusso di lavoro, ma al tempo stesso sono necessarie risorse di sistema per creare il thread stesso e per distruggerlo. Node.js ovvia a questo problema utilizzando un \textit{thread pool}, cioè un insieme di threads che fungono da \textit{worker} per il processo. Quando è necessario eseguire un particolare task, esso viene sottoposto al thread pool, di conseguenza viene assegnato ad un worker, esso lo esegue e al termine del lavoro comunica l'esito dell'elaborazione al chiamante tramite una funzione detta \textit{callback}.
 
 L'utilizzo di un thread pool comporta un incremento di prestazioni da parte delle applicazioni che lo sfruttano: i thread pool ottimizzano l'utilizzo della memoria e del processore, diminuendo l'overhead di gestione dei thread.
+\\
+-----
+\\
+Per comprendere come Node.js è in grado di realizzare tale funzionalità, è necessario spiegare nel dettaglio il modello di gestione delle richieste implementato da questo framework. 
+
+Innanzitutto è necessario chiarire che Node.js, a differenza di altri sistemi per lo sviluppo \textit{server-side} non necessita di una applicazione che funga da \textit{web server}, come accade ad esempio nel caso di Apache per PHP. Quando si sviluppa in Node.js infatti l'applicazione realizzata \textit{è} il server. Il framework mette a disposizione funzionalità apposite per la creazione di un server interno ad ogni applicazione. Questo approccio favorisce la strutturazione a \textit{servizi} dell'applicazione, che può essere suddivisa in processi Node.js separati e quindi in veri e propri server in comunicazione fra loro.
+
+Di seguito è riportato un server web minimale realizzato in Node.js.
+
+\begin{verbatim}
+var http = require('http');
+
+http.createServer(function (req, res) {
+  res.end('Hello World');
+}).listen(3000, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:3000/');
+\end{verbatim}
+
+La prima operazione eseguita dal programma è l'importazione del modulo \verb|http|, che fornisce le funzionalità di rete. Successivamente viene chiamata la funzione \verb|createServer()| che si occupa di generare il server web. Utilizzando la funzione \verb|listen()|, successivamente, il server viene attivato e messo in ascolto all'indirizzo \verb|http://127.0.0.1:3000/|. Il comando \verb|console.log()| stampa in console l'informazione che il server è avviato. Ad ogni richiesta ricevuta dal server, viene eseguita la funziona passata come parametro alla \verb|createServer()|, la quale risponde alla richiesta inviando al client la stringa \verb|Hello World|. 
+
+Come si vede da questo esempio, con Node.js, la logica applicativa e il \textit{web-server} risiedono all'interno dello stesso software.
+
+Node.js utilizza internamente un modello chiamato \textit{Event Loop} per la gestione delle richieste in arrivo. All'avvio dell'applicazione, vengono attivati un thread principale e un insieme finito (il default è quattro) di thread secondari definiti \textit{thread-pool}. Nell'istante in cui arriva una nuova richiesta da parte di un client, il thread principale la prende in carico ed inserisce i dati della richiesta e la funzione \textit{callback} per gestirla in una coda. A fronte di questa operazione, viene attivato il primo thread libero nel thread-pool, detto \textit{worker}, il quale esegue la callback e raccoglie il risultato. Una volta generato il messaggio di risposta da inviare al client, il worker lo restituisce al thread principale, il quale provvede ad inviarlo al client.
+
+Questo approccio presenta un grande vantaggio rispetto ad altri sistemi non \textit{event-based}: il thread principale è quasi sempre in stato \textit{idle}. Esso si occupa infatti esclusivamente di smistare richieste e raccogliere risposte, quindi rimane sempre reattivo. Il risultato di questo approccio è un sistema responsivo, che riesce a gestire un grande numero di richieste sfruttando una bassissima quantità di risorse di sistema.
+
+In figura \ref{fig:node-model} è illustrato schematicamente l'event-loop per la gestione delle richieste di Node.js.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./img/node-model}
+\caption[L'\textit{event loop} di Node.js]{L'\textit{event loop} di Node.js}
+\label{fig:node-model}
+\end{figure}
 
 \subsection{Le callback}
 
@@ -124,3 +164,4 @@ Il codice è ora molto più leggibile, semplicemente evitando la dichiarazione di 
 %Questo è un aspetto molto controverso e discusso, infatti se è abituati 
 %a pensare tale linguaggio come un "giocattolo", troppo instabile 
 %e imprevedibile per 
+
