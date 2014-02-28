@@ -1,6 +1,13 @@
 AngularJS è un framework open-source per la creazione di \textit{single-page application}. Una applicazione single-page è una pagina web che carica dinamicamente dati dal server attraverso l'utilizzo di comunicazioni asincrone. 
 Dal punto di vista dell'utente utilizzatore di questo tipo di applicazioni, la principale differenza con le comuni applicazioni web è la modalità di navigazione. Muovendosi da una pagina all'altra, infatti, il client non richiede nuove pagine al server, bens\'{\i} esegue richieste in \textit{background} e carica dinamicamente i nuovi contenuti all'interno della pagina corrente con l'utilizzo di JavaScript. 
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./img/AngularJS.pdf}
+\caption[Il logo di AngularJS]{Il logo di AngularJS}
+\label{fig:angular}
+\end{figure}
+
 Il principale vantaggio offerto dalle applicazioni single-page si manifesta durante operazioni di gestione dei dati utente. Nelle comuni applicazioni web, infatti, i dati di sessione sono passati da una pagina alla successiva utilizzando svariate tecniche. Questa operazione è resa necessaria dalla natura \textit{state-less} del protocollo HTTP. Le single-page application risolvono alla radice il problema evitando il cambio di pagina e inviando i dati di autenticazione al server solo quando l'utente esegue operazioni per le quali è richiesta la sua identificazione.
 
 L'utilizzo di AngularJS permette inoltre di realizzare applicazioni web utilizzando un pattern \textit{Model-View-ViewModel} (MVVM), semplificando molto la testabilità del sistema. Una delle grandi problematiche di cui risentono le applicazioni web classiche infatti è la possibilità di testare il codice che le compone. Tipicamente questa difficoltà nasce dal fatto che la logica applicativa e quella di visualizzazione sono codificate simultaneamente e quindi strettamente legate tra loro.
@@ -10,7 +17,7 @@ Il pattern MVVM facilita il processo di \textit{testing} delle applicazioni sepa
 \begin{description}
 \item[Model] è la parte del sistema che si occupa di trattare i dati, tipicamente è implementata impiegando librerie per l'accesso a database oppure servizi esterni utilizzati come sorgenti di dati per l'applicazione.
 \item[View] è l'interfaccia grafica vera e propria. Nel caso di applicazioni web si identifica spesso con le porzioni di codice HTML e quello CSS utilizzato per definire lo stile.
-\item[ViewModel] implementa la logica applicativa, anche definita \textit{logica di business}. In questo strato software è possibile trovare algoritmi per la manipolazioni dei dati specifici dell'applicazione e funzionalità per la gestione delle interazioni dei diversi servizi applicativi.
+\item[ViewModel] è simile ad un \textit{controller}, implementa la logica applicativa, anche definita \textit{logica di business}. In questo strato software è possibile trovare algoritmi per la manipolazioni dei dati specifici dell'applicazione e funzionalità per la gestione delle interazioni dei diversi servizi applicativi.
 \end{description}
 
 Le tre componenti del pattern MVVM cooperano tra loro scambiandosi messaggi secondo interfacce definite in fase di design dell'applicazione. La figura \ref{fig:mvvvm} mostra le principali interazioni richieste per permettere la completa collaborazione di tutte le componenti software.\\
@@ -20,7 +27,7 @@ Le tre componenti del pattern MVVM cooperano tra loro scambiandosi messaggi seco
 \includegraphics[width=0.7\linewidth]{./img/mvvm.png}
 \caption[Schema delle comunicazioni nel modello MVVM]{Schema delle comunicazioni nel modello MVVM}
 \label{fig:mvvvm}
-\end{figure} 
+\end{figure}
 
 Tipicamente questo approccio porta ad avere Model e ViewModel popolati con la maggior parte del codice applicativo, che, di conseguenza, viene rimosso dalla View. Il vantaggio dell'utilizzo dell'MVVM risiede proprio nel fatto che la sezione View, tipicamente complessa da testare, diventa molto semplice e di fatto è quasi inutile eseguire test sul codice che la genera.
 
@@ -64,9 +71,54 @@ La struttura di questo framework, per sua natura, induce ad un design delle appl
 
 AngularJS utilizza il formato \textit{JavaScript Object Notation} (JSON) per lo scambio di dati tra il backend e i modelli. In \ref{crockford2008javascript} Douglas Crockford illustra questo formato da lui ideato. La definizione di JSON è aderente alle specifiche ECMA-262 del Dicembre 1999, e permette a JavaScript di interpretare questo formato nativamente. JSON quindi è un formato facilmente maneggiabile sia lato frontend, sia lato backend, questo ha contribuito a farlo diventare molto famoso e utilizzato per la realizzazione di applicazioni Node.js.
 
-Per la realizzazione della parte fontend di Mole.io sono state utilizzate diverse librerie JavaScript e framework di supporto alla stesura del codice HTML. Di seguito saranno illustrate due importanti librerie  
+Per la realizzazione della parte fontend di Mole.io sono state utilizzate diverse librerie JavaScript e framework di supporto alla stesura del codice HTML. Dell'insieme delle librerie utilizzate, si sono estratte le principali, delle quali seguirà una descrizione: 
+\begin{itemize}
+\item Leaflet
+\item D3.js
+\item Bootstrap
+\end{itemize}
 
------------------
+\subsubsection{Leaflet e D3.js}
 
-d3, bootstrap 
+Uno degli scopi per i quali è stata creata l'applicazione Mole.io è fornire una visione immediata della situazione nella quale le si trovano i sistemi monitorati. Per rendere a \textit{colpo d'occhio} fruibili le informazioni si è pensato di utilizzare mappe geografiche e grafici. Le librerie \textit{leaflet} e \textit{d3.js} hanno rispettivamente questi compiti.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./img/leaflet-map.png}
+\caption[Un esempio di mappa realizzata con Leaflet]{Un esempio di mappa realizzata con Leaflet}
+\label{fig:leaflet-map}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./img/d3-graph.png}
+\caption[Un esempio di grafico realizzato con D3.js]{Un esempio di grafico realizzato con D3.js}
+\label{fig:d3-graph}
+\end{figure}
+
+\begin{description}
+\item[leaflet] è una libreria JavaScript che si occupa di gestire e mostrare a video mappe geografiche. La principale particolarità di questo software è il fatto che esso funge da \textit{layer di astrazione} rispetto ai vari sistemi per la gestione di mappe geografiche esistenti. L'utilizzo di plugin infatti permette a leflet di interfacciarsi con svariati \textit{provider} di mappe online tra i quali Google Maps, CloudMade, OpenStreetMap, Esri e Nokia.
+Questa libreria offre molte funzionalità che permettono di interagire con le mappe caricate, tra le principali, la possibilità di utilizzare \textit{overlay}, per evidenziare specifiche aree o porzioni di territorio e \textit{marker} per indicare punti specifici nella mappa. \`{E} possibile, inoltre, arricchire i marker con testo e immagini caricabili quando l'utente clicca sull'icona del marker stesso.  
+Una delle principali cause che hanno contribuito alla scelta di leaflet come libreria per rappresentare mappe, è il tema della compatibilità con i diversi browser. Questa libreria infatti garantisce un alto grado di compatibilità con i principali browser per desktop e \textit{smartphone}.  
+\item[d3.js] il nome di questa libreria significa \textit{Data-Driven Documents} e ne riassume perfettamente le funzionalità. Essa permette, infatti, di generare grafici e documenti a partire da \textit{set} di dati. Come Leaflet, anche D3 è altamente compatibile con i diversi browser, in quanto i grafici sono prodotti utilizzando i linguaggi HTML o SVG. L'SVG è un linguaggio derivato da XML che offre costrutti in grado di rappresentare grafiche \textit{raster} e \textit{vettoriali}. L'uso di queste tecnologie largamente diffuse all'interno dei diversi browser permette a D3 di garantire una discreta compatibilità \textit{cross-browser}.
+\end{description}
+
+\subsubsection{Bootstrap}
+
+Questa libreria merita una trattazione separata, in quanto non si occupa, come le precedenti, di risolvere in modo specifico un singolo problema (come la gestione delle mappe o dei grafici), bensì il suo campo di applicazioni è molto più vasto.
+
+Bootstrap è infatti una collezione di strumenti che cooperano per fornire allo sviluppatore una piattaforma di templating CSS e JavaScript per la costruzione di moderne pagine web. Essa contiene set, con design preconfigurati, di componenti come bottoni, form, elementi per la navigazione e tipografici.
+
+Seguendo semplici regole di stesura del codice HTML, anche uno sviluppatore con scarsa conoscenza del linguaggio CSS e scarse nozioni di design, è in grado di creare pagine web completamente stilizzate e funzionanti in pochissimo tempo. 
+
+L'idea alla base di Bootstrap è la standardizzazione di pattern di sviluppo e di design utilizzati nella realizzazione di applicazioni web. L'utilizzo di questo framework, infatti, ne velocizza e semplifica molto lo sviluppo.
+
+Tra le principali funzionalità e le caratteristiche che hanno reso Bootstrap famoso e utilizzato da moltissimi sviluppatori, troviamo:
+\begin{itemize}
+\item compatibilità con i maggiori browser
+\item \textit{gracefully-degrade} se usato su browser più datati
+\item supporto del design responsivo
+\item adattamento a diversi dispositivi (desktop, smartphone, tablet)
+\item licenza open source
+\item struttura modulare ed estensibile
+\end{itemize}
