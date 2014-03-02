@@ -1,4 +1,4 @@
-Il salvataggio dei dati è una operazione critica in moltissimi sistemi software. La scelta di quale database utilizzare per salvare le informazioni è altrettanto delicata e va ponderata alla luce di vari punti di vista. Per la nostra applicazione abbiamo scelto di utilizzare MongoDB. Di seguito cercheremo di illustrare le principali caratteristiche di questo database e le motivazioni che ci hanno spinto a sceglierlo per la nostra applicazione.\\
+Il salvataggio dei dati è una operazione critica in moltissimi sistemi software. La scelta del tipo di database da utilizzare per salvare le informazioni è altrettanto delicata e va ponderata alla luce di svariati punti di vista. Per la realizzazione della applicazione oggetto di tesi, si è scelto di utilizzare MongoDB. Di seguito verranno illustrate le principali caratteristiche di questo database e le motivazioni che sottendono tale scelta.\\
 
 \begin{figure}[h]
 \centering
@@ -7,9 +7,9 @@ Il salvataggio dei dati è una operazione critica in moltissimi sistemi software.
 \label{fig:mongodb}
 \end{figure}
 
-I database relazionali (RDBMS), per loro natura, espongono il loro contenuto in un formato tabellare e utilizzano concetti come righe e colonne per fornire l'accesso ai dati o porzioni di essi. In questo tipo di database lo \textit{schema} dei dati, cioè la loro struttura è ben definita e va studiata in fase di \textit{design} della base di dati, essi si definiscono infatti database \textit{schema-full}. Negli RDBMS la modifica del formato di un dato a sistema avviato è una operazione delicata. Essa infatti deve tenere conto dei dati già presenti all'interno del sistema e deve aggiornarli coerentemente con la nuova struttura assunta dalla tabella che li contiene.
+I database relazionali (RDBMS), per loro natura, espongono il loro contenuto in un formato tabellare e utilizzano concetti come righe e colonne per fornire l'accesso ai dati o porzioni di essi. In questo tipo di database lo \textit{schema} dei dati, cioè la struttura delle informazioni è ben definita e va studiata in fase di \textit{design} della base di dati, essi si definiscono infatti database \textit{schema-full}. Negli RDBMS la modifica del formato di un dato a sistema avviato è una operazione delicata. Essa infatti deve tenere conto dei dati già presenti all'interno del sistema e deve aggiornarli coerentemente con la nuova struttura assunta dalla tabella che li contiene.
 
-MongoDB è un database \textit{schema-less}, questo significa che la struttura di un dato non è definita a priori, ma soprattutto che essa può variare nel tempo senza richiedere aggiornamenti ai dati già presenti nella base dati. MongoDB utilizza infatti un modello documentale per il salvataggio dei dati, essi salvati internamente come oggetti \textit{BSON} e forniti all'esterno sotto forma di oggetti \textit{JSON}.   
+MongoDB è un database \textit{schema-less}, questo significa che la struttura di un dato non è definita a priori, ma soprattutto che essa può variare nel tempo senza richiedere aggiornamenti ai dati già presenti nella base dati. MongoDB utilizza infatti un modello documentale per la rappresentazione dei dati, essi sono salvati internamente come oggetti \textit{BSON} e forniti all'esterno sotto forma di oggetti \textit{JSON}.   
 
 Per comprendere i concetti alla base di MongoDB è possibile realizzare alcune similitudini tra concetti proposti da questa base dati e concetti presenti negli RDBMS. La tabella seguente mostra alcune di queste similitudini.
 
@@ -27,14 +27,18 @@ Le \textit{collection} sono insiemi di \textit{document}, i quali, a loro volta,
 
 Un documento BSON può contenere \textit{field} di vario tipo: interi, stringhe, \textit{array}, dati binari, oppure altri documenti (\textit{embedded document}). Come abbiamo anticipato, in MongoDB, lo schema dei documenti non è fisso, questo significa che nella stessa collection potremo trovare document con struttura differente.
 
-Altre funzionalità significative di MongoDB sono la possibilità di eseguire aggiornamenti atomici dei dati, la ricerca \textit{full-text} all'interno dei documenti e degli \textit{embedded document}, la possibilità di creare indici sui dati e indici di tipo geospaziale.
+Altre funzionalità significative di MongoDB sono:
+\begin{itemize}
+\item la possibilità di eseguire aggiornamenti atomici dei dati;
+\item la ricerca \textit{full-text} all'interno di documenti e di \textit{embedded document};
+\item la possibilità di creare indici su dati;
+\item la creazione di indici di tipo geospaziale;
+\end{itemize}
 
-La possibilità di salvare dati aventi una struttura variabile è stato il motivo principale che ci ha spinto ad utilizzare questo tipo di database, nel capitolo \ref{mole} vedremo come questa funzionalità ci ha permesso di creare un sistema estremamente flessibile.
+Si è scelto questo tipo di database perché fornisce la possibilità di salvare dati aventi una struttura variabile. Nel capitolo \ref{mole} si vedrà come questa funzionalità permette di creare un sistema estremamente flessibile.
 
-I creatori di MongoDB hanno fatto in modo che il database da loro realizzato realizzasse due caratteristiche fondamentali, che lo rendono il candidato ideale per l'installazione in ambienti PaaS: l'alta accessibilità e la scalabilità.
+I creatori di MongoDB hanno fatto in modo che il database da loro realizzato possedesse due caratteristiche fondamentali, che lo rendono il candidato ideale per l'installazione in ambienti PaaS: l'alta accessibilità e la scalabilità.
 
-Nella sezione seguente vedremo come MongoDB implementa questi due concetti e come essi si posso utilizzare sia per fronteggiare l'aumento di richieste da parte degli utenti, sia per rendere il sistema resistente a problemi di malfunzionamento dei server sui quali MongoDB viene installato.
+Nella sezione seguente si illustrerà come MongoDB implementa questi due concetti e come essi si possano utilizzare sia per fronteggiare l'aumento di richieste da parte degli utenti, sia per rendere il sistema resistente a problemi di malfunzionamento dei server sui quali MongoDB viene installato.
 
-Nella sezione \ref{Architettura_del_sistema} vedremo inoltre come queste caratteristiche hanno reso MongoDB il candidato ideale ad essere utilizzato all'interno del nostro sistema. Nella configurazione finale, infatti, esso verrà installato proprio su un servizio di tipo PaaS.
-
-%TODO parlare di come mongo fa replica-set e sharding e dei casini con le chiavi di shard
+La sezione \ref{Architettura_del_sistema} fornirà inoltre elementi per comprendere come queste caratteristiche hanno reso MongoDB lo strumento più adatto ad essere integrato nell'applicazione oggetto di tesi. Nella configurazione finale, infatti, esso verrà installato proprio su un servizio di tipo PaaS.

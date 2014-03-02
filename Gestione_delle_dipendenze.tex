@@ -1,13 +1,20 @@
-yeoman: yo, bower, grunt
+Per una azienda o uno sviluppatore è molto dispendioso, in termini di tempo e denaro, realizzare le diverse funzionalità implementandole in modo completamente autonomo. Per questo motivo è comune l'utilizzo di librerie che realizzano sotto-funzionalità e possono essere incluse nelle applicazioni come \textit{black-box}.
 
-%Yeoman is an open source client-side development stack, consisting of tools and frameworks intended to help developers quickly build high quality web applications. Yeoman runs as a command-line interface written in Node.js which combines several functions into one place, such as generating a starter template, managing dependencies, running unit tests, providing a local development server, and optimizing production code for deployment.
-%Yeoman was released at Google I/O 2012.
+Gli sviluppatori di frontend, oggi, hanno a loro disposizione un panorama vastissimo di librerie per la gestione delle più disparate problematiche legate alla realizzazione delle funzionalità client-side: gallerie di immagini, strumenti per la navigazione, maschere per l'inserimento di dati da parte dell'utente e molto altro.
 
-%Yeoman combines several popular open source tools in an attempt to streamline many aspects of the web development process.
-%Using a "generator" concept inspired by Ruby on Rails,[2] Yeoman first creates a basic project structure with vendor libraries included. The most basic Yeoman generator supplies the HTML5 Boilerplate, Normalize.css, the jQuery JavaScript library, and Modernizr as a basic template for developers. Yeoman also runs interactively, asking the developer if they would like additional components such as Twitter Bootstrap or RequireJS (a library to support Asynchronous Module Definition) included. More sophisticated generators exist, such as ones which scaffold out a client-side MVC (Model-View-Controller) framework, such as the AngularJS or Backbone JavaScript libraries. Yeoman is meant to be modular such that anyone can design a generator to create a template for a particular type of project.[3]
-%Beyond providing a template to quickly scaffold projects, Yeoman also helps with intermediary phases of web application development. Yeoman lints code for potential problems using JSHint, runs unit tests, and provides a development server for working on an application. Finally, Yeoman also offers a build automation process featuring optimizations such as minification and concatenation of script files. All of these features use pre-configured tasks for the Grunt JavaScript task runner.
-%Yeoman is an open source project whose code is hosted on GitHub.[4] Several primary contributors are on the Google Chrome Developer Relations team, such as Addy Osmani, Paul Irish, and Eric Bidelman.[5] Contributors must sign a Contributor License Agreement before submitting code to the project to ensure that Google has the right to release their code under a BSD license.[6]
+Il processo che porta all'integrazione di una libreria esterna nel proprio progetto, si articola in diverse fasi:
+\begin{itemize}
+\item ricerca della libreria appropriata;
+\item verifica della compatibilità e degli eventuali problemi di integrazione con altre librerie già in uso;
+\item inclusione nei diversi file dell'applicazione;
+\item utilizzo delle funzionalità fornite;
+\end{itemize}
 
+Questa procedura, si ripete per tutte le librerie incluse nell'applicazione. Si può immaginare come esso sia facilmente automatizzabile, nell'ottica di velocizzare il processo di sviluppo e assicurare una solida integrazione tra i sistemi.
+
+La costruzione del frontend risente di problematiche simili a quella del backend e di soluzioni altrettanto simili. Come illustrato nel capitolo \ref{Npm_e_moduli}, l'utilizzo di tool di gestione delle dipendenze aiuta a evitare eventuali errori ascrivibili al fattore umano, durante integrazione di librerie di terze parti, inoltre permette di velocizzare tali operazioni.
+
+Yeoman è un insieme di strumenti per lo sviluppo di applicazioni client-side. Nasce con l'obiettivo di fornire allo sviluppatore un framework per svolgere il proprio lavoro in modo semplice e veloce, ma, al tempo stesso, produrre applicazioni web di alta qualità.\\
 
 \begin{figure}[h]
 \centering
@@ -16,9 +23,29 @@ yeoman: yo, bower, grunt
 \label{fig:yo-grunt-bower}
 \end{figure}
 
+Yeoman è un tool che si utilizza da linea di comando, offre molte funzionalità per l'automazione dei diversi task e per il supporto allo sviluppo, di seguito le principali:
+\begin{itemize}
+\item generazione automatica di \textit{template};
+\item gestione delle dipendenze delle diverse librerie incluse nel progetto;
+\item esecuzione automatica di test unitari;
+\item gestione di un server da utilizzare durante la fase di sviluppo;
+\item ottimizzazione del codice realizzato al fine di eseguire il deploy del progetto.
+\end{itemize}
+
+Questo strumento combina diversi software open-source che si occupano di fornire le varie funzionalità offerte. Utilizza un concetto di \textit{generator}: un processo automatico per la produzione di una applicazione, preconfigurata con varie librerie di supporto. Yeoman, inoltre, dispone di una modalità interattiva, nella quale guida lo sviluppatore nella scelta delle diverse librerie da includere nel progetto generato.
+
+I software che concorrono a rendere Yeoman un tool potente e versatile sono:
+\begin{description}
+\item[Yo] il vero e proprio sistema di generazione delle applicazioni. Si occupa di scrivere i diversi file di configurazione degli altri tool e includere le dipendenze necessarie per lo sviluppo del progetto.
+\item[Grunt] è un software di \textit{task automation}. Il suo compito è l'automatizzazione di compiti ripetitivi. \`{E} sviluppato in Node.js e permette di definire, usando un file di configurazione in formato JSON, la sequenza delle operazioni da eseguire e l'elenco dei file sulle quali esse operano. Grunt è una applicazione modulare, supporta infatti l'utilizzo di svariati plugin per l'esecuzione di specifici task, come il \textit{linting} (controllo della sintassi) dei file di progetto, la \textit{minificazione} degli script CSS e l'esecuzione dei test unitari tramite l'utilizzo di apposite librerie.  
+\item[Bower] si occupa della gestione delle dipendenze. Esegue il \textit{download} della libreria desiderata, se necessario, decomprime il file ottenuto e ne posiziona il contenuto in una specifica directory del progetto, in modo da renderlo fruibile all'interno dell'applicazione. Può accadere che il funzionamento della libreria scaricata, a sua volta, dipenda dalla presenza di altre librerie, dette \textit{dipendenze}. In questo caso, Bower eseguirà un controllo delle versioni di ogni libreria richiesta e avvertirà l'utente in caso di possibili incompatibilità.\\
+\end{description}
+
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{./img/yeoman.png}
 \caption[Il logo di Yeoman]{Il logo di Yeoman}
 \label{fig:yeoman}
 \end{figure}
+
+Per lo sviluppo di Mole.io è stato utilizzato un generatore di applicazioni AngularJS. Dopo aver lanciato il comando di generazione, Yeoman ha prodotto un progetto vuoto, ma completamente funzionante e predisposto per l'esecuzione di test unitari con l'uso di \textit{Karma} (un framework messo a disposizione dagli stessi creatori di AngularJS) e un server Node.js per servire staticamente i file contenenti l'applicazione. Grunt è stato anch'esso automaticamente configurato con task per l'esecuzione dei test, la minificazione, e l'avvio del server di supporto. Bower è stato utilizzato per ottenere le dipendenze di base quali \textit{jQuery.js}, \textit{Modernizr}, \textit{Less}.

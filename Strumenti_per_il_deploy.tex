@@ -1,4 +1,48 @@
+Il \textit{deploy} è tecnicamente la fase di installazione dell'applicazione web su un server, sia esso di test o di produzione.
 
-%parlare di docker
-%dei container
-%dokku
+La fase del deploy è molto delicata, in quanto, il manifestarsi di un errore durante l'installazione del sistema su un server di produzione, potrebbe impedire agli utenti di usufruire di tale servizio. La conseguenza peggiore, in questo caso, potrebbe essere la perdita di profitto (per servizi a pagamento) o di credibilità e di fiducia nell'applicazione da parte degli utenti.
+
+Le operazioni tipiche di un deploy sono:
+\begin{itemize}
+\item minificazione degli script;
+\item backup della precedente versione del software in produzione;
+\item copia dei file di progetto sul server;
+\item avvio del nuovo sistema in produzione.
+\end{itemize}
+\`{E}, ovviamente, possibile eseguire manualmente queste operazioni, ma si incorre nel rischio di commettere un errore, spesso causato dalla distrazione, durante una delle fasi.
+
+Per limitare quanto più possibile la probabilità di errori durante il deploy, sono stati costruiti tool appositi per l'esecuzione di questi task ripetitivi.
+
+Docker è un sistema open-source per l'automatizzazione del processo di deploy di applicazioni. Per eseguire questo compito si avvale di \textit{container}, veri e propri contenitori virtuali di applicazioni con le relative dipendenze, in grado di essere eseguiti su server Linux.\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./img/docker}
+\caption[Il logo di Docker]{Il logo di Docker}
+\label{fig:docker}
+\end{figure}
+
+L'utilizzo di container offre svariati vantaggi, il principale è la portabilità delle applicazioni su diversi server fisici o servizi \textit{cloud} pubblici e privati.\\
+
+Durante lo sviluppo di Mole.io, è stato utilizzato un sistema di container per eseguire il deploy dell'applicazione su un server di test.
+
+\`{E} stata realizzata una macchina virtuale con sistema operativo Ubuntu Server, all'interno della quale è stato installato Dokku, un software in grado di trasformare il sistema in un server di tipo PaaS.
+
+Dokku realizza in un server Ubuntu un clone privato del servizio \textit{Heroku} e permette di interfacciarsi al proprio server esattamente nello stesso modo con cui si utilizzerebbe questo PaaS.
+
+Per eseguire un deploy, infatti, è sufficiente scrivere un semplice comando in console:
+\begin{verbatim}
+git push test master
+\end{verbatim}
+Con questo comando, sfruttando \verb|git|, il sistema di \textit{versioning} del codice, è possibile eseguire una operazione di \verb|push| del proprio \textit{branch} \verb|master| sul server \verb|test|.
+
+A fronte del precedente comando, Dokku si preoccupa di:
+\begin{itemize}
+\item eseguire l'invio del branch master al server;
+\item generare un container Docker;
+\item copiare i file dell'applicazione nel nuovo container;
+\item installare, con \verb|npm install|, come descritto nel capitolo \ref{Npm_e_moduli}, le dipendenze dell'applicazione;
+\item salvare il container nel quale risiedeva la precedente versione dell'applicazione;
+\item eseguire lo \textit{switch} dei container, al fine di mettere in produzione la nuova versione;
+\end{itemize}
+Non è difficile quindi immaginare come questo tool semplifichi la delicata fase di deploy e minimizzi i rischi che essa comporta.

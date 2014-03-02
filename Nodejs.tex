@@ -23,12 +23,11 @@ La seconda parte della descrizione spiega sinteticamente alcune caratteristiche 
 
 L'intera piattaforma è centrata sul concetto di \textit{evento}. Si dice  evento un messaggio che viene scatenato in un determinato istante dell'elaborazione e che successivamente è catturato e gestito dalle componenti del sistema che sono preposte alla gestione di quell'evento specifico.
 
-Il sistema ad eventi viene utilizzato da Node.js congiuntamente ad una gestione non bloccante delle operazioni di \textit{Input/Output}. Questo significa che una operazione potenzialmente lunga, come ad esempio la comunicazione con il \textit{filesystem} o con i dispositivi di \textit{rete} non blocca il flusso di esecuzione del programma principale. 
+Il sistema ad eventi viene utilizzato da Node.js congiuntamente ad una gestione non bloccante delle operazioni di \textit{Input/Output}. Questo significa che una operazione potenzialmente lunga, come ad esempio la comunicazione con il \textit{filesystem} o con i dispositivi di \textit{rete}, non blocca il flusso di esecuzione del programma principale.
 
 Dopo aver richiesto ad altri attori del sistema il dato di cui necessita, il programma continua il suo normale flusso di esecuzione e verrà informato, utilizzando un evento, quando il dato richiesto sarà disponibile. Questa gestione non bloccante delle operazioni di \textit{I/O} è chiamata \textit{I/O asincrono}.
 
-La gestione delle operazioni in modo non strettamente legato alla logica applicativa, permette a Node.js di essere molto efficiente se utilizzato per la realizzazione di applicazioni che elaborano grandi quantità di dati ma devono rimanere \textit{reattive} nei confronti di nuove richieste di elaborazione.
-
+La gestione delle operazioni in modo non strettamente legato alla logica applicativa, permette a Node.js di essere molto efficiente se utilizzato per la realizzazione di applicazioni che manipolano grandi quantità di dati, ma devono rimanere \textit{reattive} nei confronti di nuove richieste di elaborazione.
 
 \subsection{Le operazioni asincrone}
 
@@ -49,19 +48,15 @@ Dispositivo di rete & 240.000.000 \\
 \end{tabular} 
 \end{center}
 
-Guardando la tabella si nota immediatamente come i dispositivi di \textit{I/O} siano ordini di grandezza più lenti rispetto ai dispositivi di elaborazione delle informazioni. Se il flusso del programma dovesse aspettare in modo sincrono ogni singola operazione di lettura o scrittura su disco, ad esempio, esso perderebbe la possibilità di eseguire circa quaranta milioni di operazioni di calcolo, con un conseguente degrado delle performances del software.
+Guardando la tabella si nota immediatamente come i dispositivi di \textit{I/O} siano ordini di grandezza più lenti rispetto ai dispositivi di elaborazione delle informazioni. Se il flusso del programma dovesse aspettare, in modo sincrono, ogni singola operazione di lettura o scrittura su disco, ad esempio, esso perderebbe la possibilità di eseguire circa quaranta milioni di operazioni di calcolo, con un conseguente degrado delle performances del software.
 
 Una tecnica comune per affrontare il problema dell'\textit{I/O} è l'utilizzo di \textit{threads}. Un thread è spesso definito con il termine "sotto-processo leggero", in effetti esso condivide codice e risorse di sistema con altri threads appartenenti allo stesso processo padre.
-\\
-------
-\\
-Un thread permette al processo di parallelizzare l'esecuzione di una parte del suo flusso di lavoro, ma al tempo stesso sono necessarie risorse di sistema per creare il thread stesso e per distruggerlo. Node.js ovvia a questo problema utilizzando un \textit{thread pool}, cioè un insieme di threads che fungono da \textit{worker} per il processo. Quando è necessario eseguire un particolare task, esso viene sottoposto al thread pool, di conseguenza viene assegnato ad un worker, esso lo esegue e al termine del lavoro comunica l'esito dell'elaborazione al chiamante tramite una funzione detta \textit{callback}.
+
+L'utilizzo dei thread permette ad un processo di parallelizzare l'esecuzione di una parte del suo flusso di lavoro. Al tempo stesso sono necessarie risorse di sistema sia per creare il thread sia per distruggerlo. Node.js ovvia a questo problema utilizzando un \textit{thread pool}, cioè un insieme di thread che fungono da \textit{worker} per il processo. Quando è necessario eseguire un particolare \textit{task}, esso viene sottoposto al thread pool, di conseguenza viene assegnato ad un worker. Esso lo esegue e al termine del lavoro comunica l'esito dell'elaborazione al chiamante tramite una funzione detta \textit{callback}.
 
 L'utilizzo di un thread pool comporta un incremento di prestazioni da parte delle applicazioni che lo sfruttano: i thread pool ottimizzano l'utilizzo della memoria e del processore, diminuendo l'overhead di gestione dei thread.
-\\
------
-\\
-Per comprendere come Node.js è in grado di realizzare tale funzionalità, è necessario spiegare nel dettaglio il modello di gestione delle richieste implementato da questo framework. 
+
+Per comprendere come Node.js sia in grado di realizzare tale funzionalità, è necessario spiegare nel dettaglio il modello di gestione delle richieste implementato da questo framework. 
 
 Innanzitutto è necessario chiarire che Node.js, a differenza di altri sistemi per lo sviluppo \textit{server-side} non necessita di una applicazione che funga da \textit{web server}, come accade ad esempio nel caso di Apache per PHP. Quando si sviluppa in Node.js infatti l'applicazione realizzata \textit{è} il server. Il framework mette a disposizione funzionalità apposite per la creazione di un server interno ad ogni applicazione. Questo approccio favorisce la strutturazione a \textit{servizi} dell'applicazione, che può essere suddivisa in processi Node.js separati e quindi in veri e propri server in comunicazione fra loro.
 
@@ -77,7 +72,7 @@ http.createServer(function (req, res) {
 console.log('Server running at http://127.0.0.1:3000/');
 \end{verbatim}
 
-La prima operazione eseguita dal programma è l'importazione del modulo \verb|http|, che fornisce le funzionalità di rete. Successivamente viene chiamata la funzione \verb|createServer()| che si occupa di generare il server web. Utilizzando la funzione \verb|listen()|, successivamente, il server viene attivato e messo in ascolto all'indirizzo \verb|http://127.0.0.1:3000/|. Il comando \verb|console.log()| stampa in console l'informazione che il server è avviato. Ad ogni richiesta ricevuta dal server, viene eseguita la funziona passata come parametro alla \verb|createServer()|, la quale risponde alla richiesta inviando al client la stringa \verb|Hello World|. 
+La prima operazione eseguita dal programma è l'importazione del modulo \verb|http|, che fornisce le funzionalità di rete. Successivamente viene chiamata la funzione \verb|createServer()| che si occupa di generare il server web. Utilizzando la funzione \verb|listen()|, successivamente, il server viene attivato e messo in ascolto all'indirizzo \verb|http://127.0.0.1:3000/|. Il comando \verb|console.log()| stampa in console l'informazione che il server è avviato. Ad ogni richiesta ricevuta dal server, viene eseguita la funziona passata come parametro alla \verb|createServer()|, la quale risponde alla richiesta inviando al client la stringa \verb|Hello World|.
 
 Come si vede da questo esempio, con Node.js, la logica applicativa e il \textit{web-server} risiedono all'interno dello stesso software.
 
@@ -96,7 +91,7 @@ In figura \ref{fig:node-model} è illustrato schematicamente l'event-loop per la 
 
 \subsection{Le callback}
 
-Una delle principali difficoltà quando si utilizza Node.js per la prima volta è la gestione delle callback. Di seguito è riportato un frammento di codice Node.js che esegue il salvataggio di un utente su Database.
+Una delle principali difficoltà che si presenta ad uno sviluppatore che si appresta ad utilizzare Node.js per la prima volta, è la gestione delle callback. Di seguito è riportato un frammento di codice Node.js che esegue il salvataggio di un utente su Database.
 
 \begin{verbatim}
 function save(user) {
@@ -108,7 +103,7 @@ function save(user) {
 }
 \end{verbatim}
 
-la funzione \verb|db.insert()| è asincrona, ed accetta due parametri: il dato da salvare e la callback da eseguire una volta eseguito l'inserimento nel Database. L'esecuzione di questo codice produce un output in console simile a quello mostrato qui sotto.
+la funzione \verb|db.insert()| è asincrona, ed accetta due parametri: il dato da salvare e la callback da eseguire una volta effettuato l'inserimento nel Database. L'esecuzione di questo codice produce un output in console simile a quello mostrato qui sotto.
 
 \begin{verbatim}
 saving user into db

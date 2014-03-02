@@ -11,7 +11,6 @@ Poco dopo la nascita di Node.js la comunità di sviluppatori che lo utilizzava ha
 \label{fig:npm}
 \end{figure}
 
-
 NPM \cite{website:NPM} è un tool, utilizzabile da linea di comando, che si occupa della gestione dei moduli e delle loro dipendenze, per farlo utilizza un \textit{repository} in rete nel quale sono registrati tutti i moduli pubblici sviluppati dai vari \textit{contributor} della \textit{community} Node.js.
 
 Abbiamo introdotto il concetto di \textit{dipendenza} tra moduli. Un modulo si dice dipendente da un altro quando necessita di quest'ultimo per eseguire il suo compito. NPM impone che ogni modulo sia descritto dal file \verb|Package.json| che ne riporta le informazioni principali ed elenca gli altri moduli dai quali dipende. Di seguito riportiamo un esempio di \verb|Package.json| per un modulo chiamato \verb|mole| che fa parte del sistema realizzato per questa tesi.
@@ -56,7 +55,7 @@ Nella prima parte del file possiamo trovare i dati principali del modulo, come i
 
 Le due sezioni seguenti nel file elencano le dipendenze, la prima indica i moduli che devono essere presenti perché esso possa essere messo \textit{in produzione}, le altre sono dipendenze che sono richieste esclusivamente durante lo sviluppo o il \textit{testing} del modulo stesso. Come si può notare, nel file, non sono presenti solo i nomi, ma anche le versioni richieste degli altri moduli.
 
-Uno dei comandi più utlizzati di NPM è \verb|npm install|, esso legge il file \verb|Package.json| presente nella \textit{directory} corrente e scarica dalla rete tutti i pacchetti richiesti alle rispettive versioni e permette all'utilizzatore del modulo di essere immediatamente operativo.
+Uno dei comandi di NPM più utilizzati è \verb|npm install|. Il comando indica a NPM di leggere il file \verb|Package.json| presente nella \textit{directory} corrente e scaricare dalla rete tutti i pacchetti richiesti alle rispettive versioni. In questo modo, l'utilizzatore del modulo è immediatamente operativo.
 
 \subsubsection{Alcuni moduli utilizzati}
 
@@ -68,18 +67,11 @@ var express = require('express');
 
 Una volta eseguito il comando, la variabile \verb|express| conterrà il modulo appena caricato e sarà possibile utilizzarne le funzionalità.\\
 
-Illustriamo ora alcuni dei moduli utilizzati per realizzare la nostra applicazione.
-
+Di seguito verranno presi in considerazione alcuni dei principali moduli utilizzati per realizzare l'applicazione oggetto della tesi.
 \begin{description}
-\item [express] \`{E} uno dei moduli più importanti: permette di creare facilmente un \textit{server web} in grado di rispondere a richieste provenienti dai \textit{client}. Utilizza un sistema di \textit{rotte} per legare l'azione da eseguire alla richiesta HTTP in arrivo. Express eredita da \textit{Connect} una funzionalità chiave per il suo funzionamento, i \textit{middleware}. In Connect, un middleware è una funzione che filtra tutte le richieste in ingresso e le risposte in uscita e le restituisce rielaborate. I middleware sono costruiti in modo da essere accodati l'uno con l'altro, dando la possibilità di costruire filtri molto complessi. Illustreremo la configurazione delle rotte e dei middleware di express nella sezione \ref{Architettura_del_sistema}.
-
-\item [passport] Il compito di questo modulo è gestire l'autenticazione degli utenti. Passport fornisce un comodo middleware per express, con il quale è possibile verificare i dati di autenticazione dell'utente quando questo voglia accedere a specifiche rotte. Più avanti, nella sezione \ref{Autenticazione_degli_utenti}, approfondiremo questo tema.
-
-\item [mongoose e mongoskin] Sono i due principali \textit{driver} Node.js per MongoDB, il sistema per l'archiviazione dei dati che abbiamo utilizzato nell'applcazione. Nella sezione \ref{MongoDB} vedremo nel dettaglio questo database documentale e illustreremo come è possibile accedere alla sua interfaccia utilizzando Node.js.
-
-\item [require-all] Permette di caricare tutti i moduli presenti in una directory. Questo modulo ci è stato molto utile per garantire e semplificare l'estensibilità del sistema. Nella sezione \ref{CQRS_ed_estensibilita} vedremo nel dettaglio come abbiamo sfruttato questa semplice ma potente funzionalità.
-
-\item [mocha] Questo modulo non fornisce funzionalità vere e proprie da spendere in produzione, bensì un insieme preziosissimo di \textit{tool} per poter testare la propria applicazione Node.js. Abbiamo largamente utilizzato questo strumento durante la realizzazione del sistema per renderlo, quanto più possibile, \textit{bug-free}. %TODO: qui andrebbe linkata la sezione sul testing...ma è prima!
+\item [express] \`{E} uno dei moduli più importanti: permette di creare facilmente un \textit{server web} in grado di rispondere a richieste provenienti dai \textit{client}. Utilizza un sistema di \textit{rotte} per legare l'azione da eseguire alla richiesta HTTP in arrivo. Express eredita da \textit{Connect} una funzionalità chiave per il suo funzionamento, i \textit{middleware}. In Connect, un middleware è una funzione che filtra tutte le richieste in ingresso e le risposte in uscita e le restituisce rielaborate. I middleware sono costruiti in modo da essere accodati l'uno con l'altro, dando la possibilità di realizzare filtri molto complessi. verrà illustrata la configurazione delle rotte e dei middleware di express nella sezione \ref{Architettura_del_sistema}.
+\item [passport] Il compito di questo modulo è gestire l'autenticazione degli utenti. Passport fornisce un comodo middleware per express, con il quale è possibile verificare i dati di autenticazione dell'utente quando questo voglia accedere a specifiche rotte. Più avanti, nella sezione \ref{Autenticazione_degli_utenti}, sarà approfondito questo tema.
+\item [mongoose e mongoskin] Sono i due principali \textit{driver} Node.js per MongoDB, il sistema per l'archiviazione dei dati che abbiamo utilizzato nell'applcazione. Nella sezione \ref{MongoDB} verrà illustrato nel dettaglio questo database documentale e si mostrerà come è possibile accedere alla sua interfaccia utilizzando Node.js.
+\item [require-all] Permette di caricare tutti i moduli presenti in una directory. Questo modulo ci è stato molto utile per garantire e semplificare l'estensibilità del sistema. Nella sezione \ref{CQRS_ed_estensibilita} si analizzerà nel dettaglio come è stata sfruttata questa semplice ma potente funzionalità.
+\item [mocha] Questo modulo non fornisce funzionalità vere e proprie da spendere in produzione, bensì un insieme preziosissimo di \textit{tool} per poter testare la propria applicazione Node.js. Tale strumento è stato largamente utilizzato durante la realizzazione del sistema, applicando le tecniche illustrate nel capitolo \ref{Il_test_driven_development}, per rendere Mole.io, quanto più possibile, \textit{bug-free}.
 \end{description}
-
-

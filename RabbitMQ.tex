@@ -19,7 +19,7 @@ RabbitMQ permette di costruire \textit{pattern} di comunicazione tra processi, i
 
 \subsubsection{Work Queues}
 
-L'idea alla base questo tipo di configurazione, chiamata anche \textit{Task Queues}, consiste nell'evitare picchi nel carico di lavoro e risorse del sistema, dovuti allo svolgimento di una operazione e all'attesa del suo completamento. Per ovviare a questo problema si configura un sistema nel quale esiste un produttore di dati e uno o più consumatori.\\
+L'idea alla base di questo tipo di configurazione, chiamata anche \textit{Task Queues}, consiste nell'evitare picchi nel carico di lavoro e risorse del sistema, dovuti allo svolgimento di una operazione e all'attesa del suo completamento. Per ovviare a questo problema si configura un sistema nel quale esiste un produttore di dati e uno o più consumatori.\\
 
 \begin{figure}[h]
 \centering
@@ -51,8 +51,4 @@ La figura \ref{fig:rabbit-publish-subscribe} mostra una rappresentazione del sis
 
 In questo caso il produttore di messaggi (P) invia un messaggio ad un exchange (E), il quale lo duplica e lo invia a tutte le code ad esso connesse. I consumatori in ascolto (C1 e C2), riceveranno lo stesso messaggio.\\
 
-%TODO
-% il routing dei messaggi? (però non l'ho usato)
-
-Nella sezione \ref{Architettura_del_sistema} vedremo nel dettaglio la configurazione di RabbitMQ utilizzata per realizzare Mole.io e quali tecniche abbiamo messo in atto per permettere al sistema di essere installato su una piattaforma di tipo PaaS.
-
+Nella sezione \ref{Architettura_del_sistema} sarà illustrata nel dettaglio la configurazione di RabbitMQ utilizzata per realizzare Mole.io e quali tecniche si sono messe in atto per permettere al sistema di essere installato su una piattaforma di tipo PaaS.
