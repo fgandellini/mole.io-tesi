@@ -14,20 +14,20 @@ L'aspetto più interessante, ai fini della realizzazione del progetto di tesi, è 
 
 Uniformare il linguaggio utilizzato permette di facilitare lo sviluppo e la fruibilità del progetto da parte degli sviluppatori. Per poter lavorare al software è infatti richiesta solo la conoscenza di JavaScript e non di altri linguaggi. Questo è un ottimo requisito quando si lavora con un team di sviluppo in espansione.
 
-La piattaforma Node.js permette di utilizzare JavaScript per sviluppare la parte \textit{backend} delle applicazioni. 
+La piattaforma Node.js \cite{website:Node.js} permette di utilizzare JavaScript per sviluppare la parte \textit{backend} delle applicazioni. 
 
-Per il salvataggio dei dati, la scelta è ricaduta su MongoDB, un database documentale \textit{schema-less}, che permette di salvare dati direttamente in formato \textit{JavaScript Object Notation} (JSON). La possibilità di salvare nel database strutture dati gestite in modo nativo da JavaScript facilita notevolmente il lavoro di gestione delle informazioni. 
+Per il salvataggio dei dati, la scelta è ricaduta su MongoDB \cite{website:MongoDB}, un database documentale \textit{schema-less}, che permette di salvare dati direttamente in formato \textit{JavaScript Object Notation} (JSON). La possibilità di salvare nel database strutture dati gestite in modo nativo da JavaScript facilita notevolmente il lavoro di gestione delle informazioni. 
 
 Il \textit{deploy} in produzione di Mole.io verrà eseguito in un ambiente di tipo PaaS. Sistemi di questo tipo sono caratterizzati dalla possibilità di fornire all'utente \textit{container} virtuali o macchine virtuali nelle quali eseguire le applicazioni. 
 
 Quando si realizza il design di applicazioni per sistemi PaaS, quindi, è importante riuscire ad identificare i sotto-componenti software e gli specifici ruoli e compiti di ciascuno di essi. I sotto-sistemi devono quindi essere realizzati in modo da cooperare tra loro. Il \textit{disaccoppiamento} dei diversi servizi permette di scalare il sistema in modo da adattarne la configurazione alle specifiche esigenze in ogni istante.   
 
-Una volta determinate le diverse componenti del sistema è necessario metterle in comunicazione tra di loro in modo da permettere la cooperazione e lo scambio di informazioni. A questo scopo si è deciso di introdurre nell'architettura applicativa RabbitMQ, una piattaforma per la gestione di code di messaggi, che permette lo scambio di dati tra le diverse componenti del sistema.
+Una volta determinate le diverse componenti del sistema è necessario metterle in comunicazione tra di loro in modo da permettere la cooperazione e lo scambio di informazioni. A questo scopo si è deciso di introdurre nell'architettura applicativa RabbitMQ \cite{website:RabbitMQ}, una piattaforma per la gestione di code di messaggi, che permette lo scambio di dati tra le diverse componenti del sistema.
 
 Il panorama attuale delle tecnologie per la realizzazione di applicazioni web \textit{client-side} è vastissimo. Per la costruzione di Mole.io la scelta è ricaduta su AngularJS, un popolare \textit{framework} sviluppato da Google appositamente per la creazione di \textit{single-page application}. Questo strumento è stato scelto principalmente per la sua naturale attitudine a lavorare con interfacce di \textit{backend} di tipo REST.     
 
-Per lo sviluppo dell'interfaccia grafica si è scelto di utilizzare Bootstrap, un framework CSS che facilita la realizzazione e la stilizzazione di pagine web fornendo un \textit{set} di classi CSS preconfigurate. Questo strumento ha permesso di realizzare velocemente un prototipo dell'applicazione con una interfaccia grafica decorosa. Le varie librerie JavaScript necessarie per il funzionamento dell'interfaccia sono state organizzate utilizzando \textit{Bower}, un tool per la gestione delle dipendenze.
+Per lo sviluppo dell'interfaccia grafica si è scelto di utilizzare Bootstrap \cite{website:Bootstrap}, un framework CSS che facilita la realizzazione e la stilizzazione di pagine web fornendo un \textit{set} di classi CSS preconfigurate. Questo strumento ha permesso di realizzare velocemente un prototipo dell'applicazione con una interfaccia grafica decorosa. Le varie librerie JavaScript necessarie per il funzionamento dell'interfaccia sono state organizzate utilizzando Bower \cite{website:Bower}, un tool per la gestione delle dipendenze.
 
-Come strumento per il deploy dell'applicazione, si è scelto di utilizzare \textit{dokku}. Dokku è un software che permette di eseguire la posa in produzione dell'intera applicazione con un singolo comando lanciato direttamente dalla directory del repository di lavoro.
+Come strumento per il deploy dell'applicazione, si è scelto di utilizzare Dokku \cite{website:Dokku}. Dokku è un software che permette di eseguire la posa in produzione dell'intera applicazione con un singolo comando lanciato direttamente dalla directory del repository di lavoro.
 
 Nelle sezioni seguenti saranno mostrate nel dettaglio alcune delle tecnologie utilizzate per realizzare e mettere in produzione Mole.io.

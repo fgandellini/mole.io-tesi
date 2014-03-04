@@ -23,7 +23,7 @@ Yeoman è un insieme di strumenti per lo sviluppo di applicazioni client-side. Na
 \label{fig:yo-grunt-bower}
 \end{figure}
 
-Yeoman è un tool che si utilizza da linea di comando, offre molte funzionalità per l'automazione dei diversi task e per il supporto allo sviluppo, di seguito le principali:
+Yeoman \cite{website:Yeoman} è un tool che si utilizza da linea di comando, offre molte funzionalità per l'automazione dei diversi task e per il supporto allo sviluppo, di seguito le principali:
 \begin{itemize}
 \item generazione automatica di \textit{template};
 \item gestione delle dipendenze delle diverse librerie incluse nel progetto;
@@ -37,8 +37,8 @@ Questo strumento combina diversi software open-source che si occupano di fornire
 I software che concorrono a rendere Yeoman un tool potente e versatile sono:
 \begin{description}
 \item[Yo] il vero e proprio sistema di generazione delle applicazioni. Si occupa di scrivere i diversi file di configurazione degli altri tool e includere le dipendenze necessarie per lo sviluppo del progetto.
-\item[Grunt] è un software di \textit{task automation}. Il suo compito è l'automatizzazione di compiti ripetitivi. \`{E} sviluppato in Node.js e permette di definire, usando un file di configurazione in formato JSON, la sequenza delle operazioni da eseguire e l'elenco dei file sulle quali esse operano. Grunt è una applicazione modulare, supporta infatti l'utilizzo di svariati plugin per l'esecuzione di specifici task, come il \textit{linting} (controllo della sintassi) dei file di progetto, la \textit{minificazione} degli script CSS e l'esecuzione dei test unitari tramite l'utilizzo di apposite librerie.  
-\item[Bower] si occupa della gestione delle dipendenze. Esegue il \textit{download} della libreria desiderata, se necessario, decomprime il file ottenuto e ne posiziona il contenuto in una specifica directory del progetto, in modo da renderlo fruibile all'interno dell'applicazione. Può accadere che il funzionamento della libreria scaricata, a sua volta, dipenda dalla presenza di altre librerie, dette \textit{dipendenze}. In questo caso, Bower eseguirà un controllo delle versioni di ogni libreria richiesta e avvertirà l'utente in caso di possibili incompatibilità.\\
+\item[Grunt] \cite{website:Grunt} è un software di \textit{task automation}. Il suo compito è l'automatizzazione di compiti ripetitivi. \`{E} sviluppato in Node.js e permette di definire, usando un file di configurazione in formato JSON, la sequenza delle operazioni da eseguire e l'elenco dei file sulle quali esse operano. Grunt è una applicazione modulare, supporta infatti l'utilizzo di svariati plugin per l'esecuzione di specifici task, come il \textit{linting} (controllo della sintassi) dei file di progetto, la \textit{minificazione} degli script CSS e l'esecuzione dei test unitari tramite l'utilizzo di apposite librerie.  
+\item[Bower] \cite{website:Bower} si occupa della gestione delle dipendenze. Esegue il \textit{download} della libreria desiderata, se necessario, decomprime il file ottenuto e ne posiziona il contenuto in una specifica directory del progetto, in modo da renderlo fruibile all'interno dell'applicazione. Può accadere che il funzionamento della libreria scaricata, a sua volta, dipenda dalla presenza di altre librerie, dette \textit{dipendenze}. In questo caso, Bower eseguirà un controllo delle versioni di ogni libreria richiesta e avvertirà l'utente in caso di possibili incompatibilità.\\
 \end{description}
 
 \begin{figure}[h]
@@ -48,4 +48,4 @@ I software che concorrono a rendere Yeoman un tool potente e versatile sono:
 \label{fig:yeoman}
 \end{figure}
 
-Per lo sviluppo di Mole.io è stato utilizzato un generatore di applicazioni AngularJS. Dopo aver lanciato il comando di generazione, Yeoman ha prodotto un progetto vuoto, ma completamente funzionante e predisposto per l'esecuzione di test unitari con l'uso di \textit{Karma} (un framework messo a disposizione dagli stessi creatori di AngularJS) e un server Node.js per servire staticamente i file contenenti l'applicazione. Grunt è stato anch'esso automaticamente configurato con task per l'esecuzione dei test, la minificazione, e l'avvio del server di supporto. Bower è stato utilizzato per ottenere le dipendenze di base quali \textit{jQuery.js}, \textit{Modernizr}, \textit{Less}.
+Per lo sviluppo di Mole.io è stato utilizzato un generatore di applicazioni AngularJS. Dopo aver lanciato il comando di generazione, Yeoman ha prodotto un progetto vuoto, ma completamente funzionante e predisposto per l'esecuzione di test unitari con l'uso di \textit{Karma} (un framework messo a disposizione dagli stessi creatori di AngularJS) e un server Node.js per servire staticamente i file contenenti l'applicazione. Grunt è stato anch'esso automaticamente configurato con task per l'esecuzione dei test, la minificazione, e l'avvio del server di supporto. Bower è stato utilizzato per ottenere le dipendenze di base quali jQuery.js, Modernizr, Less.

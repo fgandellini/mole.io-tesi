@@ -33,7 +33,7 @@ Il formato dei messaggi di errore interpretato da questo \textit{tool} ha una st
 \label{fig:logio}
 \end{figure}
 
-La peculiarità di questo servizio \cite{website:Log.io} è l'aspetto \textit{realtime}, infatti esso permette di ottenere in tempo reale i log in arrivo dalle applicazioni monitorate.
+La peculiarità di Log.io \cite{website:Log.io} è l'aspetto \textit{realtime}, infatti esso permette di ottenere in tempo reale i log in arrivo dalle applicazioni monitorate.
 
 Log.io non possiede un sistema di persistenza dei dati, i quali vengono salvati dai diversi sistemi monitorati in modo indipendente. Esso si occupa esclusivamente di fornire un punto di raccolta dei messaggi in arrivo dalle diverse sorgenti e di applicare chiavi di filtraggio in tempo reale.
 
@@ -51,11 +51,11 @@ L'invio dei messaggi al server, da parte delle applicazioni, avviene tramite mes
 \label{fig:rollbar}
 \end{figure}
 
-Tra le applicazioni a pagamento censite, questa sembra essere la più completa \cite{website:Rollbar}, permette infatti di registrare sia messaggi di errore sia messaggi generici.
+Tra le applicazioni a pagamento censite, questa risulta essere la più completa \cite{website:Rollbar}, permettendo infatti di registrare sia messaggi di errore sia messaggi generici.
 
 E' possibile arricchire i messaggi inviati a Rollbar con alcuni dati semplici o strutturati, definibili dall'utente. Le funzionalità di aggregazione dei dati sui tali messaggi, sono disponibili solo ad alcuni campi obbligatori che il sistema è in grado di gestire. Ad esempio è possibile aggregare i dati per livello di gravità, o per similitudine tra i messaggi, ma non è in grado di fare assunzioni automatiche sui campi custom aggiunti. 
 
-Ogni qual volta un sistema viene pubblicato in produzione, è possibile inviare una notifica a Rollbar. Questo permette agli analisti di correlare gli errori in arrivo con la specifica versione dell'applicazione dalla quale essi sono stati generati. 
+Ogni volta un sistema viene pubblicato in produzione, è possibile inviare una notifica a Rollbar. Questo permette agli analisti di correlare gli errori in arrivo con la specifica versione dell'applicazione dalla quale essi sono stati generati. 
 
 Rollbar offre, inoltre, la possibilità di aggiungere collaboratori ad un progetto, dando la possibilità ad un intero team di sviluppo di condividere le informazioni relative allo stato delle applicazioni monitorate.
 
@@ -72,13 +72,13 @@ Permette infine di notificare gli eventi aggiungendo automaticamente alcuni \tex
 \label{fig:papertrail}
 \end{figure}
 
-E' un tool molto orientato agli amministratori di rete \cite{website:Papertrail}. Nei sitemi \textit{unix-like}, il comando \verb|tail|, permette di stampare in \textit{console} in tempo reale le ultime righe aggiunte ad un file utilizzato da un processo. Analogamente, lo stesso comando in Papertrail, permette di ottenere la coda degli ultimi messaggi ricevuti in tempo reale con una operazione chiamata \textit{Tail and Search}. Papertrail salva periodicamente i log ricevuti e permette di scaricarli, rendendoli così disponibili per eventuali elaborazioni successive.
+Papertrail è un tool orientato agli amministratori di rete \cite{website:Papertrail}. Nei sitemi \textit{unix-like}, il comando \verb|tail|, permette di stampare in \textit{console} in tempo reale le ultime righe aggiunte ad un file utilizzato da un processo. Analogamente, lo stesso comando in Papertrail, permette di ottenere la coda degli ultimi messaggi ricevuti in tempo reale con una operazione chiamata \textit{Tail and Search}. Papertrail salva periodicamente i log ricevuti e permette di scaricarli, rendendoli così disponibili per eventuali elaborazioni successive.
 
-A livello di analisi automatizzata, questo tool, esegue una classificazione dei messaggi ricevuti estrapolando autonomamente la chiave di aggregazione dal formato stesso del messaggio.
+A livello di analisi automatizzata, il tool, esegue una classificazione dei messaggi ricevuti estrapolando autonomamente la chiave di aggregazione dal formato stesso del messaggio.
 
 Aggrega, inoltre, messaggi di tipo uniforme, come ad esempio messaggi di riavvio del sistema, eventi di \textit{login} degli utenti, o errori di Apache.
 
-E' possibile utilizzare diversi criteri per il filtraggio dei messaggi di errore. Tra questi è di particolare interesse il filtro temporale, è infatti possibile selezionare un intervallo di tempo e ottenere l'elenco dei messaggi ricevuti in quel momento.
+E' possibile utilizzare diversi criteri per il filtraggio dei messaggi di errore. Tra questi è di particolare interesse il filtro temporale, in cui è possibile selezionare un intervallo di tempo e ottenere l'elenco dei messaggi ricevuti in quel momento.
 
 L'interfaccia di Papertrail facilita il lavoro dell'analista formattando con colori differenti l'elenco dei messaggi ricevuti. I colori sono correlati al testo in maniera semantica (date, indirizzi ip, ecc...).
 
@@ -107,7 +107,7 @@ Dal punto di vista della personalizzazione dei dati, questa applicazione, non co
 \label{fig:elasticsearch}
 \end{figure}
 
-Nella analisi comparativa in corso è necessario inserire anche questa architettura composta da tre applicazioni che collaborano sinergicamente al fine di creare uno strumento flessibile e completo per la raccolta, l'archiviazione, la ricerca e l'analisi dei log.
+Nella analisi comparativa in corso è necessario inserire anche la seguente architettura composta da tre applicazioni che collaborano sinergicamente al fine di creare uno strumento flessibile e completo per la raccolta, l'archiviazione, la ricerca e l'analisi dei log.
 
 Nonostante questa soluzione software sia la più completa architettura \textit{open source} centralizzata per la raccolta di log, non è stata rilevata da una prima fase di ricerca. Questo si suppone sia dovuto al fatto che ciascun applicativo che compone l'architettura è nato con lo scopo di trattare un sotto-problema specifico, rispetto al tema della gestione centralizzata dei log.\\
 
@@ -139,7 +139,9 @@ Benché questa architettura presenti caratteristiche e funzionalità aderenti alle
 \subsubsection{Riepilogo Comparativo}
 Nella tabella \ref{tabella-comparativa delle-funzionalita} sono riportate schematicamente le principali caratteristiche analizzate nelle soluzioni, per la centralizzazione dei log, prese in esame.
 
-\begin{sidewaystable}
+%TODO tabella da sistemare
+\begin{table}[H]
+\begin{center}
 \begin{tabular}{l|c|c|c|c|c}
 & \textbf{Airbrake} & \textbf{Log.io} & \textbf{Rollbar}& \textbf{Papertrail} & \textbf{Fluentd, ElasticSearch, Kibana}\\ 
 \hline 
@@ -150,6 +152,7 @@ Nella tabella \ref{tabella-comparativa delle-funzionalita} sono riportate schema
 \textbf{Aggregazione automatica} & \checkmark & & \checkmark & \checkmark & \checkmark \\
 \textbf{SaaS} & \checkmark & \checkmark & \checkmark & \checkmark & \\
 
-\end{tabular} 
+\end{tabular}
 \caption{Tabella comparativa delle funzionalità}\label{tabella-comparativa delle-funzionalita}
-\end{sidewaystable}
+\end{center}
+\end{table}
