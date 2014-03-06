@@ -1,18 +1,18 @@
-In questo capitolo descriveremo nel dettaglio Mole.io: un nuovo sistema per la gestione centralizzata dei log, realizzato come progetto di questa tesi.
+In questo capitolo sarà descritto nel dettaglio Mole.io: un nuovo sistema per la gestione centralizzata dei log, realizzato come progetto di questa tesi.
 
-Iniziamo immediatamente con la doverosa spiegazione dell'origine del nome di questo software.
+** Ogni componente del progetto è stato battezzato con un nome di fantasia. Per capire l'idea alla base di questa nomenclatura, è necessaria una introduzione.
 
 \textit{Mole} è una parola inglese che significa \textit{talpa}. Nel gergo dello spionaggio, la talpa, è un infiltrato che viene inserito in un sistema avversario e cattura informazioni che riferisce all'\textit{intelligence} della sua fazione.   
 
-Il nostro sistema, si comporta esattamente come un infiltrato: passa informazioni del sistema nel quale viene inserito, le applicazioni da monitorare, alla sua organizzazione, gli sviluppatori.
+L'applicazione realizzata, si comporta esattamente come un infiltrato: passa informazioni del sistema nel quale viene inserito, cioè le applicazioni da monitorare, alla sua organizzazione: gli sviluppatori.
 
-Ogni talpa che si rispetti ha alcuni contatti all'interno del sistema che gli riportano le informazioni rilevanti. Abbiamo chiamato questi contatti \textit{mole-contacts} e le soffiate da loro riferite \textit{whispers}.
+Ogni talpa che si rispetti ha alcuni contatti all'interno del sistema che gli riportano le informazioni rilevanti. Mole.io possiede agenti con uno scopo simile, chiamati \textit{mole-contact}. Le \textit{soffiate} riferite da ogni mole-contact sono dette \textit{whispers}.
 
-Nel nostro sistema, i \textit{mole-contacts} sono moduli software che risiedono all'interno dell'applicazione da monitorare, catturano le situazioni significative per il software nel quale operano ed inviano degli \textit{whisper} ad un server chiamato \textit{mole}.
+I mole-contact sono moduli software che risiedono all'interno dell'applicazione da monitorare, catturano le situazioni significative per il software nel quale operano ed inviano degli whisper ad un server centrale chiamato \textit{mole}.
 
-Nell'immaginario collettivo l'infiltrato è una persona ben vestita, con un abito elegante, giacca, cravatta e cappello. Anche il nostro software, in un certo senso, è ben vestito, infatti possiede una interfaccia grafica realizzata per monitorare le applicazioni ed organizzare gli whisper in arrivo. Questo componente si chiama \textit{mole-suit}.\\
+Nell'immaginario collettivo, l'infiltrato, è una persona ben vestita, porta un abito elegante, giacca, cravatta e cappello. Anche l'applicazione realizzata per questa tesi, in un certo senso, è ben vestita, infatti, possiede una interfaccia grafica realizzata per monitorare le applicazioni ed organizzare gli whisper in arrivo. Questo componente si è chiamato \textit{mole-suit}.\\
 
-Il progetto al momento è un prototipo, ma il è destinato ad essere ultimato per diventare un servizio vero e proprio fornito via web. in figura \ref{fig:mole-logo} è riportato il logo proposto per Mole.io.\\
+Lo sviluppo dell'applicazione è stato arricchito con uno studio grafico di alcune parti dell'interfaccia, e uno studio del logo. In figura \ref{fig:mole-logo} è riportato il logo proposto per Mole.io.\\
 
 \begin{figure}[h]
 \centering
@@ -21,5 +21,4 @@ Il progetto al momento è un prototipo, ma il è destinato ad essere ultimato per 
 \label{fig:mole-logo}
 \end{figure}
 
-Nella sezione seguente vedremo quali sono le funzionalità specifiche di ogni componente in Mole.io, con particolare attenzione al modo nel quale tali componenti scambiano dati tra loro.
-
+Nelle sezioni seguenti verranno illustrate le funzionalità specifiche di ogni componente in Mole.io, con particolare attenzione alle modalità con le quali tali sotto-sistemi interagiscono e scambiano dati tra loro.
