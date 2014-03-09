@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.2"
+   width="1193.3271"
+   height="515.41791"
+   id="svg2">
+  <defs
+     id="defs4">
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="TriangleInS"
+       style="overflow:visible">
+      <path
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         transform="scale(-0.2,-0.2)"
+         id="path4547"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="TriangleInM"
+       style="overflow:visible">
+      <path
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         transform="scale(-0.4,-0.4)"
+         id="path4544"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="TriangleInL"
+       style="overflow:visible">
+      <path
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         transform="scale(-0.8,-0.8)"
+         id="path4541"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt" />
+    </marker>
+    <clipPath
+       id="clipPath3047">
+      <path
+         d="m 0,541.645 777.877,0 L 777.877,0 0,0 0,541.645 z"
+         id="path3049" />
+    </clipPath>
+    <clipPath
+       id="clipPath3031">
+      <path
+         d="m 0,541.645 777.877,0 L 777.877,0 0,0 0,541.645 z"
+         id="path3033" />
+    </clipPath>
+    <clipPath
+       id="clipPath3015">
+      <path
+         d="m 0,541.645 777.877,0 L 777.877,0 0,0 0,541.645 z"
+         id="path3017" />
+    </clipPath>
+    <clipPath
+       id="clipPath2999">
+      <path
+         d="m 0,541.645 777.877,0 L 777.877,0 0,0 0,541.645 z"
+         id="path3001" />
+    </clipPath>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(176.63965,62.605404)"
+     id="layer1">
+    <path
+       d="m 387.09375,22.53125 c -10.16816,0 -18.4375,8.26934 -18.4375,18.4375 l 0,22.59375 5,0 0,-22.59375 c 0,-7.48465 5.95285,-13.4375 13.4375,-13.4375 l 486.78125,0 c 7.48465,0 13.4375,5.95285 13.4375,13.4375 l 0,22.59375 5,0 0,-22.59375 c 0,-10.16816 -8.26934,-18.4375 -18.4375,-18.4375 l -486.78125,0 z"
+       transform="translate(-176.63965,-63.639469)"
+       id="rect4335"
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans" />
+    <rect
+       width="846.50787"
+       height="432.34531"
+       ry="15.932135"
+       x="167.68532"
+       y="17.965977"
+       id="rect4333"
+       style="fill:none;stroke:#969696;stroke-width:5;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:15, 15;stroke-dashoffset:0" />
+    <rect
+       width="119.19801"
+       height="381.83765"
+       ry="16.37883"
+       x="202.42641"
+       y="42.209637"
+       id="rect4319"
+       style="fill:#4b78c5;fill-opacity:1;stroke:none" />
+    <rect
+       width="119.19801"
+       height="381.83765"
+       ry="16.37883"
+       x="342.42639"
+       y="42.209637"
+       id="rect4321"
+       style="fill:#4b78c5;fill-opacity:1;stroke:none" />
+    <rect
+       width="119.19801"
+       height="381.83765"
+       ry="16.37883"
+       x="586.42639"
+       y="42.209637"
+       id="rect4323"
+       style="fill:#4b78c5;fill-opacity:1;stroke:none" />
+    <g
+       id="g4397">
+      <path
+         d="m 153.54319,-216.38942 a 10.101525,10.101525 0 1 1 -20.20305,0 10.101525,10.101525 0 1 1 20.20305,0 z"
+         transform="translate(335.37064,449.51788)"
+         id="path4327"
+         style="fill:#000000;fill-opacity:1;stroke:none" />
+      <path
+         d="m 153.54319,-216.38942 a 10.101525,10.101525 0 1 1 -20.20305,0 10.101525,10.101525 0 1 1 20.20305,0 z"
+         transform="translate(375.37064,449.51788)"
+         id="path4329"
+         style="fill:#000000;fill-opacity:1;stroke:none" />
+      <path
+         d="m 153.54319,-216.38942 a 10.101525,10.101525 0 1 1 -20.20305,0 10.101525,10.101525 0 1 1 20.20305,0 z"
+         transform="translate(415.37064,449.51788)"
+         id="path4331"
+         style="fill:#000000;fill-opacity:1;stroke:none" />
+    </g>
+    <rect
+       width="246.47723"
+       height="381.83765"
+       ry="16.37883"
+       x="744.42639"
+       y="42.209637"
+       id="rect4325"
+       style="fill:#f7980f;fill-opacity:1;stroke:none" />
+    <text
+       x="796.45343"
+       y="214.19159"
+       id="text4337"
+       style="font-size:42.38546371px;fill:#000000;fill-opacity:1">
+      <tspan
+         x="796.45343"
+         y="214.19159"
+         id="tspan4355"
+         style="font-size:70.6424408px;font-variant:normal;font-weight:300;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Open Sans;-inkscape-font-specification:OpenSans-Light">WEB</tspan>
+      <tspan
+         x="796.45343"
+         y="302.49463"
+         id="tspan4376"
+         style="font-size:70.6424408px;font-variant:normal;font-weight:300;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Open Sans;-inkscape-font-specification:OpenSans-Light">APP</tspan>
+    </text>
+    <g
+       transform="translate(106,0)"
+       id="g5275">
+      <rect
+         width="309.10669"
+         height="381.83765"
+         ry="16.37883"
+         x="-282.63965"
+         y="42.209637"
+         id="rect3549"
+         style="fill:#6ac62f;fill-opacity:1;stroke:none" />
+      <text
+         x="-242.60432"
+         y="258.36038"
+         id="text4378"
+         style="font-size:42.38546371px;fill:#000000">
+        <tspan
+           x="-242.60432"
+           y="258.36038"
+           id="tspan4382"
+           style="font-size:70.6424408px;font-variant:normal;font-weight:300;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Open Sans;-inkscape-font-specification:OpenSans-Light">CLIENT</tspan>
+      </text>
+    </g>
+    <path
+       d="m 776.3796,104.70964 -697.005253,0"
+       id="path4402"
+       style="fill:#000000;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS)" />
+    <path
+       d="m 94.954347,361.54728 697.005253,0"
+       id="path5222"
+       style="fill:#000000;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS)" />
+    <rect
+       width="220.21326"
+       height="62.528439"
+       rx="0"
+       ry="0"
+       x="343.74326"
+       y="-62.605404"
+       id="rect5299"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <text
+       x="347.8519"
+       y="-27.43792"
+       id="text5267"
+       style="font-size:20.40102005px;fill:#000000;fill-opacity:1">
+      <tspan
+         x="347.8519"
+         y="-27.43792"
+         id="tspan5271"
+         style="font-size:34.00170135px;font-variant:normal;font-weight:300;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Open Sans;-inkscape-font-specification:OpenSans-Light">MIDDLEWARE</tspan>
+    </text>
+  </g>
+</svg>
