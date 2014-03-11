@@ -1,16 +1,43 @@
-problemi con i benchmark
-- dipendi dalla rete su cui sei
-- nostro client fatto con node - perché non l'abbiamo usato
-- 2 parole sul tool che abbiamo usato
-- come sono stati fatti i benchmark
-- specifiche del sistema VM, ram, hdd, ...
-- risultati ottenuti
+%problemi con i benchmark
+%- dipendi dalla rete su cui sei
+%- nostro client fatto con node - perché non l'abbiamo usato
+%- 2 parole sul tool che abbiamo usato
+%- come sono stati fatti i benchmark
+%- specifiche del sistema VM, ram, hdd, ...
+%- risultati ottenuti
 
 
-non ha senso testare mole (server) per la parte rabbit (spiegare)
-il vero collo di bottiglia è il db
-abbiamo testato con configurazioni di db differenti
+%non ha senso testare mole (server) per la parte rabbit (spiegare)
+%il vero collo di bottiglia è il db
+%abbiamo testato con configurazioni di db differenti
 
 % parlare dei casini con le chiavi di shard
 
+
+%conclusioni
+%- la coda dei denormalizzatori rompe tra un test e l'altro (coda lunga async)
+
+%problema bench su stessa macchina del server
+%    v
+%configuraz con vms 
+%    v
+%bench macchina fisica diversa
+%    v
+%shard key / ulimit(?)
+%    v
+
+
+
+
+
+%strano comportamento: no denorm, gli dici di fare 10000 insert e trovi %10499[esatti] doc...
+%--> motivo query su sources + insert in whispers #fail mi sa...
+
+%con la nuova chiave lo sharding è sbilanciato 93% / 7%
+
+%i write lock non sembrano avere drammi
+%che sia la memoria?
+
+
+muore il socket sul benchmark
 
