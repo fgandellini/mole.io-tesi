@@ -28,7 +28,7 @@ MongoDB applica un \textit{read-lock} a fronte di ogni operazione di lettura, e 
 
 L'architettura di Mole.io trae ispirazione dal modello CQRS. Nel sistema realizzato non esiste una distinzione tra database di lettura e scrittura, bens\'{\i} tra collection \ref{MongoDB} per il salvataggio di dati grezzi e altre contenenti dati denormalizzati. L'applicazione è stata comunque disegnata in modo da rendere agevole la separazione di tali collection su database differenti, in caso di necessità future.
 
-Mole.io applica il modello CQRS anche per quanto riguarda la separazione dei ruoli di scrittura e lettura. Il modulo \textit{mole}, infatti, si occupa del salvataggio dei dati all'interno del database, mentre il compito di \textit{mole-suit} è, principalmente, l'estrazione dei dati per la pubblicazione su interfaccia utente. In figura \ref{fig:cqrs} è riportata schematicamente l'architettura CQRS realizzata in Mole.io.\\
+Mole.io applica il modello CQRS anche per quanto riguarda la separazione dei ruoli di scrittura e lettura. Il modulo \textit{mole}, infatti, si occupa del salvataggio dei dati all'interno del database, mentre il compito di \textit{mole-suit} è, principalmente, l'estrazione dei dati per la pubblicazione su interfaccia utente. In figura \ref{fig:cqrs} è riportata schematicamente l'architettura CQRS realizzata in Mole.io.
 
 \begin{figure}[h]
 \centering
@@ -37,6 +37,6 @@ Mole.io applica il modello CQRS anche per quanto riguarda la separazione dei ruo
 \label{fig:cqrs}
 \end{figure}
 
-i denormalizzatori possono essere aggiunti nel tempo
+In Mole.io il sistema di gestione dei denormalizzatori è stato realizzato in modo che essi possano essere attivati a \textit{runtime}. Come si vedrà nella sezione seguente, questo approccio garantisce la possibilità di estendere il sistema per adattarlo a nuove esigenze applicative.
 
-% estensibilità, qui? mah...
+Un nuovo denormalizatore attivato, dovrebbe occuparsi principalmente di elaborare i nuovi dati in arrivo e pre-processarli in modo da renderli fruibili per la sezione di presentation. Potrebbe però essere interessante implementare tale denormalizztore in modo che prima di elaborare i nuovi dati in arrivo, esegua il \textit{processing} dei dati grezzi precedentemente salvati nel sistema. Seguendo questo approccio è possibile ottenere nuove modalità di aggregazione di dati preesistenti, generando un plusvalore per gli utilizzatori del sistema.
