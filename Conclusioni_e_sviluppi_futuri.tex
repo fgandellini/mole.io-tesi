@@ -20,4 +20,24 @@
 
 
 
-% FONT per schemi OpenSans
+
+
+
+
+-- ABSTRACT --
+
+Mole.io è un sistema centralizzato per la raccolta e l'aggregazione di messaggi provenienti da applicazioni remote.
+
+L'approccio comune alla creazione e gestione dei log presenta la criticità specifica della \textit{località}, poiché abitualmente i file di log vengono salvati nella stessa macchina sulla quale sta operando l'applicazione che li ha prodotti.
+
+All'aumentare del numero di applicazioni da gestire e del numero di macchine in produzione, diventa sempre più difficoltoso ottenere un \textit{feedback} veloce dello stato di ogni software e delle eventuali situazioni di errore in cui le applicazioni si trovano.
+
+Mole.io cerca di risolvere il problema facendo in modo che i software che lo utilizzano, siano in grado di inviare le informazioni che ritengono significative ad un server centrale, il quale le raccoglie, le cataloga e le aggrega per essere facilmente supervisionate da parte degli sviluppatori.
+
+Il nuovo approccio permette agli sviluppatori di identificare, in breve tempo, il manifestarsi di un malfunzionamento in qualunque applicazione attiva e reagire rapidamente proponendo una azione risolutiva.
+
+Mole.io è stato realizzato con l'obiettivo di risolvere la problematica di gestione dei log, garantendo comunque un sistema flessibile  
+
+% un'occhio all'estensibilità
+
+Per il \textit{deploy} in produzione di Mole.io, si è scelto di utilizzare \textit{Microsoft Azure}, un sistema \textit{PaaS} distribuito con il quale è possibile creare architetture facilmente scalabili per supportare la variabilità del carico di lavoro richiesto al sistema. 

@@ -1,7 +1,32 @@
+Mole.io utilizza una configurazione di MongoDB in grado di garantire un alto grado di scalabilità del sistema e, contemporaneamente, un ottimo livello di affidabilità. La configurazione utilizzata prevede l'uso di due funzionalità fornite da MongoDB: lo \textit{sharding} ed i \textit{replica-set}.
+
+\subsubsection{Sharding}
+
+Lo sharding è una modalità di salvataggio dei dati che prevede la possibilità di suddividerli su diversi server. MongoDB utilizza questa funzionalità per distribuire grandi \textit{data-set} su un numero variabile di macchine e garantire un alto \textit{throughput} del database.
+
+
+
+
+
+bilanciare il carico di lavoro di ogni server. 
+
+
+
+
+\subsubsection{Replica Set}
+
+
++ server che replicano i dati e 
+
+
+
+
 % come abbiamo shardato
 % come, nel sistema finale, verrà fatta la replica per HA
 
-% schema 
-% mongos x 3
-% mongod (config) x 3
-% mongod (shard) x 3 x n
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/shard}
+\caption[Configurazione di MongoDB per Mole.io]{Configurazione di MongoDB per Mole.io}
+\label{fig:shard}
+\end{figure}

@@ -1,15 +1,72 @@
-% cosa fa il server mole (fa solo scrittura)
-% descrizione di come viene gestita una richiesta
-% mole-contact: per linguaggio
-% schema delle comunicazioni e dei messaggi interni (con le code rabbit)
+Il layer di insertion in Mole.io è rappresentato da \textit{mole}. Questo server si occupa di salvare all'interno del database MongoDB gli \textit{whisper} ricevuti dai \textit{mole-contact} presenti all'interno delle \textit{source}.
 
-% autenticazione sull'api (?)
-% come funziona la storia id/key per autenticarsi sulle api
+\subsubsection{I Mole Contact}
 
-% parlare di come vengono storati i dati in mongo
+Nella sezione \ref{Architettura_del_sistema} è stato introdotto il concetto di \textit{source}: in Mole.io è definita source una applicazione da monitorare.   
+\`{E} possibile monitorare differenti tipologie di applicazioni, l'unico requisito è che esse abbiano la possibilità di collegarsi ad internet per inviare i rispettivi messaggi (whisper) verso il server.
 
-% parlare di come Ã¨ stato usato rabbit
-% configurazione rabbit utilizzata per scalare (broadcast+loadbalancing)
+Le principali tipologie di source monitorate con Mole.io saranno applicazioni di tipo desktop, mobile e web app. Ogni applicazione verrà sviluppata utilizzando linguaggi di programmazione differenti, motivo per il quale, nella sua configurazione finale, Mole.io prevederà un \textit{mole-contact} specifico per ogni linguaggio di programmazione gestito dal sistema. Alcuni esempi potrebbero essere: \textit{mole-contact-js}, \textit{mole-contact-net}, \textit{mole-contact-java}, e così via.
+
+I mole-contact inviano gli whisper in formato JSON al server mole utilizzando il protocollo HTTP. Il sistema prevede che all'header HTTP vadano aggiunti due campi personalizzati: \verb|X-Mole-SourceId| e \verb|X-Mole-SourceKey| popolati rispettivamente con l'id e la chiave assegnati da Mole.io alla sorgente in fase di registrazione.
+
+\subsubsection{Gli whisper}
+
+I messaggi inviati dalle sources verso mole, utilizzando i mole-contact, sono definiti whisper. In Mole.io, un whisper è un documento codificato in formato JSON con alcuni campi obbligatori:
+\begin{description}
+\item[time] l'istante nel quale il messaggio è stato generato dalla source;  
+\item[sender] il mittente del messaggio, è un campo di testo libero;  
+\item[message] il test che caratterizza il messaggio stesso;
+\item[severity] un livello di gravità del messaggio;
+\end{description}
+
+Ogni source, costruisce un whisper contenente i campi obbligatori e ne aggiunge altri specifici per l'applicazione stessa, ma a priori non noti a Mole.io.
+
+Mole.io utilizza un approccio \textit{agnostico} rispetto ai campi forniti da ogni applicazione. Questo è reso possibile grazie alla scelta di un database schema-less come MongoDB. Non dovendo definire una struttura dei dati a priori, infatti, mole può salvare nel database whisper con formati completamente differenti.
+
+Di seguito è riportato un esempio di whisper utilizzato durante i test. Come si può notare, esso contiene, oltre ai campi di \textit{default}, altri valori provenienti da una applicazione per \textit{device} mobile.
+\begin{verbatim}
+{
+  "time" : "2014-03-13T11:53:20.197Z",
+  "sender" : "iPhone-02",
+  "severity" : 2,
+  "message" : "A first chance exception of type
+  'System.IO.FileNotFoundException' occurred",
+  "ip" : "34.46.123.45",
+  "email" : "mymail@mysite.com",
+  "os" : "ios",
+  "geo" : {
+    "lat" : 45.43356707013582,
+    "lon" : 10.32409153589988
+  }
+}
+\end{verbatim}
+
+\subsubsection{I Denormalizzatori}
+
+Come è stato anticipato nella sezione \ref{Command_query_responsibility_segregation}, il compito dei denormalizzatori è pre-elaborare i dati grezzi, in modo da renderli facilmente fruibili per la lettura. La chiave del funzionamento di Mole.io risiede proprio nei denormalizzatori. Essi, infatti, si occupano di estrarre le informazioni aggiuntive presenti negli whisper in arrivo e le aggregano in collection specifiche all'interno di MongoDB. 
+
+Il sistema di gestione dei denormalizzatori è stato realizzato in modo che essi possano essere attivati a \textit{runtime}. Questo approccio garantisce la possibilità di estendere il sistema per adattarlo a nuove esigenze applicative.
+
+Con il passare del tempo, infatti una source potrebbe avere la necessità di cominciare a salvare informazioni differenti rispetto a quelle salvate fino a quel momento. L'unica operazione necessaria per adattare Mole.io alla nuova esigenza, sarà la realizzazione di un denormalizzatore specifico, che si occupi di trattare la nuova porzione di dato e di pre-elaborarla per garantirne una immediata fruizione da parte di mole-suit.
+
+Un nuovo denormalizatore attivato, dovrebbe occuparsi principalmente di elaborare i nuovi dati in arrivo e pre-processarli in modo da renderli fruibili per la sezione di presentation. Potrebbe però essere interessante implementare tale denormalizztore in modo che prima di elaborare i nuovi dati in arrivo, esegua il \textit{processing} dei dati grezzi precedentemente salvati nel sistema. Seguendo questo approccio è possibile ottenere nuove modalità di aggregazione di dati preesistenti, generando un valore aggiunto per gli utilizzatori del sistema, i quali vedrebbero i vecchi dati aggregati secondo la nuova esigenza.
+
+La possibilità di attivare un nuovo denormalizzatore a \textit{runtime} è garantita dall'utilizzo di RabbitMQ \ref{RabbitMQ} per la distribuzione dei dati in arrivo. All'arrivo di un nuovo whisper, infatti, vengono eseguite le seguenti operazioni:
+\begin{enumerate}
+\item Il server mole riceve il messaggio attraverso l'interfaccia REST e lo valida. La validazione avviene controllando l'esistenza della source riportata nell'header del messaggio e la conformità del corpo del messaggio con il formato JSON, nonché la presenza dei campi obbligatori.
+\item Il dato validato viene salvato all'interno di MongoDB in una collection denominata \verb|whispers_<id_source>|, dove \verb|<id_source>| rappresenta l'identificativo MongoDB della source che ha inviato il messaggio.
+\item Il dato grezzo, viene inserito in una coda RabbitMQ configurata per il funzionamento in modalità \textit{Publish/Subscribe}
+\item I denormalizzatori in ascolto sulla coda, ottengono il messaggio e lo elaborano estraendone la porzione di competenza.
+\item Ogni denormalizzatore salva i dati da esso elaborati all'interno di una collecion MongoDB denominata \verb|<denormalizer_name>_<id_source>|, dove \verb|<denormalizer_name>| indica il nome del denormalizzatore che ha eseguito l'operazione e \verb|<id_source>| rappresenta l'identificativo MongoDB della source che ha inviato il messaggio. Al momento della scrittura di questa tesi, i denormalizzatori realizzati sono:
+\begin{description}
+\item[geo] estrae informazioni di geolocalizzazione;
+\item[summary] aggrega gli whisper secondo il grado di severity e genera contatori specifici; 
+\item[stats] realizza statistiche orarie di ricezione degli whisper;
+\item[cluster] aggrega gli whisper secondo severity, sender e message per creare \textit{cluster} di messaggi simili;
+\end{description} 
+\end{enumerate}  
+
+La crescita del carico di lavoro richiede che i denormalizzatori elaborino una quantità crescente di whisper. Il problema del collo di bottiglia, a prima vista, è stato semplicemente spostato dal server centrale mole ai denormalizzatori. Per ovviare questo inconveniente, è stata sfruttata una peculiarità delle code RabbitMQ: i subscriber di una coda gestita con il sistema Publish/Subscribe, ricevono i messaggi in modalità \textit{round robin}. Questa proprietà permette di distribuire il carico di lavoro su più denormalizzatori che lavorano in parallelo. A questo punto, è possibile attivare o disattivare denormalizzatori a \textit{runtime} in accordo con il numero di richieste da gestire.
 
 \begin{figure}[h]
 \centering
@@ -18,10 +75,4 @@
 \label{fig:mole}
 \end{figure}
 
- garantisce l'estensibilitÃ  del sistema, in quanto permette di gestire funzionalitÃ  di elaborazione dati aggiuntive, utilizzabili a fr
-
-
-
-posso denormalizzare dati esistenti, fornisco funzionalitÃ  agli utenti in modo graduale
-
-i denormalizzatori possono essere aggiunti nel tempo
+In figura \ref{fig:mole} sono mostrate schematicamente la struttura interna del server mole e le comunicazioni instaurate tra i diversi componenti del sistema.
