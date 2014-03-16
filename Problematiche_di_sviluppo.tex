@@ -1,6 +1,26 @@
+
+
+
 % problema della gestione plugin
 
 % cors
+% Cross-origin resource sharing (CORS) is a mechanism that allows JavaScript on a web page to make XMLHttpRequests to another domain, not the domain the JavaScript originated from.[1] Such "cross-domain" requests would otherwise be forbidden by web browsers, per the same origin security policy. CORS defines a way in which the browser and the server can interact to determine whether or not to allow the cross-origin request.[2] It is more useful than only allowing same-origin requests, but it is more secure than simply allowing all such cross-origin requests.
+How CORS works[edit]
+
+The CORS standard works by adding new HTTP headers that allow servers to serve resources to permitted origin domains. Browsers support these headers and enforce the restrictions they establish. Additionally, for HTTP request methods that can cause side-effects on user data (in particular, for HTTP methods other than GET, or for POST usage with certain MIME types), the specification mandates that browsers ?preflight? the request, soliciting supported methods from the server with an HTTP OPTIONS request header, and then, upon ?approval? from the server, sending the actual request with the actual HTTP request method. Servers can also notify clients whether ?credentials? (including Cookies and HTTP Authentication data) should be sent with requests.[3]
+
+Simplified example[edit]
+
+To initiate a cross-origin request, a browser sends the request with an Origin HTTP header. The value of this header is the domain that served the page. For example, suppose a page from http://www.example-social-network.com attempts to access a user's data in online-personal-calendar.com. If the user's browser implements CORS, the following request header would be sent to online-personal-calendar.com:
+ Origin: http://www.example-social-network.com
+If online-personal-calendar.com allows the request, it sends an Access-Control-Allow-Origin (ACAO) header in its response. The value of the header indicates what origin sites are allowed. For example, a response to the previous request could contain the following:
+ Access-Control-Allow-Origin: http://www.example-social-network.com
+If the server does not allow the cross-origin request, the browser will deliver an error to example-social-network.com page instead of the online-personal-calendar.com response.
+To allow access from all domains, a server can send the following response header:
+ Access-Control-Allow-Origin: *
+This is generally not appropriate. The only case where this is appropriate is when a page or API response is considered completely public content and it is intended to be accessible to everyone, including any code on any site.
+The value of "*" is special in that it does not allow requests to supply credentials, meaning HTTP authentication, client-side SSL certificates, nor does it allow cookies to be sent.[4]
+Note that in the CORS architecture, the ACAO header is being set by the external web service (online-personal-calendar.com), not the original web application server (example-social-network.com). CORS allows the external web service to authorise the web application to use its services and does not control external services accessed by the web application. For the latter, Content Security Policy should be used (connect-src directive).
 
 
 
