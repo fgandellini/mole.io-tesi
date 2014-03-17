@@ -1,6 +1,6 @@
-Ogni componente in Mole.io è stata realizzata cercando di rispettare il più possibile due concetti fondamentali, che sono stati il denominatore comune del progetto: l'estensibilità e la flessibilità.
+Ogni componente in Mole.io è stato realizzato cercando di rispettare il più possibile due concetti fondamentali, che sono stati il denominatore comune del progetto: l'estensibilità e la flessibilità.
 
-Le comunicazioni tra le diverse componenti del sistema sono realizzate utilizzando il protocollo HTTP. I diversi attori si scambiano informazioni attraverso dei \textit{contratti}, le interfacce \textit{REpresentational State Transfer} (REST).
+Le comunicazioni tra i diversi componenti del sistema sono realizzate utilizzando il protocollo HTTP. I diversi attori si scambiano informazioni attraverso dei \textit{contratti}, le interfacce \textit{REpresentational State Transfer} (REST).
 
 Una interfaccia REST \cite{webber2010rest} è uno stile architetturale composto da regole, ed elementi che permettono l'accesso a insiemi dati organizzati in maniera strutturata.
 
@@ -115,16 +115,19 @@ app.get('/now', function(req, res) {
 });
 \end{verbatim}
 
-L'applicazione Node.js carica il modulo Express e genera una applicazione utilizzando tale modulo. Successivamente viene registrata una rotta che corrisponde all'URI \verb|/now|. All'arrivo di una richiesta di tipo \verb|GET| verso la risorsa \verb|/now|, Express esegue la callback associata e restituisce un documento JSON simile a questo: \verb|{ "now": "Sun Mar 09 2014 20:48:35 GMT+0100 (CET)" }|.
+L'applicazione Node.js carica il modulo Express e genera una applicazione utilizzando tale modulo. Successivamente viene registrata una rotta che corrisponde all'URI \verb|/now|. All'arrivo di una richiesta di tipo \verb|GET| verso la risorsa \verb|/now|, Express esegue la callback associata e restituisce un documento JSON simile a quello seguente.
+\begin{verbatim}
+{ "now": "Sun Mar 09 2014 20:48:35 GMT+0100 (CET)" }
+\end{verbatim}
 
 Il \textit{router} Express, come molti altri plugin di questo sistema, rappresenta un \textit{middleware}. Il comando \verb|app.use(app.router);|, infatti, indica ad Express di utilizzare il middleware \verb|router| per filtrare le richieste in arrivo.
 
-Un middleware è un modulo software che filtra ogni richiesta in arrivo dai client. I middleware cooperano tra loro e vengono attivati in successione. Il compito di un middleware è riassumibile in tre fasi principali:
+Un middleware è un modulo software che filtra ogni richiesta in arrivo dai client. I middleware cooperano tra loro e vengono attivati in successione. Il flusso di lavoro di un middleware è riassumibile in tre fasi principali:
 
 \begin{enumerate}
-\item ottiene la richiesta;
-\item valida la richiesta ed esegue funzionalità specifiche associate al middleware stesso;
-\item passa la richiesta al prossimo middleware;
+\item ottenere la richiesta;
+\item validare la richiesta ed eseguire funzionalità specifiche associate al middleware stesso;
+\item passare la richiesta al prossimo middleware;
 \end{enumerate}
 
 Seguendo il medesimo schema di funzionamento, i middleware, elaborano le risposte provenienti dall'applicazione e restituite al client. La figura \ref{fig:middleware} illustra il funzionamento di questo sistema.

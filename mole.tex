@@ -15,7 +15,7 @@ I messaggi inviati dalle sources verso mole, utilizzando i mole-contact, sono de
 \begin{description}
 \item[time] l'istante nel quale il messaggio è stato generato dalla source;  
 \item[sender] il mittente del messaggio, è un campo di testo libero;  
-\item[message] il test che caratterizza il messaggio stesso;
+\item[message] il testo che caratterizza il messaggio stesso;
 \item[severity] un livello di gravità del messaggio;
 \end{description}
 
@@ -49,7 +49,7 @@ Il sistema di gestione dei denormalizzatori è stato realizzato in modo che essi 
 
 Con il passare del tempo, infatti una source potrebbe avere la necessità di cominciare a salvare informazioni differenti rispetto a quelle salvate fino a quel momento. L'unica operazione necessaria per adattare Mole.io alla nuova esigenza, sarà la realizzazione di un denormalizzatore specifico, che si occupi di trattare la nuova porzione di dato e di pre-elaborarla per garantirne una immediata fruizione da parte di mole-suit.
 
-Un nuovo denormalizatore attivato, dovrebbe occuparsi principalmente di elaborare i nuovi dati in arrivo e pre-processarli in modo da renderli fruibili per la sezione di presentation. Potrebbe però essere interessante implementare tale denormalizztore in modo che prima di elaborare i nuovi dati in arrivo, esegua il \textit{processing} dei dati grezzi precedentemente salvati nel sistema. Seguendo questo approccio è possibile ottenere nuove modalità di aggregazione di dati preesistenti, generando un valore aggiunto per gli utilizzatori del sistema, i quali vedrebbero i vecchi dati aggregati secondo la nuova esigenza.
+Un nuovo denormalizatore attivato, dovrebbe occuparsi principalmente di elaborare i nuovi dati in arrivo e pre-processarli in modo da renderli fruibili per la sezione di presentation. Potrebbe però essere interessante implementare tale denormalizzatore in modo che prima di elaborare i nuovi dati in arrivo, esegua il \textit{processing} dei dati grezzi precedentemente salvati nel sistema. Seguendo questo approccio è possibile ottenere nuove modalità di aggregazione di dati preesistenti, generando un valore aggiunto per gli utilizzatori del sistema, i quali vedrebbero i vecchi dati aggregati secondo la nuova esigenza.
 
 La possibilità di attivare un nuovo denormalizzatore a \textit{runtime} è garantita dall'utilizzo di RabbitMQ \ref{RabbitMQ} per la distribuzione dei dati in arrivo. All'arrivo di un nuovo whisper, infatti, vengono eseguite le seguenti operazioni:
 \begin{enumerate}
@@ -58,12 +58,12 @@ La possibilità di attivare un nuovo denormalizzatore a \textit{runtime} è garant
 \item Il dato grezzo, viene inserito in una coda RabbitMQ configurata per il funzionamento in modalità \textit{Publish/Subscribe}
 \item I denormalizzatori in ascolto sulla coda, ottengono il messaggio e lo elaborano estraendone la porzione di competenza.
 \item Ogni denormalizzatore salva i dati da esso elaborati all'interno di una collecion MongoDB denominata \verb|<denormalizer_name>_<id_source>|, dove \verb|<denormalizer_name>| indica il nome del denormalizzatore che ha eseguito l'operazione e \verb|<id_source>| rappresenta l'identificativo MongoDB della source che ha inviato il messaggio. Al momento della scrittura di questa tesi, i denormalizzatori realizzati sono:
-\begin{description}
-\item[geo] estrae informazioni di geolocalizzazione;
-\item[summary] aggrega gli whisper secondo il grado di severity e genera contatori specifici; 
-\item[stats] realizza statistiche orarie di ricezione degli whisper;
-\item[cluster] aggrega gli whisper secondo severity, sender e message per creare \textit{cluster} di messaggi simili;
-\end{description} 
+\begin{itemize}
+\item \textbf{geo}, estrae informazioni di geolocalizzazione;
+\item \textbf{summary}, aggrega gli whisper secondo il grado di severity e genera contatori specifici; 
+\item \textbf{stats}, realizza statistiche orarie di ricezione degli whisper;
+\item \textbf{cluster}, aggrega gli whisper secondo severity, sender e message per creare \textit{cluster} di messaggi simili;
+\end{itemize} 
 \end{enumerate}  
 
 La crescita del carico di lavoro richiede che i denormalizzatori elaborino una quantità crescente di whisper. Il problema del collo di bottiglia, a prima vista, è stato semplicemente spostato dal server centrale mole ai denormalizzatori. Per ovviare questo inconveniente, è stata sfruttata una peculiarità delle code RabbitMQ: i subscriber di una coda gestita con il sistema Publish/Subscribe, ricevono i messaggi in modalità \textit{round robin}. Questa proprietà permette di distribuire il carico di lavoro su più denormalizzatori che lavorano in parallelo. A questo punto, è possibile attivare o disattivare denormalizzatori a \textit{runtime} in accordo con il numero di richieste da gestire.
