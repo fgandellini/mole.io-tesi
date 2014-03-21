@@ -25,8 +25,6 @@ Nello schema \ref{fig:oauth2} è possibile vedere le diverse fasi del processo di
 
 %OAuth è un protocollo standard per autorizzazioni. Esso permette ad un sistema client di accedere ad una risorsa presente all'interno di un server per conto di un utente che possiede tale risorsa. Permette quindi agli utenti di garantire l'accesso, da parte di applicazioni di terzi, a dati privati presenti su un server di loro fiducia. Il vantaggio di questo tipo di protocollo è che l'utente non deve mai inserire le proprie credenziali nel sistema di terze parti, ma esclusivamente confermare la richiesta di condivisione dei propri dati al nuovo richiedente. L'autenticazione avviene utilizzando un sistema di redirezioni HTTP.
 
-% passport
-
 L'implementazione dell'autenticazione OAuth 2.0 all'interno di mole-suit è stata realizzata utilizzando il modulo Passport per Node.js, introdotto nella sezione \ref{Npm_e_moduli}. Passport sfrutta il sistema di middleware offerto da Express per garantire un controllo di accesso a livello di singola rotta, fornendo quindi una granularità molto fine.
 
 Il listato seguente è la porzione di codice, estratta da mole-suit, che implementa la procedura di autenticazione utilizzando Passport.
@@ -73,7 +71,7 @@ A fronte di un processo di autenticazione, Passport fornisce un oggetto contenen
 \item \textbf{photos}, un elenco di \textit{avatar} dell'utente;
 \end{itemize}  
 
-% parlare di passport -> strategy (è una "base" modificata)
+% passport strategy (è una "base" modificata)
 % va usato https
 
 % autenticazione sull'api(?) 

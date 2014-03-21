@@ -1,0 +1,13 @@
+Mole.io è un sistema centralizzato per la raccolta e l'aggregazione di messaggi e log provenienti da applicazioni remote.
+
+Abitualmente i file di log vengono salvati nella medesima macchina in cui opera l'applicazione che li ha prodotti. Questo approccio genera criticità all'aumentare del numero di applicazioni da gestire e del numero di macchine in produzione. Diventa, infatti, sempre più difficoltoso ottenere un feedback veloce dello stato di ogni software e delle eventuali situazioni di errore in cui le applicazioni si trovano.
+
+Mole.io permette di risolvere questa problematica, legata alla gestione dei file di log, raccogliendo, catalogando e aggregando messaggi da installazioni remote. I componenti di Mole.io che risiedono all'interno delle applicazioni da monitorare, le rendono in grado di inviare notifiche al server centrale, invertendo, di fatto, il paradigma della generazione e conseguente consultazione dei log da pull a push. La centralizzazione di questo tipo di messaggi, ne facilità la reperibilità, mentre la loro aggregazione permette di ottenere una visione globale della situazione di ogni applicazione in produzione. Questo nuovo approccio permette agli sviluppatori di identificare, in breve tempo, il manifestarsi di un malfunzionamento in qualunque installazione e reagire rapidamente proponendo una azione risolutiva.
+
+Mole.io è in grado di raccogliere diverse tipologie di messaggi, non strutturati a priori, rendendo così questo strumento adatto a differenti ambiti applicativi, come il Data Mining e la Business Intelligence.
+
+L'architettura del sistema permette l'aggiunta o la rimozione a runtime di plugin detti denormalizzatori, fornendo così la possibilità di trattare efficacemente le diverse tipologie di messaggi ricevuti dal server principale.
+
+Il sistema è stato interamente sviluppato utilizzando Node.js, una piattaforma che permette di realizzare applicazioni web server-side in JavaScript. La scalabilità dell'applicazione è garantita dall'adozione di un database schema-less come MongoDB e dall'utilizzo di un gestore di code, RabbitMQ, per lo scambio di informazioni tra le diverse componenti del sistema.
+
+La piattaforma scelta per il deploy dell'applicazione in produzione è Microsoft Azure, un sistema PaaS distribuito, con il quale è possibile creare architetture facilmente scalabili, per supportare la variabilità del carico di lavoro richiesto.

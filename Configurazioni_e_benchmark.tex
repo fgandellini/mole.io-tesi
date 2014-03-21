@@ -1,3 +1,39 @@
+il punto critico del sistema è il db e principalmente le op di scrittura 
+
+abbiamo fatto uno script per testare le performance in scrittura e abbiamo cercato di capire come ottimizzare il db per le scritture
+
+tre config di sharding
+1 shard
+2 shard id
+2 shard hashed
+
+parlare del balancer
+dei lock di scrittura
+
+
+come abbiamo eseguito i test:
+
+3 VM 512mb ram, 1,2 ghz
+1. mongos+config
+2. mongod s1
+3. mongod s2
+
+media su 3 run
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/mongodb_write_test_with_small_docs_250_b}
+\caption[small]{small}
+\label{fig:benchmark-small}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/mongodb_write_test_with_big_docs_1mb}
+\caption[big]{big}
+\label{fig:benchmark-big}
+\end{figure}
+
 %problemi con i benchmark
 %- dipendi dalla rete su cui sei
 %- nostro client fatto con node - perché non l'abbiamo usato
