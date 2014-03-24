@@ -11,25 +11,24 @@ L'accesso ai dati è garantito attraverso una interfaccia REST modulare. Alcuni e
 \label{fig:mole-suit}
 \end{figure}
 
-La figura \ref{fig:mole-suit} fornisce una rappresentazione schematica dei componenti del layer di presentation, le sezioni seguenti avranno il compito di dettagliare gli aspetti peculiari del funzionamento di cascuno di essi.
+La figura \ref{fig:mole-suit} fornisce una rappresentazione schematica dei componenti del layer di presentation. Le sezioni seguenti avranno il compito di dettagliare gli aspetti peculiari del funzionamento di cascuno di essi.
 
 \subsubsection{I Plugin}
 
 Un plugin è un modulo Node.js che ha il compito di estrarre dal database uno specifico dato denormalizzato. L'accesso al dato è garantito attraverso la definizione di due endpoint REST.
 
-Uno dei due endpoint restituisce, in modo aggregato, dati relativi all'insieme degli whisper di una intera source, mentre l'altro permette di ottenere il dato denormalizzato relativo ad un solo whisper.
+Il primo endpoint restituisce, in modo aggregato, dati relativi all'insieme degli whisper di una intera source, mentre il secondo permette di ottenere il dato denormalizzato relativo ad un solo whisper.
 
 L'utilizzo di queste due modalità di lavoro offerte da un plugin, permette di avere un immediato accesso alle medesime informazioni sia in maniera aggregata, sia in modo specifico, offrendo una grande flessibilità in termini di fruizione dei dati da parte dell'interfaccia.
 
 \subsubsection{La User Interface}
 
-L'interfaccia utente di Mole.io è interamente realizzata utilizzando AngularJS, descritto in \ref{AngularJS_e_altre_tecnologie_di_frontend}. Questa tecnologia permette di implementare applicazioni web in grado di essere eseguite completamente client-side.
+L'interfaccia utente di Mole.io è interamente realizzata utilizzando AngularJS, descritto in \ref{AngularJS_e_altre_tecnologie_di_frontend}. Questa tecnologia consente di implementare applicazioni web in grado di essere eseguite completamente client-side.
+Sarà quindi il browser dell'utente ad avere il compito di costruire le pagine HTML da mostrare, non il server che fornisce l'applicazione. Il client si occuperà ovviamente di comunicare con il server, con lo scopo di ottenere i dati per popolare le pagine in maniera corretta.
 
-La costruzione delle pagine HTML da mostrare all'utente è a carico del computer dell'utente stesso, non del server che fornisce l'applicazione. Ogni client ha, ovviamente, la necessità di comunicare con il server, al fine di ottenere i dati per popolare le pagine da mostrare all'utente.
+Per questo motivo, in gergo tecnico, le applicazioni realizzate con AngularJS, si definiscono \textit{servibili staticamente}. Sgravare il server della costruzione delle pagine, implica, di fatto, la possibilità di fornire questo tipo di applicazioni utilizzando server minimali, molto economici in termini di risorse di sistema. 
 
-Questo approccio permette di minimizzare la quantità di informazioni inviate dal server al client con il conseguente incremento delle performance dell'applicazione stessa.
-
-In gergo tecnico, le applicazioni realizzate con AngularJS, si definiscono \textit{servibili staticamente}. Questo termine sottolinea il fatto che non esiste la necessità di costruire pagine lato server e, di conseguenza, è possibile utilizzare server minimali, molto economici in termini di risorse di sistema, per fornire questo tipo di applicazioni.
+Inoltre questo approccio permette di minimizzare la quantità di informazioni inviate dal server al client, con il conseguente incremento delle performance dell'applicazione stessa.
 
 AngularJS mette a disposizione componenti chiamati \textit{directive}. Questi ultimi permettono di creare strutture riutilizzabili composte da una porzione di interfaccia e dalla logica applicativa ad essa associata, in grado di renderla interattiva. Il sistema di \textit{widget} di Mole.io è stato realizzato grazie al supporto delle directive.
 
@@ -37,24 +36,24 @@ AngularJS mette a disposizione componenti chiamati \textit{directive}. Questi ul
 
 Per la visualizzazione delle informazioni denormalizzate all'interno della UI, è stato realizzato un sistema modulare che supporta l'uso di \textit{widget}.
 
-In Mole.io, un widget è una directive AngularJS opportunamente strutturata per rispondere alle specifiche esigenze applicative. Uno widget è realizzato utilizzando tre componenti principali:  
+In Mole.io, un widget è una directive AngularJS opportunamente strutturata per rispondere alle specifiche esigenze applicative. Ogni widget è realizzato utilizzando tre componenti principali:  
 \begin{description}
 \item[template] rappresenta la UI del widget, cioè la porzione di codice HTML che realizza il widget all'interno della pagina;
 \item[controller] implementa la logica applicativa del widget, le modalità di interazione con l'utente e la gestione dei dati da rappresentare; 
 \item[service] è utilizzato dal controller e si occupa di ottenere i dati necessari al popolamento del widget. Il recupero dei dati è eseguito mediante richieste di tipo ajax all'interfaccia REST del server mole-suit;
 \end{description}
 
-Il service, all'interno di ogni widget, è costruito in modo da contattare uno specifico endpoint REST all'interno del server mole-suit. Questo endpoint è fornito da un plugin. Esiste, infatti, una associazione forte tra plugin e widget. Il plugin, sostanzialmente, funge da \textit{produttore} di dati per uno specifico widget.
+Il service di ogni widget, è costruito in modo da contattare uno specifico endpoint REST all'interno del server mole-suit. Questo endpoint è fornito da un plugin. Esiste, infatti, una associazione forte tra plugin e widget. Il plugin, sostanzialmente, funge da \textit{produttore} di dati per uno specifico widget.
 
-Un vantaggio offerto dalla struttura proposta è la possibilità, per un widget, di ottenere dati da fonti diverse dal server mole-suit. Un widget, infatti, può recuperare informazioni da servizi esterni a Mole.io, rendendo, di fatto il sistema altamente estendibile.
+Un vantaggio offerto dalla struttura proposta è la possibilità, per un widget, di ottenere dati da fonti diverse dal server mole-suit. Un widget, infatti, può reperire informazioni da servizi esterni a Mole.io, rendendo il sistema altamente estendibile.
 
 Il widget \textit{geo}, ad esempio, si occupa di mostrare su una mappa le informazioni geografiche relative ad ogni whisper ricevuto da Mole.io. Ad ogni posizione sulla mappa è associato un \textit{marker} che indica il punto esatto sulla cartina geografica. Cliccando sul marker, l'utente è in grado di caricare l'indirizzo associato alle coordinate geografiche del punto. Questo dato è ottenuto dal widget geo, interrogando un servizio web, esterno a Mole.io, che si occupa di eseguire un \textit{reverse geocoding} delle coordinate restituendo l'indirizzo associato. In questo caso il service del widget è in grado di ottenere dati, in modo contemporaneo, da due sorgenti.
 
 \subsubsection{Il Workflow con Mole.io}
 
-Al primo accesso Mole.io, mostra la \textit{homepage} pubblica dell'applicazione. Questa pagina riporta un messaggio di benvenuto ed un bottone, con il quale è possibile procedere all'autenticazione con Twitter, utilizzando il protocollo OAuth 2.0, come descritto in \ref{Autenticazione_degli_utenti}.
+Al primo accesso Mole.io, mostra la \textit{homepage} pubblica dell'applicazione. Questa pagina riporta un messaggio di benvenuto ed un pulsante, con il quale è possibile procedere all'autenticazione attraverso Twitter, utilizzando il protocollo OAuth 2.0, come descritto in \ref{Autenticazione_degli_utenti}.
 
-Una volta eseguita la procedura di accesso, si raggiunge una pagina \textit{Getting Started}, nella quale è descritta la sequenza delle operazioni necessarie per utilizzare Mole.io. L'immagine \ref{fig:workflow-auth} riporta le schermate proposte dal sistema durante le operazioni descritte.\\
+Una volta eseguita la procedura di accesso, si raggiunge una pagina \textit{Getting Started}, nella quale è descritta la sequenza delle operazioni necessarie per poter utilizzare Mole.io. L'immagine \ref{fig:workflow-auth} riporta le schermate proposte dal sistema durante le operazioni descritte.\\
 
 \begin{figure}[h]
 \centering
@@ -72,13 +71,13 @@ Cliccando sulla voce \textit{Sources}, nella barra superiore dell'applicazione, 
 \label{fig:workflow-sources}
 \end{figure}
 
-Le operazioni di creazione e visualizzazione delle source, non necessitano di denormalizzatori: la UI interroga direttamente un endpoint offerto dal server mole-suit per ottenere l'elenco delle source associate all'utente e le mostra a video.
+Le operazioni di creazione e visualizzazione delle source, non necessitano di denormalizzatori: la UI interroga direttamente un endpoint offerto dal server mole-suit per ottenere l'elenco delle source associate all'utente, mostrandole a video.
 
 Una volta creata la source, Mole.io restituisce due codici associati ad essa: un \verb|id| e una \verb|key|. Questi dati dovranno essere utilizzati per configurare il mole-contact presente all'interno dell'applicazione da monitorare, e permetteranno al server mole di identificare la provenienza dei messaggi inviati da tale applicazione.
 
-Il mole-contact, opportunamente configurato, eseguirà l'invio degli whisper al server mole, il quale li salverà all'interno del database MongoDB ed eseguirà i denormalizzatori per preparare i dati alla fruizione da parte di mole-suit.
+Il mole-contact, opportunamente configurato, eseguirà l'invio degli whisper al server mole, il quale, a sua volta, li salverà all'interno del database MongoDB ed eseguirà i denormalizzatori per preparare i dati alla fruizione da parte di mole-suit.
 
-Accedendo all'elenco delle source e cliccando sul nome della source desiderata, è possibile accedere alla \textit{dashboard} dell'applicazione. Questa pagina, visibile in figura \ref{fig:workflow-dashboard}, fornisce una visione generale dello stato della source, riportando il numero di whisper raccolti per ogni grado di \textit{severity}, e grafici con statistiche orarie e geografiche. 
+Dall'elenco delle source, cliccando sul nome della source desiderata, è possibile accedere alla \textit{dashboard} dell'applicazione. Questa pagina, riportata in figura \ref{fig:workflow-dashboard}, fornisce una visione generale dello stato della source, riepilogando il numero di whisper raccolti per ogni grado di \textit{severity}, e grafici con statistiche orarie e geografiche. 
 
 Nel caso riportato come esempio, ogni whisper possiede un dato \textit{geo} associato. Tale informazione è denormalizzata da mole, caricata da mole-suit utilizzando uno specifico plugin e mostrata a video tramite un apposito widget AngularJS.
 

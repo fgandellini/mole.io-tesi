@@ -14,7 +14,7 @@ MongoDB suddivide i valori delle chiavi di shard in \textit{chunk} e distribuisc
 
 La distribuzione dei chunk all'interno dei diversi shard, assicura un bilanciamento del carico di lavoro di ogni server all'interno del cluster. MongoDB utilizza due processi in background per garantire il bilanciamento del cluster:
 \begin{description}
-\item[splitting] è un processo che evita la crescita eccessiva dei chunk. Si occupa, infatti, di tenere costantemente monitorata la dimensione di ogni chunk, quando uno di essi cresce oltre un limite preconfigurato, lo suddivide in due chunk più piccoli. Le eventuali suddivisioni avvengono dopo operazioni di \textit{insert} e \textit{update} e non implicano alcuno spostamento di chunk.
+\item[splitting] è un processo che evita la crescita eccessiva dei chunk. Si occupa, infatti, di tenere costantemente monitorata la dimensione di ogni chunk: quando uno di essi cresce oltre un limite preconfigurato, lo suddivide in due chunk più piccoli. Le eventuali suddivisioni avvengono dopo operazioni di \textit{insert} e \textit{update} e non implicano alcuno spostamento di chunk.
 \item[balancer] ha il compito di eseguire la migrazione dei chunk da uno shard ad un altro. Quando la distribuzione dei chunk nei diversi server è sbilanciata, questo processo sposta i chunk contenuti in shard più popolati verso shard con \textit{slot} liberi, mantenendo il più possibile costante il numero di chunk per shard.
 \end{description}
 
@@ -34,10 +34,10 @@ In alcuni casi, la configurazione con Replica Set, può essere utilizzata per inc
 
 L'utilizzo di MongoDB in produzione, presuppone una combinazione delle funzionalità di Sharding e Replica Set. In configurazioni di produzione, infatti ogni shard è un Replica Set, questo approccio permette di ottenere un cluster in grado di fornire consistenza dei dati e, al tempo stesso, alta affidabilità.
 
-Uno sharded cluster MongoDB possiede le seguenti componenti:
+Uno \textit{sharded cluster} MongoDB possiede le seguenti componenti:
 \begin{description}
 \item[Shard] rappresentano i server di \textit{storage} veri e propri. Ogni shard è un Replica Set gestito da processi chiamati \verb|mongod|. 
-\item[Query Router] sono implementati da un \textit{demone} di sistema chiamato \verb|mongos| e si occupano di interfacciare i client con l'intero cluster. A fronte di ogni richiesta di scrittura o lettura, redirigono le operazioni al cluster di competenza, eseguendo, di fatto, il bilanciamento del carico dell'intero sistema. I Query Router sono a loro volta configurati come Replica Set, in modo da garantire alta affidabilità e non divenire un \textit{single point of failure} dell'intero sistema.
+\item[Query Router] sono implementati da un \textit{demone} di sistema denominato \verb|mongos| e si occupano di interfacciare i client con l'intero cluster. A fronte di ogni richiesta di scrittura o lettura, redirigono le operazioni al cluster di competenza, eseguendo, di fatto, il bilanciamento del carico dell'intero sistema. I Query Router sono a loro volta configurati come Replica Set, in modo da garantire alta affidabilità e non divenire un \textit{single point of failure} dell'intero sistema.
 \item[Config Server] possiedono i \textit{metadati} di configurazione dell'intero cluster, cioè i riferimenti ai dati contenuti in ogni shard. I Query Router interrogano i Config Server per identificare il server contenente i dati richiesti dai client. I Config Server sono processi \verb|mongod| equivalenti a quelli utilizzati per gli shard, ma eseguiti con parametri di configurazione specifici, che ne determinano il comportamento.
 \end{description}
 
