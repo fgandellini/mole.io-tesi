@@ -1,20 +1,16 @@
-testere il sistema "in piccolo" è difficile, provare test sul sistema deployato
+La realizzazione di un sistema come Mole.io ha permesso di ottenere una ottima visione generale delle possibilità offerte dai moderni strumenti per la costruzione di applicazioni web. I diversi \textit{tool} a disposizione permettono infatti di realizzare in breve tempo applicazioni complete, stabili e flessibili, in grado di scalare facilmente su sistemi PaaS.
 
-%TODO
-% workflow con webhooks
-% notifiche push (si potrebbe usare un denormalizer?)
-% app mobile per riceverle
-% https
-% marcatura degli errori come "gestito" e conseguente archiviazione
-% integrazione con sistemi di tracking (?)
-% aggiungere più mole-contacts
-% aggiungere un sistema di query
-% mole-contacts -> caching degli errori in locale quando non c'è rete (buffering)
+Riuscire ad ottenere una ambiente di test ottimale, esente, per quanto possibile da fattori esterni, si è rivelata una operazione difficoltosa. Il numero di variabili che concorrono alla riuscita di un singolo test è, infatti, consistente. \`{E} necessario, ad esempio, tenere in considerazione eventuali latenze legate all'infrastruttura di rete (reale o virtuale), parametri di configurazione specifici dei sistemi operativi nei quali i diversi applicativi vengono eseguiti, nonché eventuali problematiche legate agli ambienti di virtualizzazione utilizzati.
 
-% migliorare la gestione dgli widget e plugin per l'aggiunta a caldo
+I test eseguiti hanno mostrato caratteristiche salienti di MongoDB e problematiche importanti legate a questo database. I nuovi test dovranno concentrarsi principalmente sul layer di presentation, per comprendere come ottimizzare la configurazione del database al fine di massimizzare il throughput del sistema nel caso dell'estrazione dei dati. Nell'immediato futuro, quindi, sarà necessario eseguire ulteriori analisi per comprendere se questa tecnologia sia quella ottimale per l'ambito applicativo di Mole.io, oppure si rendano necessarie particolari configurazioni o alternative a MongoDB. 
 
-% possibili nuovi denormalizzatori
-
-% bench e vm sulla stessa macchina
-% vm con cpu pin
-% ramp up
+Durante lo sviluppo di Mole.io sono state proposte diverse funzionalità del sistema, alcune delle quali sono state implementate nel prototipo iniziale realizzato per questa tesi. Molte idee, però, sono rimaste irrealizzate. Di seguito, quindi, un elenco delle funzionalità interessanti da sviluppare in futuro su Mole.io:
+\begin{description}
+\item[Nuovi mole-contact] l'implementazione di nuovi mole-contact, necessari per coprire buona parte dei linguaggi utilizzati per lo sviluppo di applicazioni web, mobile e desktop;
+\item[HTTPS] utilizzo di un protocollo HTTP Secure per lo scambio delle comunicazioni, in modo da garantire un alto livello di sicurezza agli utenti;
+\item[Archiviazione dei vecchi whisper] in modo da mantenere all'interno dell'interfaccia utente solo le informazioni utili per la comprensione dello stato della source in esame;
+\item[Nuovi denormalizzatori] lo sviluppo di denormalizzatori, plugin e widget per la gestioni di nuove tipologie di dati, in modo da fornire un \textit{set} di strumenti completo e funzionale per utenti e sviluppatori;
+\item[Notifiche push] la possibilità, cioè, di aggiornare in tempo reale le pagine visualizzate dall'utente inviando i nuovi dati ottenuti dalle source;
+\item[App mobile] la realizzazione di una applicazione \textit{mobile} per la consultazione dello stato delle source e la ricezione, su smartphone, di eventuali avvisi in caso di malfunzionamenti del sistema;
+\item[Linguaggio di query] l'implementazione di un linguaggio di query, con una interfaccia utente appositamente studiata, per rendere facile la visualizzazione dei dati raccolti in maniera aggregata e filtrata;
+\end{description}

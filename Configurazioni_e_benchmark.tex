@@ -1,33 +1,38 @@
-In un sistema che si occupa di raccogliere dati, la porzione di sistema più delicata è proprio il salvataggio delle informazioni.
+I test eseguiti su Mole.io hanno privilegiato l'aspetto della raccolta dati operata dal sistema. Questa, infatti, è una delle principali funzionalità offerte dall'applicazione ed è interessante comprendere come, l'ottimizzazione del layer di insert, possa contribuire ad un incremento delle performance globali del sistema.
 
-Si è quindi scelto di testare il sistema cercando di mettere 
+Durante i test sono state esplorate diverse configurazioni del database al fine di comprendere quale fosse la ottimale ai fini applicativi per Mole.io. I test sono stati eseguiti cercando di creare un ambiente il più possibile esente da fattori di incertezza esterni, al fine ottenere misure affidabili e risultati riproducibili.
 
-stress, procedure di scrittura dati nel sistema
+Per lo svolgimento delle analisi, è stato realizzato un cluster MongoDB utilizzando tre \textit{virtual machine} (VM) rispettivamente configurate in modo da utilizzare 512 Mb di memoria RAM, con un Hard Disk SSD da 8,0 Gb e dotate di un processore da 1,2 GHz. Ognuna delle VM è stata equipaggiata con una differente configurazione:
+\begin{description}
+\item[VM1] sulla quale sono stati installati un Query Router (\verb|mongos|), il cui compito è stato fornire l'accesso all'intero cluster e un Config Server (\verb|mongod|) opportunamente configurato per tenere traccia delle informazioni di \textit{layout} del cluster;
+\item[VM2] su cui è stato installato il primo shard utilizzando un demone \verb|mongod|;
+\item[VM3] clone della macchina precedente, necessaria per il secondo shard del cluster;
+\end{description}
 
-Per il \textit{testing} è stata quindi posta l'attenzione al  
+I test sono stati svolti utilizzando diverse configurazioni del cluster realizzato e misurando i tempi per l'inserimento di dati nel database. Per comprendere il significato delle diverse configurazioni del cluster, è necessario fare riferimento ad una nota, relativa alle chiavi di sharding, all'interno della documentazione di MongoDB:
 
-il punto critico del sistema è il db e principalmente le op di scrittura 
+\begin{quote}
+\textit{When inserting documents with monotonically increasing shard keys, all inserts belong to the same chunk on a single shard. The system will eventually divide the chunk range that receives all write operations and migrate its contents to distribute data more evenly. However, at any moment the cluster can direct insert operations only to a single shard, which creates an insert throughput bottleneck.}
+\end{quote}
 
-abbiamo fatto uno script per testare le performance in scrittura e abbiamo cercato di capire come ottimizzare il db per le scritture
+Un requisito fondamentale di una buona chiave di sharding in MongoDB è la distribuzione probabilistica dei suoi valori. La documentazione di MongoDB, infatti, consiglia di utilizzare chiavi con una distribuzione di valori il più uniforme possibile, in modo da mantenere costante il carico di lavoro assegnato ad ogni shard. Da questo punto di vista, una buona chiave di sharding è l'id fornito automaticamente da MongoDB ad ogni documento.
 
-tre config di sharding
-1 shard
-2 shard id
-2 shard hashed
+Come è possibile leggere dalla citazione tratta dalla documentazione del database, però, è fondamentale che le chiavi di sharding non utilizzino valori  monotoni, pena una riduzione significativa delle performance. Questo è dovuto al fatto che il balancer di MongoDB utilizza una logica di partizionamento basata sui valori delle chiavi. In presenza di valori con distribuzione monotona, il balancer non è in grado di eseguire un bilanciamento in tempo reale dei valori, e li salva sempre nell'ultimo shard disponibile, degradando le performance dell'intero cluster. L'\textit{id} fornito da MongoDB è generato a partire da un \textit{timestamp}, quindi, per costruzione, i valori degli id sono monotonicamente crescenti.
 
-parlare del balancer
-dei lock di scrittura
+A fronte delle considerazioni precedenti, è stato scelto di eseguire i test utilizzando configurazioni del cluster differenziate sulla base della chiave di sharding scelta per bilanciare la base dati:
+\begin{enumerate}
+\item un solo shard, nessuna chiave di sharding;
+\item due shard, utilizzando come chiave di sharding il campo \textit{id} fornito da MongoDB;
+\item due shard, utilizzando come chiave il valore \textit{hash} del campo id, questo permette di ottenere, contemporaneamente, valori con distribuzione uniforme, non monotonicamente crescenti.
+\end{enumerate}
 
+I valori raccolti durante i test si riferiscono al tempo richiesto per inserire un numero definito di documenti all'interno del cluster. Sono stati utilizzati due tipi di documenti: \textit{small}, della dimensione di 200 byte circa, e \textit{big}, con una dimensione pari a 1 Megabyte. 
 
-come abbiamo eseguito i test:
+Per verificare la risposta del sistema al crescere del carico di lavoro richiesto, è stato creato uno script in grado di simulare un numero variabile di client (\textit{thread}). Ogni client esegue un numero prefissato di richieste di inserimento all'interno del database. 
 
-3 VM 512mb ram, 1,2 ghz
-1. mongos+config
-2. mongod s1
-3. mongod s2
+Il numero dei client è stato fatto variare progressivamente da 1 a 100 con incrementi di 10. Il numero di richieste per client è stato impostato a 10 per i documenti di tipo \textit{big} e a 100 per i documenti di tipo \textit{small}. 
 
-media su 3 run
-
+Le tabelle \ref{tab:benchmark-small} e \ref{tab:benchmark-big} riportano i risultati ottenuti, rispettivamente per i test eseguiti utilizzando documenti di tipo \textit{small} e \textit{big}. I valori riportati in tabella sono la media dei valori ottenuti da tre esecuzioni. I grafici \ref{fig:benchmark-small} e \ref{fig:benchmark-big} sono stati ottenuti ponendo sull'asse delle ascisse il numero dei client, e sull'asse delle ordinate il tempo richiesto dal cluster per l'inserimento di tutti i documenti del test.\\
 
 \begin{table}[h]
 \begin{center}
@@ -46,14 +51,14 @@ Client & 1 Shard & 2 Shard (id) & 2 Shard (hashed id) \\
 90 & 4.201 & 4.358 & 4.856 \\
 100 & 4.784 & 4.967 & 5.604 \\
 \end{tabular}
-\caption{Tabella small}\label{tab:benchmark-small}
+\caption{Risultati dei test con documenti \textit{small}}\label{tab:benchmark-small}
 \end{center}
 \end{table}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.0\linewidth]{./img/mongodb_write_test_with_small_docs_250_b}
-\caption[small]{small}
+\caption[Grafico dei risultati con documenti \textit{small}]{Grafico dei risultati con documenti \textit{small}}
 \label{fig:benchmark-small}
 \end{figure}
 
@@ -74,57 +79,19 @@ Client & 1 Shard & 2 Shard (id) & 2 Shard (hashed id) \\
 90 & 114.287 & 97.787 & 25.843 \\
 100 & 127.658 & 88.600 & 32.171 \\
 \end{tabular}
-\caption{Tabella big}\label{tab:benchmark-big}
+\caption{Risultati dei test con documenti \textit{big}}\label{tab:benchmark-big}
 \end{center}
 \end{table}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.0\linewidth]{./img/mongodb_write_test_with_big_docs_1mb}
-\caption[big]{big}
+\caption[Grafico dei risultati con documenti \textit{big}]{Grafico dei risultati con documenti \textit{big}}
 \label{fig:benchmark-big}
 \end{figure}
 
-%problemi con i benchmark
-%- dipendi dalla rete su cui sei
-%- nostro client fatto con node - perché non l'abbiamo usato
-%- 2 parole sul tool che abbiamo usato
-%- come sono stati fatti i benchmark
-%- specifiche del sistema VM, ram, hdd, ...
-%- risultati ottenuti
+Osservando i risultati ottenuti è chiaro come lo sharding offra vantaggi concreti solo se la dimensione dei documenti da salvare è consistente. Il motivo di questo comportamento, risiede nella modalità di lavoro del balancer e nella politica di gestione dei lock applicata da MongoDB.
 
+Salvando documenti di piccole dimensioni su più shard, accade che il tempo richiesto dal write-lock è minimo e, di conseguenza non si arriva alla \textit{saturazione} delle code di scrittura del database. Scegliendo la politica di sharding che fa uso di hash, inoltre, il balancer è obbligato ad eseguire uno spostamento dei documenti a \textit{runtime}, degradando le performance rispetto alla scrittura su un singolo shard.
 
-%non ha senso testare mole (server) per la parte rabbit (spiegare)
-%il vero collo di bottiglia è il db
-%abbiamo testato con configurazioni di db differenti
-
-% parlare dei casini con le chiavi di shard
-
-
-%conclusioni
-%- la coda dei denormalizzatori rompe tra un test e l'altro (coda lunga async)
-
-%problema bench su stessa macchina del server
-%    v
-%configuraz con vms 
-%    v
-%bench macchina fisica diversa
-%    v
-%shard key / ulimit(?)S
-%    v
-
-
-
-
-
-%strano comportamento: no denorm, gli dici di fare 10000 insert e trovi %10499[esatti] doc...
-%--> motivo query su sources + insert in whispers #fail mi sa...
-
-%con la nuova chiave lo sharding è sbilanciato 93% / 7%
-
-%i write lock non sembrano avere drammi
-%che sia la memoria?
-
-
-% muore il socket sul benchmark
-
+Nel caso di documenti di dimensioni maggiori, invece, l'\textit{overhead} aggiunto dal balancer è minimo rispetto al tempo di attesa dei documenti sulla coda di scrittura. Come conseguenza, si ottiene che l'utilizzo di più shard, e quindi di più code di scrittura parallele, aumenta notevolmente le performance dell'intero cluster.
