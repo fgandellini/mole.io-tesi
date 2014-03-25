@@ -12,12 +12,12 @@ I mole-contact inviano gli whisper in formato JSON al server mole utilizzando il
 \subsubsection{Gli whisper}
 
 I messaggi inviati dalle sources verso mole, utilizzando i mole-contact, sono definiti whisper. In Mole.io, un whisper è un documento codificato in formato JSON con alcuni campi obbligatori:
-\begin{description}
-\item[time] l'istante nel quale il messaggio è stato generato dalla source;  
-\item[sender] il mittente del messaggio, è un campo di testo libero;  
-\item[message] il testo che caratterizza il messaggio stesso;
-\item[severity] un livello di gravità del messaggio;
-\end{description}
+\begin{itemize}
+\item \textbf{time} l'istante nel quale il messaggio è stato generato dalla source;  
+\item \textbf{sender} il mittente del messaggio, è un campo di testo libero;  
+\item \textbf{message} il testo che caratterizza il messaggio stesso;
+\item \textbf{severity} un livello di gravità del messaggio;
+\end{itemize}
 
 Ogni source, costruisce un whisper contenente i campi obbligatori e ne aggiunge altri specifici per l'applicazione stessa, ma a priori non noti a Mole.io.
 
@@ -47,7 +47,7 @@ Come è stato anticipato nella sezione \ref{Command_query_responsibility_segregat
 
 Il sistema di gestione dei denormalizzatori è stato realizzato in modo che essi possano essere attivati a \textit{runtime}. Questo approccio garantisce la possibilità di estendere il sistema per adattarlo a nuove esigenze applicative.
 
-Con il passare del tempo, infatti una source potrebbe avere la necessità di cominciare a salvare informazioni differenti rispetto a quelle salvate fino a quel momento. L'unica operazione necessaria per adattare Mole.io alla nuova esigenza, sarà la realizzazione di un denormalizzatore specifico, che si occupi di trattare la nuova porzione di dato e di pre-elaborarla per garantirne una immediata fruizione da parte di mole-suit.
+Con il passare del tempo, infatti una source potrebbe avere la necessità di cominciare a salvare informazioni differenti rispetto a quelle salvate fino a quel momento. L'unica operazione necessaria per adattare Mole.io alla nuova esigenza sarà la realizzazione di un denormalizzatore specifico, che si occupi di trattare la nuova porzione di dato e di pre-elaborarla per garantirne una immediata fruizione da parte di mole-suit.
 
 Un nuovo denormalizzatore attivato, dovrebbe occuparsi principalmente di elaborare i nuovi dati in arrivo e pre-processarli in modo da renderli fruibili per la sezione di presentation. Potrebbe però essere interessante implementare tale denormalizzatore in modo che prima di elaborare i nuovi dati in arrivo, esegua il \textit{processing} dei dati grezzi precedentemente salvati nel sistema. Seguendo questo approccio è possibile ottenere nuove modalità di aggregazione di dati preesistenti, generando un valore aggiunto per gli utilizzatori del sistema, i quali vedrebbero i vecchi dati aggregati secondo la nuova esigenza.
 

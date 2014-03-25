@@ -2,7 +2,7 @@ Durante fase di progettazione di applicazioni come Mole.io, non si può prescinde
 
 Le tecniche di ottimizzazione del Database e di sharding dei dati, da sole, non bastano a garantire buone performance del sistema. \`{E} necessaria, infatti, una organizzazione dell'architettura del sistema che renda performanti le diverse operazioni verso il Database e, nello stesso tempo, non limiti le possibilità di estensione futura del sistema stesso.
 
-Il \textit{Command Query Separation} (CQS) è un principio di programmazione, discusso da  Bertrand Meyer in \cite{meyer1988object-oriented}. Dichiara che, in un sistema software, ogni metodo deve appartenere ad una sola delle seguenti categorie:
+Il \textit{Command Query Separation} (CQS) è un principio di programmazione, discusso da  Bertrand Meyer in \cite{meyer1988object-oriented}. Esso dichiara che, in un sistema software, ogni metodo deve appartenere ad una sola delle seguenti categorie:
 \begin{description}
 \item[Command] un metodo che esegue azioni, modifica i dati, non restituisce alcun risultato e crea potenzialmente \textit{inconsistenza} nel sistema; 
 \item[Query] un metodo che ottiene dati esistenti, esegue richieste e restituisce risultati senza alterare lo stato del sistema;
@@ -26,9 +26,7 @@ Nei sistemi che fanno uso di MongoDB per il salvataggio dei dati, l'applicazione
 
 MongoDB applica un \textit{read-lock} a fronte di ogni operazione di lettura, e un \textit{write-lock} a fronte di ogni scrittura. Il primo tipo di lock accoda ogni successiva lettura sull'intero database, mentre il secondo accoda tutte le letture e le scritture \textit{pending} sull'intera base dati. \`{E} chiaro, quindi, come la possibilità di eseguire lock su database separati possa migliorare le performance globali del sistema evitando colli di bottiglia. 
 
-L'architettura di Mole.io trae ispirazione dal modello CQRS. Nel sistema realizzato non esiste una distinzione tra database di lettura e scrittura, bensì tra collection \ref{MongoDB} per il salvataggio di dati grezzi e altre contenenti dati denormalizzati. L'applicazione è stata comunque disegnata in modo da rendere agevole la separazione di tali collection su database differenti, in caso di necessità future.
-
-Mole.io applica il modello CQRS anche per quanto riguarda la separazione dei ruoli di scrittura e lettura. Il modulo \textit{mole}, infatti, si occupa del salvataggio dei dati all'interno del database, mentre il compito di \textit{mole-suit} è, principalmente, l'estrazione dei dati per la pubblicazione su interfaccia utente. In figura \ref{fig:cqrs} è riportata schematicamente l'architettura CQRS realizzata in Mole.io.
+L'architettura di Mole.io trae ispirazione dal modello CQRS. Nel sistema realizzato non esiste una distinzione tra database di lettura e scrittura, bensì tra collection (\ref{MongoDB}) per il salvataggio di dati grezzi e altre contenenti dati denormalizzati. L'applicazione è stata comunque disegnata in modo da rendere agevole la separazione di tali collection su database differenti, in caso di necessità future.\\
 
 \begin{figure}[h]
 \centering
@@ -36,3 +34,5 @@ Mole.io applica il modello CQRS anche per quanto riguarda la separazione dei ruo
 \caption[Architettura CQRS di Mole.io]{Architettura CQRS di Mole.io}
 \label{fig:cqrs}
 \end{figure}
+
+Mole.io applica il modello CQRS anche per quanto riguarda la separazione dei ruoli di scrittura e lettura. Il modulo \textit{mole}, infatti, si occupa del salvataggio dei dati all'interno del database, mentre il compito di \textit{mole-suit} è, principalmente, l'estrazione dei dati per la pubblicazione su interfaccia utente. In figura \ref{fig:cqrs} è riportata schematicamente l'architettura CQRS realizzata in Mole.io.
