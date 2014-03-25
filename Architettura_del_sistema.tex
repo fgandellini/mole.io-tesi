@@ -30,7 +30,7 @@ GET /users/marco/friends/fabio
 
 Come è stato anticipato, le interfacce REST, utilizzano il protocollo HTTP per scambiare dati. Questo protocollo mette a disposizione diverse tipologie di messaggi, ognuna di queste si può immaginare come una \textit{azione} compiuta su una risorsa: quella indicata dall'\textit{endpoint} dell'interfaccia. I comandi utilizzati per dialogare con un servizio REST sono:
 \begin{description}
-\item[POST] permette di creare una nuova risorsa. Di solito, in caso di succeso, il servizio restituisce il dato appena creato;
+\item[POST] permette di creare una nuova risorsa. Di solito, in caso di successo, il servizio restituisce il dato appena creato;
 \item[GET] richiede lo stato corrente di una risorsa;
 \item[PUT] applica una modifica ad una risorsa esistente;
 \item [DELETE] elimina una risorsa;
@@ -57,7 +57,7 @@ Una delle caratteristiche di REST è l'assenza del supporto alle \textit{session}
 Nell'architettura di Mole.io si possono individuare due \textit{layer} principali: 
 
 \begin{description}
-\item [Insertion] è la porzione di sistema che si occupa dell'inserimento dei dati provenienti dall'esterno. Questa sezione è composta, a sua volta, dai \textit{mole-contacts} e dal server \textit{mole}. La sezione \ref{mole} si occupa di descrivere i dettagli dell'architettura del layer di insertion.  
+\item [Insertion] è la porzione di sistema che si occupa dell'inserimento dei dati provenienti dall'esterno. Questa sezione è composta, a sua volta, dai \textit{mole-contact} e dal server \textit{mole}. La sezione \ref{mole} si occupa di descrivere i dettagli dell'architettura del layer di insertion.  
 \item [Presentation] si occupa dell'estrazione dei dati dal sistema e della loro presentazione all'utente. Le componenti di questo modulo sono la \textit{user-interface} (UI) AngularJS e il server \textit{mole-suit}. Il layer di presentation verrà approfondito nella sezione \ref{mole-suit}.
 \end{description}
 

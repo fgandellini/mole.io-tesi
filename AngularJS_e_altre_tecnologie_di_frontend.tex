@@ -1,5 +1,5 @@
 AngularJS \cite{website:AngularJS} è un framework open-source per la creazione di \textit{single-page application}. Una applicazione single-page è una pagina web che carica dinamicamente dati dal server attraverso l'utilizzo di comunicazioni asincrone. 
-Dal punto di vista dell'utente utilizzatore di questo tipo di applicazioni, la principale differenza con le comuni applicazioni web è la modalità di navigazione. Muovendosi da una pagina all'altra, infatti, il client non richiede nuove pagine al server, bens\'{\i} esegue richieste in \textit{background} e carica dinamicamente i nuovi contenuti all'interno della pagina corrente con l'utilizzo di JavaScript.\\
+Dal punto di vista dell'utente utilizzatore di questo tipo di applicazioni, la principale differenza con le comuni applicazioni web è la modalità di navigazione. Muovendosi da una pagina all'altra, infatti, il client non richiede nuove pagine al server, bensì esegue richieste in \textit{background} e carica dinamicamente i nuovi contenuti all'interno della pagina corrente con l'utilizzo di JavaScript.\\
 
 \begin{figure}[h]
 \centering
@@ -31,7 +31,7 @@ Le tre componenti del pattern MVVM cooperano tra loro scambiandosi messaggi seco
 
 Questo approccio porta ad avere Model e ViewModel popolati con la maggior parte del codice applicativo, che, di conseguenza, viene rimosso dalla View. Il vantaggio dell'utilizzo dell'MVVM risiede proprio nel fatto che la sezione View, complessa da testare, diventa molto semplice e di fatto è quasi inutile eseguire test sul codice che la genera.
 
-La principale funzionalità fornita da AngualrJS è il \textit{binding} dinamico delle variabili JavaScript con i controlli HTML presenti nella pagina. Il binding è una operazione che permette di collegare una parte di Model con una porzione definita di View. Molto spesso questa funzionalità è utilizzata per collegare una variabile JavaScript con un controllo HTML, il binding garantisce che quando la variabile assume un nuovo valore, questo sia mostrato sulla interfaccia e, viceversa, quando un utente modifica il valore nella vista, questo venga immediatamente riflesso sulla variabile nel modello. Questo tipo di binding è definito \textit{bidirezionale} o \textit{two-way data binding}.
+La principale funzionalità fornita da AngularJS è il \textit{binding} dinamico delle variabili JavaScript con i controlli HTML presenti nella pagina. Il binding è una operazione che permette di collegare una parte di Model con una porzione definita di View. Molto spesso questa funzionalità è utilizzata per collegare una variabile JavaScript con un controllo HTML, il binding garantisce che quando la variabile assume un nuovo valore, questo sia mostrato sulla interfaccia e, viceversa, quando un utente modifica il valore nella vista, questo venga immediatamente riflesso sulla variabile nel modello. Questo tipo di binding è definito \textit{bidirezionale} o \textit{two-way data binding}.
 
 Il binding è una funzionalità molto interessante, perché solleva il programmatore dall'incombenza di mantenere la coerenza tra dati e interfaccia. Automatizzando questa operazione si ottiene anche una semplificazione del codice e una maggiore garanzia di funzionamento dell'applicazione. 
 
@@ -71,7 +71,7 @@ La struttura di questo framework, per sua natura, induce ad un design delle appl
 
 AngularJS utilizza il formato \textit{JavaScript Object Notation} (JSON) per lo scambio di dati tra il backend e i modelli. In \cite{crockford2008javascript} Douglas Crockford illustra questo formato da lui ideato. La definizione di JSON è aderente alle specifiche ECMA-262 del Dicembre 1999, e permette a JavaScript di interpretare questo formato nativamente. JSON quindi è un formato facilmente maneggiabile sia lato frontend, sia lato backend, questo ha contribuito a farlo diventare molto famoso e utilizzato per la realizzazione di applicazioni Node.js.
 
-Per la realizzazione della parte fontend di Mole.io sono state utilizzate diverse librerie JavaScript e framework di supporto alla stesura del codice HTML. Dell'insieme delle librerie utilizzate, si sono estratte le principali, delle quali seguirà una descrizione: 
+Per la realizzazione della parte frontend di Mole.io sono state utilizzate diverse librerie JavaScript e framework di supporto alla stesura del codice HTML. Dell'insieme delle librerie utilizzate, si sono estratte le principali, delle quali seguirà una descrizione: 
 \begin{itemize}
 \item Leaflet
 \item D3.js
@@ -97,7 +97,7 @@ Uno degli scopi per i quali è stata creata l'applicazione Mole.io è fornire una 
 \end{figure}
 
 \begin{description}
-\item[leaflet] \cite{website:Leaflet} è una libreria JavaScript che si occupa di gestire e mostrare a video mappe geografiche. La principale particolarità di questo software è il fungere da \textit{layer di astrazione} rispetto ai vari sistemi per la gestione di mappe geografiche esistenti. L'utilizzo di plugin, infatti, permette a leflet di interfacciarsi con svariati \textit{provider} di mappe online tra i quali Google Maps, CloudMade, OpenStreetMap, Esri e Nokia.
+\item[leaflet] \cite{website:Leaflet} è una libreria JavaScript che si occupa di gestire e mostrare a video mappe geografiche. La principale particolarità di questo software è il fungere da \textit{layer di astrazione} rispetto ai vari sistemi per la gestione di mappe geografiche esistenti. L'utilizzo di plugin, infatti, permette a leaflet di interfacciarsi con svariati \textit{provider} di mappe online tra i quali Google Maps, CloudMade, OpenStreetMap, Esri e Nokia.
 Questa libreria offre molte funzionalità per interagire con le mappe caricate; tra le principali, la possibilità di utilizzare \textit{overlay}, per evidenziare specifiche aree o porzioni di territorio e \textit{marker} per indicare punti specifici nella mappa. \`{E} possibile, inoltre, arricchire i marker con testo e immagini caricabili quando l'utente clicca sull'icona del marker stesso. Uno dei principali motivi che hanno contribuito alla scelta di leaflet come libreria per rappresentare mappe, è l'aspetto della compatibilità con i diversi browser. Questa libreria infatti garantisce un alto grado di compatibilità con i principali browser per desktop e \textit{smartphone}.  
 
 \begin{figure}[h]

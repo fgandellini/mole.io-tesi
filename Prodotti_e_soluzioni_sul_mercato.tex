@@ -22,7 +22,7 @@ Oltre all'aggregazione automatica dei messaggi d'errore, Airbrake possiede modul
 
 Airbrake si avvale dell'utilizzo di connessioni sicure SSL al fine di garantire la riservatezza dei dati raccolti.
 
-Il formato dei messaggi di errore interpretato da questo \textit{tool} ha una struttura fissa e non consente l'aggiunta di dati addizionali custom. Questo aspetto rende Airbrake uno strumento poco adatto al tracciamento di messaggi con formati diversi dagli eventi di errore.
+Il formato dei messaggi di errore interpretato da questo \textit{tool} ha una struttura fissa e non consente l'aggiunta di dati addizionali personalizzati. Questo aspetto rende Airbrake uno strumento poco adatto al tracciamento di messaggi con formati diversi dagli eventi di errore.
 
 \subsubsection{Log.io}
 
@@ -53,7 +53,7 @@ L'invio dei messaggi al server, da parte delle applicazioni, avviene tramite mes
 
 Tra le applicazioni a pagamento censite, questa risulta essere la più completa \cite{website:Rollbar}, permettendo infatti di registrare sia messaggi di errore sia messaggi generici.
 
-E' possibile arricchire i messaggi inviati a Rollbar con alcuni dati semplici o strutturati, definibili dall'utente. Le funzionalità di aggregazione dei dati sui tali messaggi, sono disponibili solo ad alcuni campi obbligatori che il sistema è in grado di gestire. Ad esempio è possibile aggregare i dati per livello di gravità, o per similitudine tra i messaggi, ma non è in grado di fare assunzioni automatiche sui campi custom aggiunti. 
+E' possibile arricchire i messaggi inviati a Rollbar con alcuni dati semplici o strutturati, definibili dall'utente. Le funzionalità di aggregazione dei dati sui tali messaggi, sono disponibili solo ad alcuni campi obbligatori che il sistema è in grado di gestire. Ad esempio è possibile aggregare i dati per livello di gravità, o per similitudine tra i messaggi, ma non è in grado di fare assunzioni automatiche sui campi personalizzati aggiunti. 
 
 Ogni volta un sistema viene pubblicato in produzione, è possibile inviare una notifica a Rollbar. Questo permette agli analisti di correlare gli errori in arrivo con la specifica versione dell'applicazione dalla quale essi sono stati generati. 
 
@@ -72,7 +72,7 @@ Permette infine di notificare gli eventi aggiungendo automaticamente alcuni \tex
 \label{fig:papertrail}
 \end{figure}
 
-Papertrail è un tool orientato agli amministratori di rete \cite{website:Papertrail}. Nei sitemi \textit{unix-like}, il comando \verb|tail|, permette di stampare in \textit{console} in tempo reale le ultime righe aggiunte ad un file utilizzato da un processo. Analogamente, lo stesso comando in Papertrail, permette di ottenere la coda degli ultimi messaggi ricevuti in tempo reale con una operazione chiamata \textit{Tail and Search}. Papertrail salva periodicamente i log ricevuti e permette di scaricarli, rendendoli così disponibili per eventuali elaborazioni successive.
+Papertrail è un tool orientato agli amministratori di rete \cite{website:Papertrail}. Nei sistemi \textit{unix-like}, il comando \verb|tail|, permette di stampare in \textit{console} in tempo reale le ultime righe aggiunte ad un file utilizzato da un processo. Analogamente, lo stesso comando in Papertrail, permette di ottenere la coda degli ultimi messaggi ricevuti in tempo reale con una operazione chiamata \textit{Tail and Search}. Papertrail salva periodicamente i log ricevuti e permette di scaricarli, rendendoli così disponibili per eventuali elaborazioni successive.
 
 A livello di analisi automatizzata, il tool, esegue una classificazione dei messaggi ricevuti estrapolando autonomamente la chiave di aggregazione dal formato stesso del messaggio.
 
@@ -125,7 +125,7 @@ Elastic Search genererà in automatico alcune chiavi di ricerca che permetteranno
 \item[Kibana] Si occupa di mostrare a video i dati ottenuti dall'interrogazione dei Elastic Search. Con questo tool \cite{website:Elasticsearch} è possibile realizzare, in pochi passaggi, svariate tipologie di grafici e tabelle filtrabili e ordinabili.
 \end{description}
 
-L'utilizzo di questi tre tool in maniera sinergica permette di costruire un sistema di gestione e analisi dei log efficiente basato sulla architettura mostrata in figura \ref{fig:fluentd-elasticsearch-kibana}. I messaggi, provenienti da sorgenti differenti, vengono raccolti dai plugin di Fluentd e tradotti in formato JSON. A questo punto un ulteriore plugin si occuperà di inviare i dati ad Elastic Search il quale li salverà all'interno del proprio database documentale. Sempre Elasti Search avrà il compito di interrogare la base di dati ed esporre tali informazioni aggregate a Kibana attraverso una \textit{REST API}. Questo quindi permetterà all'analista di creare \textit{report} personalizzabili secondo le esigenze specifiche.\\
+L'utilizzo di questi tre tool in maniera sinergica permette di costruire un sistema di gestione e analisi dei log efficiente basato sulla architettura mostrata in figura \ref{fig:fluentd-elasticsearch-kibana}. I messaggi, provenienti da sorgenti differenti, vengono raccolti dai plugin di Fluentd e tradotti in formato JSON. A questo punto un ulteriore plugin si occuperà di inviare i dati ad Elastic Search il quale li salverà all'interno del proprio database documentale. Sempre Elastic Search avrà il compito di interrogare la base di dati ed esporre tali informazioni aggregate a Kibana attraverso una \textit{REST API}. Questo quindi permetterà all'analista di creare \textit{report} personalizzabili secondo le esigenze specifiche.\\
 
 \begin{figure}[h]
 \centering

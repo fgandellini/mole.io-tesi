@@ -1,8 +1,8 @@
-I test eseguiti su Mole.io hanno privilegiato l'aspetto della raccolta dati operata dal sistema. Questa, infatti, è una delle principali funzionalità offerte dall'applicazione ed è interessante comprendere come, l'ottimizzazione del layer di insert, possa contribuire ad un incremento delle performance globali del sistema.
+I test eseguiti su Mole.io hanno privilegiato l'aspetto della raccolta dati operata dal sistema. Questa, infatti, è una delle principali funzionalità offerte dall'applicazione ed è interessante comprendere come, l'ottimizzazione del layer di insertion, possa contribuire ad un incremento delle performance globali del sistema.
 
 Durante i test sono state esplorate diverse configurazioni del database al fine di comprendere quale fosse la ottimale ai fini applicativi per Mole.io. I test sono stati eseguiti cercando di creare un ambiente il più possibile esente da fattori di incertezza esterni, al fine ottenere misure affidabili e risultati riproducibili.
 
-Per lo svolgimento delle analisi, è stato realizzato un cluster MongoDB utilizzando tre \textit{virtual machine} (VM) rispettivamente configurate in modo da utilizzare 512 Mb di memoria RAM, con un Hard Disk SSD da 8,0 Gb e dotate di un processore da 1,2 GHz. Ognuna delle VM è stata equipaggiata con una differente configurazione:
+Per lo svolgimento delle analisi, è stato realizzato un cluster MongoDB utilizzando tre \textit{virtual machine} (VM) rispettivamente configurate in modo da utilizzare 512 Megabyte di memoria RAM, con un Hard Disk SSD da 8,0 Gigabyte e dotate di un processore da 1,2 GHz. Ognuna delle VM è stata equipaggiata con una differente configurazione:
 \begin{description}
 \item[VM1] sulla quale sono stati installati un Query Router (\verb|mongos|), il cui compito è stato fornire l'accesso all'intero cluster e un Config Server (\verb|mongod|) opportunamente configurato per tenere traccia delle informazioni di \textit{layout} del cluster;
 \item[VM2] su cui è stato installato il primo shard utilizzando un demone \verb|mongod|;

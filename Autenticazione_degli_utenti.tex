@@ -6,7 +6,7 @@ Molte automobili di lusso possiedono una chiave per il posteggiatore. Una chiave
 
 OAuth è un protocollo standard per autorizzazioni che, in modo simile a quanto succede per le chiavi posteggiatore per le automobili, permette ad un utente di garantire, ad applicazioni di terze parti, l'accesso ad un numero limitato di  contenuti personali.
 
-Con OAuth inoltre gli utenti non devono condividere la propria password con diversi sistemi, bensì un server centrale di autorizzazione, funge da garante per l'identificazione delle informazioni di accesso e per la fruizione di specifici dati utente. Dal punto di vista tecnico, il protocollo è implementato utilizzando un sistema di redirezioni HTTP e di controlli da parte del server che funge da garante.
+Con OAuth inoltre gli utenti non devono condividere la propria password con diversi sistemi, bensì un server centrale di autorizzazione, funge da garante per l'identificazione delle informazioni di accesso e per la fruizione di specifici dati utente. Dal punto di vista tecnico, il protocollo è implementato utilizzando un sistema di reindirizzamenti HTTP e di controlli da parte del server che funge da garante.
 
 Mole.io si configura al pari di altri servizi presenti sul web e, in maniera simile, sfrutta il protocollo OAuth 2.0 per l'identificazione e l'autenticazione degli utenti. In questo caso il server scelto come garante delle identità utente è quello messo a disposizione da Twitter.
 
@@ -14,7 +14,7 @@ Nello schema \ref{fig:oauth2} è possibile vedere le diverse fasi del processo di
 \begin{enumerate}
 \item l'utente richiede l'accesso a Mole.io;
 \item l'applicazione esegue un \textit{redirect} HTTP verso la pagina di autenticazione fornita da Twitter, passandole un \textit{token} per l'identificazione dell'utente;
-\item il server di autenticazione di Twitter esegue la verifica di identità dell'utente e, in caso di esisto positivo, esegue una redirezione verso un URL fornito dall'applicazione restituendo il token identificativo e un codice di verifica dell'utente;
+\item il server di autenticazione di Twitter esegue la verifica di identità dell'utente e, in caso di esisto positivo, esegue un reindirizzamento verso un URL fornito dall'applicazione restituendo il token identificativo e un codice di verifica dell'utente;
 \item a questo punto l'applicazione ottiene i dati dell'utente e può ritenere l'operazione di accesso effettuata con successo.
 \end{enumerate}
 
@@ -78,3 +78,4 @@ A fronte di un processo di autenticazione, Passport fornisce un oggetto contenen
 
 % autenticazione sull'api(?) 
 % come funziona la storia id/key per autenticarsi sulle api
+api

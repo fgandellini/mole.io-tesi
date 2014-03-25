@@ -48,9 +48,9 @@ Dispositivo di rete & 240.000.000 \\
 \end{tabular} 
 \end{center}
 
-Guardando la tabella si nota immediatamente come i dispositivi di \textit{I/O} siano ordini di grandezza più lenti rispetto ai dispositivi di elaborazione delle informazioni. Se il flusso del programma dovesse aspettare, in modo sincrono, ogni singola operazione di lettura o scrittura su disco, ad esempio, esso perderebbe la possibilità di eseguire circa quaranta milioni di operazioni di calcolo, con un conseguente degrado delle performances del software.
+Guardando la tabella si nota immediatamente come i dispositivi di \textit{I/O} siano ordini di grandezza più lenti rispetto ai dispositivi di elaborazione delle informazioni. Se il flusso del programma dovesse aspettare, in modo sincrono, ogni singola operazione di lettura o scrittura su disco, ad esempio, esso perderebbe la possibilità di eseguire circa quaranta milioni di operazioni di calcolo, con un conseguente degrado delle performance del software.
 
-Una tecnica comune per affrontare il problema dell'\textit{I/O} è l'utilizzo di \textit{threads}. Un thread è spesso definito con il termine "sotto-processo leggero", in effetti esso condivide codice e risorse di sistema con altri threads appartenenti allo stesso processo padre.
+Una tecnica comune per affrontare il problema dell'\textit{I/O} è l'utilizzo di \textit{thread}. Un thread è spesso definito con il termine "sotto-processo leggero", in effetti esso condivide codice e risorse di sistema con altri thread appartenenti allo stesso processo padre.
 
 L'utilizzo dei thread permette ad un processo di parallelizzare l'esecuzione di una parte del suo flusso di lavoro. Al tempo stesso sono necessarie risorse di sistema sia per creare il thread sia per distruggerlo. Node.js ovvia a questo problema utilizzando un \textit{thread pool}, cioè un insieme di thread che fungono da \textit{worker} per il processo. Quando è necessario eseguire un particolare \textit{task}, esso viene sottoposto al thread pool, di conseguenza viene assegnato ad un worker. Esso lo esegue e al termine del lavoro comunica l'esito dell'elaborazione al chiamante tramite una funzione detta \textit{callback}.
 
