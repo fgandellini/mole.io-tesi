@@ -125,7 +125,9 @@ Elastic Search genererà in automatico alcune chiavi di ricerca che permetteranno
 \item[Kibana] Si occupa di mostrare a video i dati ottenuti dall'interrogazione dei Elastic Search. Con questo tool \cite{website:Elasticsearch} è possibile realizzare, in pochi passaggi, svariate tipologie di grafici e tabelle filtrabili e ordinabili.
 \end{description}
 
-L'utilizzo di questi tre tool in maniera sinergica permette di costruire un sistema di gestione e analisi dei log efficiente basato sulla architettura mostrata in figura \ref{fig:fluentd-elasticsearch-kibana}. I messaggi, provenienti da sorgenti differenti, vengono raccolti dai plugin di Fluentd e tradotti in formato JSON. A questo punto un ulteriore plugin si occuperà di inviare i dati ad Elastic Search il quale li salverà all'interno del proprio database documentale. Sempre Elastic Search avrà il compito di interrogare la base di dati ed esporre tali informazioni aggregate a Kibana attraverso una \textit{REST API}. Questo quindi permetterà all'analista di creare \textit{report} personalizzabili secondo le esigenze specifiche.\\
+L'utilizzo di questi tre tool in maniera sinergica permette di costruire un sistema di gestione e analisi dei log efficiente basato sulla architettura mostrata in figura \ref{fig:fluentd-elasticsearch-kibana}. I messaggi, provenienti da sorgenti differenti, vengono raccolti dai plugin di Fluentd e tradotti in formato JSON. A questo punto un ulteriore plugin si occuperà di inviare i dati ad Elastic Search il quale li salverà all'interno del proprio database documentale. Sempre Elastic Search avrà il compito di interrogare la base di dati ed esporre tali informazioni aggregate a Kibana attraverso una \textit{REST API}. Questo quindi permetterà all'analista di creare \textit{report} personalizzabili secondo le esigenze specifiche.
+
+\clearpage
 
 \begin{figure}[h]
 \centering
@@ -139,23 +141,8 @@ Benché questa architettura presenti caratteristiche e funzionalità aderenti alle
 \subsubsection{Riepilogo Comparativo}
 Nella tabella \ref{tab:comparazione-funzionalita} sono riportate schematicamente le principali caratteristiche analizzate nelle soluzioni, per la centralizzazione dei log, prese in esame.
 
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{l|ccccc}
-& \begin{rotate}{90}\textbf{Airbrake}\end{rotate} 
-& \begin{rotate}{90}\textbf{Log.io}\end{rotate} 
-& \begin{rotate}{90}\textbf{Rollbar}\end{rotate} 
-& \begin{rotate}{90}\textbf{Papertrail}\end{rotate} 
-& \begin{rotate}{90}\textbf{Fluentd, ElasticSearch, Kibana}\end{rotate} \\ 
-\hline 
-\textbf{Open source} & & \checkmark & & & \checkmark \\
-\textbf{Persistenza dati} & \checkmark & & \checkmark & \checkmark & \checkmark 
- \\
-\textbf{Dati utente strutturati} & & & \checkmark & & \checkmark \\
-\textbf{Aggregazione automatica} & \checkmark & & \checkmark & \checkmark & \checkmark \\
-\textbf{SaaS} & \checkmark & \checkmark & \checkmark & \checkmark & \\
-
-\end{tabular}
-\caption{Tabella comparativa delle funzionalità}\label{tab:comparazione-funzionalita}
-\end{center}
-\end{table}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./img/functionalities}
+\caption[Tabella comparativa delle funzionalità]{Tabella comparativa delle funzionalità}\label{tab:comparazione-funzionalita}
+\end{figure}
